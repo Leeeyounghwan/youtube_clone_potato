@@ -4,7 +4,7 @@ function loadVideoInfo() {
         alert('영상 제목을 입력해주세요.');
         return;
     }
-
+    /////ddddddddddsdas
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
