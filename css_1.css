@@ -168,3 +168,34 @@
     order: 0;
     flex-grow: 0;
 }
+
+/* 아이콘이 들어가 있는 약간 여유가 있는 틀? 인 것 같습니다*/
+/* 위의 home-fill 과 같은 느낌입니다*/
+.explore {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 0px;
+    top: 0px;
+}
+
+/* 아이콘이 들어가 있는 빡빡한 틀? */
+.explore .Group {
+    position: absolute;
+    left: 8.33%;
+    right: 8.33%;
+    top: 8.33%;
+    bottom: 8.33%;
+}
+
+/* 아이콘 그 자체 */
+.explore .Vector {
+    position: absolute;
+    left: 8.33%;
+    right: 8.33%;
+    top: 8.33%;
+    bottom: 8.33%;
+
+    /* White-Color */
+    background: #FFFFFF;
+}
