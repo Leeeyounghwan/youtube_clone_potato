@@ -130,7 +130,7 @@
 }
 
 /* Home 글씨 */
-.Home {
+.Home-1 {
     width: 38px;
     height: 16px;
 
@@ -165,7 +165,7 @@
 
     /* Inside auto layout */
     flex: none;
-    order: 0;
+    order: 1;
     flex-grow: 0;
 }
 
@@ -198,4 +198,92 @@
 
     /* White-Color */
     background: #FFFFFF;
+}
+
+/* Explore 글씨 */
+.Home-2 {
+    width: 47px;
+    height: 16px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* White-Color */
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* sidebarTop 부분의 Menu */
+/* Home, Explore, Subscription이 나눠진 부분의 3번째*/
+.sidebarMenu-3 {
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 8px 8px 24px;
+    gap: 10px;
+
+    width: 224px;
+    height: 40px;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 2;
+    flex-grow: 0;
+}
+
+.sunscriptions {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 0px;
+    top: 0px;
+}
+
+.sunscriptions .Group {
+    position: absolute;
+    left: 8.33%;
+    right: 8.33%;
+    top: 12.5%;
+    bottom: 12.5%;
+}
+
+.sunscriptions .Vector {
+    position: absolute;
+    left: 8.33%;
+    right: 8.33%;
+    top: 12.5%;
+    bottom: 12.5%;
+
+    /* White-Color */
+    background: #FFFFFF;
+}
+
+/* Subscriptions 글씨 */
+.Home-3 {
+    width: 86px;
+    height: 16px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    /* White-Color */
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
 }
