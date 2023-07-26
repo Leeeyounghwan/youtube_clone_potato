@@ -1,7 +1,7 @@
 # 🖥️오르미 2기 우리는 말하는 감자조🖥️
   <b>유튜브 클론코딩</b>
 
-![potato-emmy](https://github.com/Leeeyounghwan/youtube_clone_gamza/assets/129285372/6e724950-6cae-4070-9401-5c853f2a3046)
+![potato-emmy](https://github.com/Leeeyounghwan/youtube_clone_potato/assets/129285372/8b564236-d129-4fa5-8995-3ed96a430263)
 
  <br>
 
