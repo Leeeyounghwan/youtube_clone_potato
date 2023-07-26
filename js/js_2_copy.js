@@ -53,7 +53,10 @@ function getChannelVideo() {
  * 실패했습니다.. 밑에 로그를 찍어보면 잘 들어가는거 같긴한데
  * 보내는 다시 getChannelVideo로 보내는 방법을 모르겠어요....
  * */
-function getVideo(video_id) {        // 검색된 video의 썸네일과 url 가져오기
+/* 
+아직 자바스크립트를 잘 모르겠어서 크게 손댄 부분은 없고 async 하나 추가 했습니다. - 23.07.26
+*/
+async function getVideo(video_id) {        // 검색된 video의 썸네일과 url 가져오기
     let videoId = video_id     // getChannelVideo함수에서 가져온 videoId
     console.log(videoId);
 
