@@ -4,10 +4,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Youtube Clone Video page</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/css_1.css">
+    <link rel="stylesheet" type="text/css" href="css/css_2.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row;
+        }
+
+        aside {
+            float: right;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Header 부분 -->
+    <header>
+        <!-- header 상단 왼쪽 부분: 메뉴버튼, 유튜브 로고 -->
+        <div class="headerLeft">
+            <button class="menuButton">
+                <img src="img/pngwing.png" class="menuButtonImage">
+            </button>
+            <button class="youtubeLogoButton">
+                <img src="img/yt_logo_rgb_dark.png" class="youtubeLogoButtonImage">
+            </button>
+        </div>
+        <!-- header 상단 가운데 부분: 검색창, 음성인식버튼 -->
+        <div class="searchBox">
+            <input type="text" class="searchInput" placeholder="search">
+            <button class="searchButton">
+                <img src="img/SearchBox-Button.png" class="searchButtonImage">
+            </button>
+            <button class="voiceSearchButton">
+                <img src="img/HeaderNavigationsIcon.png" class="voiceButtonImage">
+            </button>
+        </div>
+        <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
+        <div>
+            <button class="createButton">
+                <img src="img/navigations_create.png" class="createButtonImage">
+            </button>
+            <button class="appButton">
+                <img src="img/navigations_Apps.png" class="appButtonImage">
+            </button>
+            <button class="notificationButton">
+                <img src="img/navigations_notifications.png" class="notificationButtonImage">
+            </button>
+            <button class="profileButton">
+                <img src="img/User-Avatar.png" class="profileButtonImage">
+            </button>
+        </div>
+    </header>
+
+    <section>
+        <article id="video" style="display:flex; flex-direction: column;">
+            <div id="playVideo"></div>
+            <div id="displayVideoInfo"></div>
+        </article>
+    </section>
+
+    <aside>
+        <div id="displayVideoList"></div>
+    </aside>
+
+</body>
+<!-- js 파일 가져오기 -->
+<script src="js_1.js"></script>
+<script>
+    /* 페이지가 로드 될때 영상 리스트 출력 */
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URL(location.href).searchParams;
+        const id = urlParams.get('id');
+        console.log(id);
+
+        viewVideo(id);
+        displayVideoInfo(id);
+        displayVideoList();
+    });
+</script>
+
+</html>
 
 </body>
 

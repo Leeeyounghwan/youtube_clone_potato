@@ -2,319 +2,16 @@
 <html>
 
 <head>
-    <title>유튜브 클론</title>
-    <!-- test용으로 만든거라 신경 쓰이시면 지워주세요..
-    <style>
-        /* 전체 헤더 스타일 */
-        header {
-            background-color: #212121;
-            /* 배경 색상 설정  */
-            padding: 15px;
-            /* 헤더 주변 여백 설정 */
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            /*가로정렬*/
-            align-items: center;
-            /*세로정렬*/
-
-        }
-
-        input {
-            color: #ffffff;
-        }
-
-        /* 로고 스타일 */
-        .logo {
-            color: #FFFFFF;
-            /* 글자 색상 설정 (여기서는 흰색) */
-            font-size: 24px;
-            /* 글자 크기 설정 */
-            font-weight: bold;
-            /* 글자 굵기 설정 */
-        }
-
-        /* 검색창 스타일 */
-        .searchBox {
-            margin-top: 0px;
-            /* 검색창 위쪽 여백 설정 */
-            display: flex;
-            /* 내부 요소를 가로로 정렬 */
-
-
-            justify-content: center;
-            /* 요소들을 가운데로 정렬 */
-            align-items: center;
-            /* 요소들을 수직 가운데로 정렬 */
-
-
-        }
-
-        .searchInput {
-            flex: 1;
-            /* 남은 공간을 꽉 채우도록 설정 */
-            padding: 5px;
-            /* 검색창 주변 여백 설정 */
-            font-size: 16px;
-            /* 글자 크기 설정 */
-            background-color: #121212;
-        }
-
-        .searchButton {
-
-            padding: none;
-            /* 버튼 내부 여백 설정 */
-            background-color: #212121;
-            /* 배경 색상 설정 (여기서는 흰색) */
-            border: none;
-            /* 테두리 제거 */
-            font-size: 0px;
-            /* 글자 크기 설정 */
-            cursor: pointer;
-            /* 커서 모양을 포인터로 변경 */
-            width: fixed;
-            height: fixed;
-        }
-
-        .searchButtonImage {
-            width: 50px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-        .voiceSearchButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .voiceButtonImage {
-            width: 30px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-        .menuButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .menuButtonImage {
-            width: 30px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-
-        .youtubeLogoButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .youtubeLogoButtonImage {
-            width: 120px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-
-        }
-
-        .createButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .createButtonImage {
-            width: 30px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-        .appButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .appButtonImage {
-            width: 22px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-        .notificationButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .notificationButtonImage {
-            width: 22px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-        .profileButton {
-            background-color: #212121;
-            border: none;
-            cursor: pointer;
-        }
-
-        .profileButtonImage {
-            width: 30px;
-            height: auto;
-            padding: none;
-            border: none;
-            margin: none;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            /* 세로 방향으로 요소들을 배치 */
-            min-height: 100vh;
-            /* 화면 전체 높이를 차지하도록 설정 */
-            margin: 0;
-            /* 기본 마진 제거 */
-        }
-
-        /* 메인 영역 스타일 */
-        main {
-            display: flex;
-            flex: 6;
-            background-color: black;
-            /* 배경 색상 설정 (여기서는 연한 회색) */
-            padding: 20px;
-            /* 주변 여백 설정 */
-            justify-content: flex-start;
-            flex-direction: column;
-
-        }
-
-        /* 사이드바 스타일 */
-        aside {
-
-            /* 사이드바 너비 설정 */
-
-            background-color: #212121;
-            /* 배경 색상 설정 (여기서는 연한 회색) */
-            padding: 20px;
-            /* 주변 여백 설정 */
-            flex: 1;
-
-            flex-direction: column;
-            /* 버튼들을 세로로 배치 */
-            align-items: center;
-            /* 버튼들을 수직 가운데로 정렬 */
-        }
-
-        /* 네비게이션 스타일 */
-        nav {
-            width: 100%;
-            /* 네비게이션 너비 설정 */
-            background-color: #ddd;
-            /* 배경 색상 설정 (여기서는 연한 회색) */
-            padding: 20px;
-            /* 주변 여백 설정 */
-        }
-
-        /* 메인 콘텐츠 스타일 */
-        section {
-            flex: 2;
-            /* 남은 공간을 모두 차지하도록 설정 */
-            background-color: blue;
-            /* 배경 색상 설정 (여기서는 흰색) */
-            padding: 20px;
-            /* 주변 여백 설정 */
-            color: #ffffff;
-        }
-
-        /* flexbox 컨테이너 설정 */
-        .flex-container {
-            display: flex;
-            height: 100vh;
-        }
-
-        /* 순서 조정 */
-        .flex-container .flex-item-header {
-            order: 1;
-        }
-
-        .flex-container .flex-item-aside {
-            order: 2;
-        }
-
-        .flex-container .flex-item-main {
-            order: 3;
-        }
-
-        /* 버튼 그룹 스타일 */
-        .button-group {
-            width: 100%;
-            /* 버튼 그룹의 넓이를 aside 요소의 넓이에 맞춤 */
-            display: flex;
-            /* 그룹 내부 요소들을 flexbox로 배치 */
-            flex-direction: column;
-            /* 버튼 그룹을 세로로 배치 */
-            align-items: center;
-            /* 버튼 그룹을 수직 가운데로 정렬 */
-            margin-bottom: 10px;
-            /* 버튼 그룹 사이에 간격 추가 */
-            border-bottom: 1px solid #ccc;
-            /* 선 스타일 설정 */
-            padding-bottom: 10px;
-            /* 선과 버튼 사이의 간격 설정 */
-            align-items: flex-start;
-            /* 버튼 그룹을 왼쪽으로 정렬 */
-        }
-
-        /* 버튼 스타일 */
-        .button-group button {
-            width: 100%;
-            /* 버튼 그룹의 넓이를 aside 요소의 넓이에 맞춤 */
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #212121;
-            /* 배경 색상 설정 (여기서는 연한 회색) */
-            border: none;
-            /* 버튼 테두리 제거 */
-            cursor: pointer;
-            /* 마우스 포인터를 버튼 위로 올렸을 때 커서 모양 변경 */
-            font-size: 16px;
-            display: flex;
-            /* 이미지와 텍스트를 가로로 나란히 배치 */
-            align-items: center;
-            /* 이미지와 텍스트를 수직 가운데로 정렬 */
-        }
-
-        /* 텍스트 스타일 */
-        .button-group span {
-            margin-left: 10px;
-            /* 텍스트 왼쪽 여백 추가 */
-            color: #ffffff;
-        }
-    </style>-->
+    <title>Youtube Clone Home page</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/css_1.css">
+    <link rel="stylesheet" type="text/css" href="css/css_2.css">
 </head>
 
 <body>
+    <!-- Header 부분 -->
     <header>
-        <!-- 검색창 왼쪽/ 메뉴버튼, 유튜브 로고 -->
+        <!-- header 상단 왼쪽 부분: 메뉴버튼, 유튜브 로고 -->
         <div class="headerLeft">
             <button class="menuButton">
                 <img src="img/pngwing.png" class="menuButtonImage">
@@ -323,7 +20,7 @@
                 <img src="img/yt_logo_rgb_dark.png" class="youtubeLogoButtonImage">
             </button>
         </div>
-        <!-- 검색창, 음성인식버튼 -->
+        <!-- header 상단 가운데 부분: 검색창, 음성인식버튼 -->
         <div class="searchBox">
             <input type="text" class="searchInput" placeholder="search">
             <button class="searchButton">
@@ -333,7 +30,7 @@
                 <img src="img/HeaderNavigationsIcon.png" class="voiceButtonImage">
             </button>
         </div>
-        <!-- 검색창 오른쪽/ 만들기, 앱, 알림, 프로필 버튼 -->
+        <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
         <div>
             <button class="createButton">
                 <img src="img/navigations_create.png" class="createButtonImage">
@@ -350,8 +47,8 @@
         </div>
     </header>
 
+    <!-- sidebar 부분 -->
     <div class="flex-container">
-        <!-- 사이드바 부분 -->
         <aside class="flex-item-aside">
             <div class="button-group">
                 <button><img src="img/home_Icon.png"><span>Home</span></button>
@@ -367,18 +64,18 @@
                 <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
             </div>
             <div class="button-group">
-                <span>SUBSCRIPTIONS</span>
-                <button><img src="img/James_Icon.png"><span>James Gouse</span></button>
-                <button><img src="img/ALan_Icon.png"><span>Alan Cooper</span></button>
-                <button><img src="img/Marcus_Icon.png"><span>Marcus Levin</span></button>
-                <button><img src="img/Alexis_Icon.png"><span>Alexis Sears</span></button>
-                <button><img src="img/Jesica_Icon.png"><span>Jesica Lambert</span></button>
-                <button><img src="img/Anna_Icon.png"><span>Anna White</span></button>
-                <button><img src="img/Skylar_Icon.png"><span>Skylar Dias</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show "" more</span></button>
+                <span class="button-group-title">SUBSCRIPTIONS</span>
+                <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
+                <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
+                <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
+                <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
+                <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
+                <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
+                <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
+                <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
             </div>
             <div class="button-group">
-                <span>MORE FROM YOUTUBE</span>
+                <span class="button-group-title">MORE FROM YOUTUBE</span>
                 <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
                 <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
                 <button><img src="img/live_Icon.png"><span>Live</span></button>
@@ -391,15 +88,47 @@
                 <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
             </div>
         </aside>
-        <!-- 메인 부분.. 인데 아직 못 했습니다 ㅠㅠ -->
+
+        <!-- 메인 부분 -->
         <main class="flex-item-main">
-            <nav style="background-color: #ffffff;"><span style="color:#ffffff">saddsadasdasd</span></nav>
-            <section>
-                <h1>메인 콘텐츠</h1>
-                <p>메인 콘텐츠의 내용이 여기에 들어갑니다.</p>
+            <!-- 메인 화면 위에 상단 부분 -->
+            <nav style="background-color: #ffffff;">
+                <span style="color:#ffffff">
+                    <div class="mainTop">
+                        <div class="filterButtons">
+                            <button class="active" onclick="">전체</button>
+                            <button onclick="">음악</button>
+                            <button onclick="">게임</button>
+                            <button onclick="">믹스</button>
+                            <button onclick="">실시간</button>
+                            <button onclick="">뉴스</button>
+                            <button onclick="">요리 프로그램</button>
+                            <button onclick="">뷰티 팁</button>
+                            <button onclick="">액션</button>
+                            <button onclick="">어드벤처</button>
+                            <button onclick="">요리</button>
+                            <button onclick="">만화 영화</button>
+                            <button onclick="">반려 동물</button>
+                            <button onclick="">최근에 업로드 된 동영상</button>
+                            <button onclick="">새로운 맞춤 동영상</button>
+                        </div>
+                        <button class="sliderButton right"><img src="img/rightArrow_Icon.png"></button>
+                    </div>
+                </span>
+            </nav>
+            <!-- 메인 화면 아래 영상 리스트 -->
+            <section style="padding: 10px 1px 10px 20px;">
+                <div id="videoList" class="video-list">
+                </div>
             </section>
         </main>
     </div>
 </body>
+
+<!-- js에서 videoList 가져오기  -->
+<script src="../js_1/js_1.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', loadVideo());
+</script>
 
 </html>
