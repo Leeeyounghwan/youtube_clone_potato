@@ -4,11 +4,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Youtube Clone Channel page</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/css_1.css">
+    <link rel="stylesheet" type="text/css" href="css/css_2.css">
 </head>
 
 <body>
+    <!-- Header 부분 -->
+    <header>
+        <!-- header 상단 왼쪽 부분: 메뉴버튼, 유튜브 로고 -->
+        <div class="headerLeft">
+            <button class="menuButton">
+                <img src="img/pngwing.png" class="menuButtonImage">
+            </button>
+            <button class="youtubeLogoButton">
+                <img src="img/yt_logo_rgb_dark.png" class="youtubeLogoButtonImage">
+            </button>
+        </div>
+        <!-- header 상단 가운데 부분: 검색창, 음성인식버튼 -->
+        <div class="searchBox">
+            <input type="text" class="searchInput" placeholder="search">
+            <button class="searchButton">
+                <img src="img/SearchBox-Button.png" class="searchButtonImage">
+            </button>
+            <button class="voiceSearchButton">
+                <img src="img/HeaderNavigationsIcon.png" class="voiceButtonImage">
+            </button>
+        </div>
+        <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
+        <div>
+            <button class="createButton">
+                <img src="img/navigations_create.png" class="createButtonImage">
+            </button>
+            <button class="appButton">
+                <img src="img/navigations_Apps.png" class="appButtonImage">
+            </button>
+            <button class="notificationButton">
+                <img src="img/navigations_notifications.png" class="notificationButtonImage">
+            </button>
+            <button class="profileButton">
+                <img src="img/User-Avatar.png" class="profileButtonImage">
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar 부분 -->
+    <div class="flex-container">
+        <aside class="flex-item-aside">
+            <div class="button-group">
+                <button><img src="img/home_Icon.png"><span>Home</span></button>
+                <button><img src="img/explore_Icon.png"><span>Explore</span></button>
+                <button><img src="img/subscriptions_Icon.png"><span>Subscriptions</span></button>
+            </div>
+            <div class="button-group">
+                <button><img src="img/library_Icon.png"><span>Library</span></button>
+                <button><img src="img/history_Icon.png"><span>History</span></button>
+                <button><img src="img/yourVideos_Icon.png"><span>Your Videos</span></button>
+                <button><img src="img/watchLater_Icon.png"><span>Watch Later</span></button>
+                <button><img src="img/likedVideos_Icon.png"><span>Liked Videos</span></button>
+                <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
+            </div>
+            <div class="button-group">
+                <span class="button-group-title">SUBSCRIPTIONS</span>
+                <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
+                <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
+                <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
+                <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
+                <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
+                <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
+                <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
+                <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
+            </div>
+            <div class="button-group">
+                <span class="button-group-title">MORE FROM YOUTUBE</span>
+                <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
+                <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
+                <button><img src="img/live_Icon.png"><span>Live</span></button>
+                <button><img src="img/sports_Icon.png"><span>Sports</span></button>
+            </div>
+            <div class="button-group">
+                <button><img src="img/setting_Icon.png"><span>Settings</span></button>
+                <button><img src="img/reportHistory_Icon.png"><span>Report history</span></button>
+                <button><img src="img/help_Icon.png"><span>Help</span></button>
+                <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- channel 메인 페이지 -->
+    <main>
+        <!-- 채널 상단 이미지 -->
+        <div class="channel-Cover">
+            <img id="cover" src="img/image 2.png" alt="채널 배경 이미지">
+        </div>
+        <!-- 채널 프로필 -->
+        <div class="channel-Title">
+            <img id="profileImg" src="img/User-Avatar-2.png" alt="채널 유저 프로필">
+            <div id="profile-name">
+                <span id="channel-Profile">Potato Jojo</span>
+                <span id="channel-Sub">1.9M subscribers</span>
+                <span id="channel-Text">
+                    우리는 말하는 감자
+                    감며드시죠
+                </span>
+                <button>SUBSCRIBE</button>
+            </div>
+        </div>
+        <!-- 채널 툴바 -->
+        <div class="channel-Toolbar">
+            <button>HOME</button>
+            <button>VIDEOS</button>
+            <button>PLAYLIST</button>
+            <button>COMMUNITY</button>
+            <button>CHANNELS</button>
+            <button>ABOUT</button>
+            <img id="channel-Search" src="img/SearchBox-Button.png">
+            <img id="channel-left" src="img/left_Icon.png">
+        </div>
+        <!-- 채널 소형 영상 -->
+        <div class="small-Video">
+            <div class="channel-Video">
+                <!-- 구성 확인하기 위해 임의로 넣어둔 것입니다. -->
+                <video controls width="424" height="238">
+                    <source src="video/sample-video.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div id="channel-Desc">
+                <span id="desc-Title">
+                    WTP: We are talking potatoes
+                </span>
+
+                <span id="desc-Time"> 619,113 views . 2 weeks ago </span>
+
+                <span id="desc-Desc">
+                    우린 7월 20일 프로젝트를 함께할 팀으로 결성되었고,
+                    시작부터 눈 앞이 캄캄했지만...
+                    이제는 더 이상 물러날 곳이 없다!
+                </span>
+            </div>
+        </div>
+
+        <!-- 메인 하단 플레이 리스트 -->
+        <div class="play-List">
+            <div>
+                <!-- 첫번째 플레이 리스트 상단 -->
+                <span class="play-List-Title">Potato</span>
+                <button class="play-btn" onclick="">
+                    <img src="img/play_Icon.png"> PLAY ALL
+                </button>
+
+                <!-- 첫번째 플레이 리스트 재생 목록 -->
+                <div class="small-Video-List">
+                    <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+
+                </div>
+
+                <!-- 두번째 플레이 리스트 상단 -->
+                <span class="play-List-Title">gamza</span>
+                <button class="play-btn" onclick="">
+                    <img src="img/play_Icon.png"> PLAY ALL
+                </button>
+
+                <!-- 두번째 플레이 리스트 재생 목록 -->
+                <div class="small-Video-List">
+                    <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+
+                </div>
+
+            </div>
+        </div>
+    </main>
 
 </body>
+<!-- channel 페이지 비디오 가져오기 -->
+<script src="../js_1/js_1.js"></script>
 
 </html>
