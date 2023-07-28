@@ -21,6 +21,18 @@ async function getVideoInfo(video_id) {
     }
 }
 
+/* 입력받는 채널의 정보 가져오기 */
+async function getChannelInfo(channer_name) {
+    try {
+        let URL = `http://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channer_name}`;
+        let response = await fetch(URL, { method: "POST" });
+        const data = await response.json();
+        return data;
+    } catch (e) {
+        console.log("getVideoInfo()를 실행하던 중에 에러가 발생했습니다. \n에러발생 : ", e);
+    }
+}
+
 /* home.html에 비디오 리스트 띄우기 */
 async function loadVideo() {
     // getVideoList 함수 호출해서 영상 리스트 가져오기
@@ -32,7 +44,9 @@ async function loadVideo() {
     // 비디오 정보와 채널 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
-    console.log(videoList.length);
+
+    const channelInfoPromises = videoList.map((video) => getChannelInfo(video.video_channel));
+    const channelInfoList = await Promise.all(channelInfoPromises);
 
     // videoList의 값만큼 데이터 불러오기
     for (let i = 0; i < videoList.length; i++) {
@@ -43,20 +57,24 @@ async function loadVideo() {
 
         let views = Math.floor(videoInfo.views / 1000);
 
+        let channelInfo = channelInfoList[i];
 
         innerHtml += `
             <div class="load-video-info">
-                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}"' >
+                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
                 <div>
                     <p class="thumbnail-title">${videoInfo.video_title}</p>
-                    <div style=" width: 204px; ">
-                        <p class="thumbnail-text">${videoInfo.video_channel}</p>
-                        <p class="thumbnail-text">${views}K Views, ${videoInfo.upload_date}</p>
+                    <div style="display: flex;">
+                        <img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
+                        <div>
+                            <p class="thumbnail-text"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
+                            <p class="thumbnail-text">${views}K Views, ${videoInfo.upload_date}</p>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
-        console.log(innerHtml);
+        // console.log(innerHtml);
         // 데이터를 div에 삽입
         videoContainer.innerHTML = innerHtml;
     }
