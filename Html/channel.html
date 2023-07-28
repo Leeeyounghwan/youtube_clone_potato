@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youtube Clone Channel page</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/css_1.css">
-    <link rel="stylesheet" type="text/css" href="css/css_2.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/css_2.css">
 </head>
 
 <body>
@@ -90,95 +89,100 @@
                 <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
             </div>
         </aside>
+
+        <!-- channel 메인 페이지 -->
+        <section class="flex-item-main">
+            <main>
+                <!-- 채널 상단 이미지 -->
+                <div class="channel-cover">
+                    <img id="cover" src="img/image 2.png" alt="채널 배경 이미지">
+                </div>
+                <!-- 채널 프로필 -->
+                <div class="channel-title" id="channel-title">
+                </div>
+                <!-- 채널 툴바 -->
+                <div class="channel-toolbar">
+                    <button>HOME</button>
+                    <button>VIDEOS</button>
+                    <button>PLAYLIST</button>
+                    <button>COMMUNITY</button>
+                    <button>CHANNELS</button>
+                    <button>ABOUT</button>
+                    <img id="channel-Search" src="img/SearchBox-Button.png">
+                    <img id="channel-left" src="img/left_Icon.png">
+                </div>
+                <!-- 채널 소형 영상 -->
+                <div class="small-video">
+                    <div class="channel-video">
+                        <!-- 구성 확인하기 위해 임의로 넣어둔 것입니다. -->
+                        <video controls width="424" height="238">
+                            <source src="video/sample-video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <div id="channel-desc">
+                        <span id="desc-title">
+                            WTP: We are talking potatoes
+                        </span>
+
+                        <span id="desc-time"> 619,113 views . 2 weeks ago </span>
+
+                        <span id="desc-desc">
+                            우린 7월 20일 프로젝트를 함께할 팀으로 결성되었고,
+                            시작부터 눈 앞이 캄캄했지만...
+                            이제는 더 이상 물러날 곳이 없다!
+                        </span>
+                    </div>
+                </div>
+
+                <!-- 메인 하단 플레이 리스트 -->
+                <div class="play-list">
+                    <div>
+                        <!-- 첫번째 플레이 리스트 상단 -->
+                        <span class="play-list-title">Potato</span>
+                        <button class="play-btn" onclick="">
+                            <img src="img/play_Icon.png"> PLAY ALL
+                        </button>
+
+                        <!-- 첫번째 플레이 리스트 재생 목록 -->
+                        <div class="small-video-list">
+                            <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+
+                        </div>
+
+                        <!-- 두번째 플레이 리스트 상단 -->
+                        <span class="play-list-title">gamza</span>
+                        <button class="play-btn" onclick="">
+                            <img src="img/play_Icon.png"> PLAY ALL
+                        </button>
+
+                        <!-- 두번째 플레이 리스트 재생 목록 -->
+                        <div class="small-video-list">
+                            <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </main>
+        </section>
     </div>
-
-    <!-- channel 메인 페이지 -->
-    <main>
-        <!-- 채널 상단 이미지 -->
-        <div class="channel-Cover">
-            <img id="cover" src="img/image 2.png" alt="채널 배경 이미지">
-        </div>
-        <!-- 채널 프로필 -->
-        <div class="channel-Title">
-            <img id="profileImg" src="img/User-Avatar-2.png" alt="채널 유저 프로필">
-            <div id="profile-name">
-                <span id="channel-Profile">Potato Jojo</span>
-                <span id="channel-Sub">1.9M subscribers</span>
-                <span id="channel-Text">
-                    우리는 말하는 감자
-                    감며드시죠
-                </span>
-                <button>SUBSCRIBE</button>
-            </div>
-        </div>
-        <!-- 채널 툴바 -->
-        <div class="channel-Toolbar">
-            <button>HOME</button>
-            <button>VIDEOS</button>
-            <button>PLAYLIST</button>
-            <button>COMMUNITY</button>
-            <button>CHANNELS</button>
-            <button>ABOUT</button>
-            <img id="channel-Search" src="img/SearchBox-Button.png">
-            <img id="channel-left" src="img/left_Icon.png">
-        </div>
-        <!-- 채널 소형 영상 -->
-        <div class="small-Video">
-            <div class="channel-Video">
-                <!-- 구성 확인하기 위해 임의로 넣어둔 것입니다. -->
-                <video controls width="424" height="238">
-                    <source src="video/sample-video.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <div id="channel-Desc">
-                <span id="desc-Title">
-                    WTP: We are talking potatoes
-                </span>
-
-                <span id="desc-Time"> 619,113 views . 2 weeks ago </span>
-
-                <span id="desc-Desc">
-                    우린 7월 20일 프로젝트를 함께할 팀으로 결성되었고,
-                    시작부터 눈 앞이 캄캄했지만...
-                    이제는 더 이상 물러날 곳이 없다!
-                </span>
-            </div>
-        </div>
-
-        <!-- 메인 하단 플레이 리스트 -->
-        <div class="play-List">
-            <div>
-                <!-- 첫번째 플레이 리스트 상단 -->
-                <span class="play-List-Title">Potato</span>
-                <button class="play-btn" onclick="">
-                    <img src="img/play_Icon.png"> PLAY ALL
-                </button>
-
-                <!-- 첫번째 플레이 리스트 재생 목록 -->
-                <div class="small-Video-List">
-                    <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
-
-                </div>
-
-                <!-- 두번째 플레이 리스트 상단 -->
-                <span class="play-List-Title">gamza</span>
-                <button class="play-btn" onclick="">
-                    <img src="img/play_Icon.png"> PLAY ALL
-                </button>
-
-                <!-- 두번째 플레이 리스트 재생 목록 -->
-                <div class="small-Video-List">
-                    <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
-
-                </div>
-
-            </div>
-        </div>
-    </main>
 
 </body>
 <!-- channel 페이지 비디오 가져오기 -->
-<script src="../js_1/js_1.js"></script>
+<script src="../js/js_1.js"></script>
+<script src="../js/js_2.js"></script>
+<script>
+    /* 페이지가 로드 될때 영상 리스트 출력 */
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URL(location.href).searchParams;
+        const channel = urlParams.get('channel_name');
+        const id = urlParams.get('id');
+        console.log(channel, id);
+
+        loadChannel(channel, id);
+
+    });
+</script>
 
 </html>

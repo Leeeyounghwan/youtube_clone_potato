@@ -3,9 +3,8 @@
 
 <head>
     <title>Youtube Clone Home page</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/css_1.css">
-    <link rel="stylesheet" type="text/css" href="css/css_2.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/css_1.css">
 </head>
 
 <body>
@@ -92,30 +91,32 @@
         <!-- 메인 부분 -->
         <main class="flex-item-main">
             <!-- 메인 화면 위에 상단 부분 -->
-            <nav style="background-color: #ffffff;">
-                <span style="color:#ffffff">
-                    <div class="mainTop">
-                        <div class="filterButtons">
-                            <button class="active" onclick="">전체</button>
-                            <button onclick="">음악</button>
-                            <button onclick="">게임</button>
-                            <button onclick="">믹스</button>
-                            <button onclick="">실시간</button>
-                            <button onclick="">뉴스</button>
-                            <button onclick="">요리 프로그램</button>
-                            <button onclick="">뷰티 팁</button>
-                            <button onclick="">액션</button>
-                            <button onclick="">어드벤처</button>
-                            <button onclick="">요리</button>
-                            <button onclick="">만화 영화</button>
-                            <button onclick="">반려 동물</button>
-                            <button onclick="">최근에 업로드 된 동영상</button>
-                            <button onclick="">새로운 맞춤 동영상</button>
+            <section class="mainContainer">
+                <nav style="background-color: #212121;">
+                    <span style="color:#ffffff">
+                        <div class="mainTop">
+                            <div class="filterButtons">
+                                <button class="active" onclick="">전체</button>
+                                <button onclick="">음악</button>
+                                <button onclick="">게임</button>
+                                <button onclick="">믹스</button>
+                                <button onclick="">실시간</button>
+                                <button onclick="">뉴스</button>
+                                <button onclick="">요리 프로그램</button>
+                                <button onclick="">뷰티 팁</button>
+                                <button onclick="">액션</button>
+                                <button onclick="">어드벤처</button>
+                                <button onclick="">요리</button>
+                                <button onclick="">만화 영화</button>
+                                <button onclick="">반려 동물</button>
+                                <button onclick="">최근에 업로드 된 동영상</button>
+                                <button onclick="">새로운 맞춤 동영상</button>
+                            </div>
+                            <button class="sliderButton right"><img src="img/rightArrow_Icon.png"></button>
                         </div>
-                        <button class="sliderButton right"><img src="img/rightArrow_Icon.png"></button>
-                    </div>
-                </span>
-            </nav>
+                    </span>
+                </nav>
+            </section>
             <!-- 메인 화면 아래 영상 리스트 -->
             <section style="padding: 10px 1px 10px 20px;">
                 <div id="videoList" class="video-list">
