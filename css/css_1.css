@@ -1,3 +1,8 @@
+/* 세로방향 스크롤바 숨기기 */
+html::-webkit-scrollbar {
+    display: none;
+}
+
 /* 전체 헤더 스타일 */
 header {
     background-color: #212121;
@@ -13,7 +18,10 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    /* 밑에 수정한 내용 */
     position: fixed;
+    z-index: 1000;
+    /* 다른 요소들보다 우선하여 가장 위에 표시되도록 설정 */
 }
 
 input {
@@ -26,6 +34,8 @@ input {
     gap: 1em;
     padding: 5px;
     align-items: center;
+    margin-top: 77px;
+    margin-left: 170px;
 }
 
 .channel-img-div {
@@ -273,6 +283,9 @@ main {
     justify-content: flex-start;
     flex-direction: column;
 
+    /* 메인 화면이 오른쪽으로 오도록 설정 */
+    order: 3;
+
 }
 
 /* 사이드바 스타일 */
@@ -298,14 +311,17 @@ nav {
     /* 배경 색상 설정 (여기서는 연한 회색) */
     padding: 5px 5px 5px 5px;
     /* 주변 여백 설정 */
-    margin-top: 46px;
+    margin-top: 25px;
+    margin-left: 170px;
+    position: relative;
+    overflow: hidden;
+    /* 내부 컨텐츠가 넘치지 않도록 설정 */
 }
 
 /* 메인 콘텐츠 스타일 */
 section {
     flex: 1;
     /* 남은 공간을 모두 차지하도록 설정 */
-    background-color: black;
     /* 배경 색상 설정 (여기서는 흰색) */
     padding: 10px;
     /* 주변 여백 설정 */
@@ -314,8 +330,21 @@ section {
     /* 요소들을 가운데로 정렬 */
     align-items: center;
     /* 요소들을 수직 가운데로 정렬 */
-    margin-top: 10px;
 }
+
+.mainContainer {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    /* mainTop 및 배경 요소가 header 아래로 갈 수 있도록 z-index 설정 */
+    overflow-x: hidden;
+    /* 가로 방향 스크롤 생성 */
+    white-space: nowrap;
+    /* 내용이 가로로 넘칠 때 줄 바꿈 방지 */
+    padding: 15px 0px 5px 0px;
+    width: 100vw;
+}
+
 
 /* flexbox 컨테이너 설정 */
 .flex-container {
@@ -327,6 +356,15 @@ section {
 .flex-container .flex-item-header {
     order: 1;
 }
+
+/* 사이드 메뉴 고정, 고정 후 여백 조정 */
+.flex-item-aside {
+    margin-top: 45px;
+    position: fixed;
+
+}
+
+
 
 .flex-container .flex-item-aside {
     order: 2;
@@ -397,3 +435,136 @@ section {
     /* 텍스트 왼쪽 여백 추가 */
     color: #ffffff;
 }
+
+/* mainTop 부분 */
+/* 필터링 버튼과 슬라이더 버튼을 감싸는 컨테이너의 스타일 */
+.mainTop {
+    position: relative;
+    /* 슬라이더 버튼의 위치를 설정하기 위해 상대적 위치로 지정 */
+    overflow: hidden;
+    /* 컨테이너 영역을 넘어가는 부분을 숨기기 위해 오버플로우 속성 사용 */
+}
+
+/* 필터링 버튼들을 감싸는 div의 스타일 */
+.filterButtons {
+    display: flex;
+    /* 버튼들을 가로로 나란히 배치 */
+    gap: 10px;
+    /* 버튼들 사이의 간격 */
+    white-space: nowrap;
+    /* 필터링 버튼들이 한 줄에 나오도록 줄 바꿈 방지 */
+    overflow-x: scroll;
+    /* 필터링 버튼이 컨테이너를 넘어갈 경우 스크롤바 생성 */
+    min-width: 100%;
+    /* 컨테이너의 최소 너비를 100%로 설정 */
+
+}
+
+/* 가로 방향 스크롤 바 숨기기 */
+.filterButtons::-webkit-scrollbar {
+    display: none;
+}
+
+/* 필터링 버튼의 공통 스타일 */
+.filterButtons button {
+    padding: 5px 20px;
+    background-color: #303030;
+    border: 1px solid #AAAAAA;
+    border-radius: 25px;
+    /* 버튼을 더 둥글게 만들기 위해 border-radius 값을 크게 설정 */
+    cursor: pointer;
+    color: #ffffff;
+}
+
+/* 활성화된 필터링 버튼의 스타일 */
+button.active {
+    background-color: #ffffff;
+    color: #303030;
+    /* 활성화된 버튼의 글자 색상을 흰색(#fff)으로 변경 */
+}
+
+/* 오른쪽 화살표 모양 버튼 */
+/* 평소에는 없다가 필터버튼이 많아져서 화면에 전부 담지 못하게 됬을 때 나타나서 
+   누르면 뒤에 있는 버튼으로 넘어가게 하려 했는데.. 성공하지 못했습니다 */
+/* 슬라이더 버튼의 스타일 */
+.sliderButton {
+    position: absolute;
+    /* 상대적으로 위치를 설정했기 때문에 절대적인 위치로 지정 */
+    top: 50%;
+    /* 세로 중앙 정렬을 위해 상단 기준으로 50% 위치 설정 */
+    transform: translateY(-50%);
+    /* 세로 중앙 정렬을 위해 위로 50% 이동 */
+    background-color: transparent;
+    /* 반투명한 배경색 설정 */
+
+    font-size: 20px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    /* 화면이 작을 때만 보여주도록 초기에는 숨김 처리 */
+    z-index: 1;
+    /* 화살표 버튼을 필터링 버튼 위로 겹치도록 설정 */
+    height: 100%;
+    width: 50px;
+}
+
+/* 왼쪽 슬라이더 버튼의 위치 */
+.sliderButton.left {
+    left: 0;
+}
+
+/* 오른쪽 슬라이더 버튼의 위치 */
+.sliderButton.right {
+    right: 0;
+}
+
+/* 오른쪽 화살표 버튼의 위치를 항상 nav의 오른쪽에 고정 */
+nav .sliderButton.right {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 20px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* mainTop 끝! */
+
+/* 썸네일 텍스트 */
+.thumbnail-text-link {
+    text-decoration: none;
+    color: #AAA;
+}
+
+.thumbnail-text-link:link {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.thumbnail-text-link:visited {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.thumbnail-text-linka:hover {
+    color: #AAA;
+    text-decoration: underline;
+}
+
+.thumbnail-text-link:active {
+    color: #AAA;
+    text-decoration: none;
+}
+
+/* 
+    2023.07.28 
+    사이드바 고정
+    (사이드바만 따로 스크롤 기능 구현필요)
+    nav 버튼 수정
+*/
