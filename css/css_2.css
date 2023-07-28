@@ -1,100 +1,554 @@
-/* mainTop 부분 */
-/* 필터링 버튼과 슬라이더 버튼을 감싸는 컨테이너의 스타일 */
-.mainTop {
-    position: relative;
-    /* 슬라이더 버튼의 위치를 설정하기 위해 상대적 위치로 지정 */
-    overflow: hidden;
-    /* 컨테이너 영역을 넘어가는 부분을 숨기기 위해 오버플로우 속성 사용 */
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* 필터링 버튼들을 감싸는 div의 스타일 */
-.filterButtons {
+body {
+    font-family: Roboto, sans-serif;
+}
+
+/* 세로방향 스크롤바 숨기기 */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+/* 아래는 css1 내용 가져왔습니다다 */
+/* 전체 헤더 스타일 */
+header {
+    background-color: #212121;
+    /* 배경 색상 설정  */
+    padding: 5px 5px 5px 5px;
+    /* 헤더 주변 여백 설정 */
     display: flex;
-    /* 버튼들을 가로로 나란히 배치 */
-    gap: 10px;
-    /* 버튼들 사이의 간격 */
-    white-space: nowrap;
-    /* 필터링 버튼들이 한 줄에 나오도록 줄 바꿈 방지 */
-    overflow-x: auto;
-    /* 필터링 버튼이 컨테이너를 넘어갈 경우 스크롤바 생성 */
-    min-width: 100%;
-    /* 컨테이너의 최소 너비를 100%로 설정 */
-
+    flex-direction: row;
+    justify-content: space-between;
+    /*가로정렬*/
+    align-items: center;
+    /*세로정렬*/
+    top: 0;
+    left: 0;
+    right: 0;
+    /* 밑에 추가한 내용 */
+    position: fixed;
+    z-index: 1000;
+    /* 다른 요소들보다 우선하여 가장 위에 표시되도록 설정 */
 }
 
-/* 필터링 버튼의 공통 스타일 */
-.filterButtons button {
-    padding: 10px 20px;
-    background-color: #303030;
-    border: 1px solid #AAAAAA;
-    border-radius: 25px;
-    /* 버튼을 더 둥글게 만들기 위해 border-radius 값을 크게 설정 */
-    cursor: pointer;
+input {
     color: #ffffff;
 }
 
-/* 활성화된 필터링 버튼의 스타일 */
-button.active {
-    background-color: #ffffff;
-    color: #303030;
-    /* 활성화된 버튼의 글자 색상을 흰색(#fff)으로 변경 */
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 5px;
+    align-items: center;
 }
 
-/* 오른쪽 화살표 모양 버튼 */
-/* 평소에는 없다가 필터버튼이 많아져서 화면에 전부 담지 못하게 됬을 때 나타나서 
-   누르면 뒤에 있는 버튼으로 넘어가게 하려 했는데.. 성공하지 못했습니다 */
-/* 슬라이더 버튼의 스타일 */
-.sliderButton {
-    position: absolute;
-    /* 상대적으로 위치를 설정했기 때문에 절대적인 위치로 지정 */
-    top: 50%;
-    /* 세로 중앙 정렬을 위해 상단 기준으로 50% 위치 설정 */
-    transform: translateY(-50%);
-    /* 세로 중앙 정렬을 위해 위로 50% 이동 */
-    background-color: transparent;
-    /* 반투명한 배경색 설정 */
+.channel-img-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
 
-    font-size: 20px;
-    padding: 5px;
-    border: none;
+.channel-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.load-video-info {
+    margin: 0;
+    padding: 3px 15px 5px 0px;
+    width: 276px;
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+}
+
+.thumbnail-img {
+    /* js에서 불러오는 썸네일 이미지 css*/
     cursor: pointer;
-    display: block;
-    /* 화면이 작을 때만 보여주도록 초기에는 숨김 처리 */
-    z-index: 1;
-    /* 화살표 버튼을 필터링 버튼 위로 겹치도록 설정 */
-    height: 100%;
+    width: 276px;
+    height: 155px;
+}
+
+.thumbnail-title {
+    padding: 0;
+    margin: 8px 0px 0px 0px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.thumbnail-text {
+    padding: 0;
+    margin: 3px;
+    color: #AAA;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+/* 로고 스타일 */
+.logo {
+    color: #FFFFFF;
+    /* 글자 색상 설정 (여기서는 흰색) */
+    font-size: 24px;
+    /* 글자 크기 설정 */
+    font-weight: bold;
+    /* 글자 굵기 설정 */
+}
+
+/* 검색창 스타일 */
+.searchBox {
+    margin-top: 0px;
+    /* 검색창 위쪽 여백 설정 */
+    display: flex;
+    /* 내부 요소를 가로로 정렬 */
+
+
+    justify-content: center;
+    /* 요소들을 가운데로 정렬 */
+    align-items: center;
+    /* 요소들을 수직 가운데로 정렬 */
+
+
+}
+
+.searchInput {
+    flex: 1;
+    /* 남은 공간을 꽉 채우도록 설정 */
+    padding: 5px;
+    /* 검색창 주변 여백 설정 */
+    font-size: 16px;
+    /* 글자 크기 설정 */
+    background-color: #121212;
+    width: 400px;
+    height: 20px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+
+}
+
+.searchButton {
+
+    padding: none;
+    /* 버튼 내부 여백 설정 */
+    background-color: #212121;
+    /* 배경 색상 설정 (여기서는 흰색) */
+    border: none;
+    /* 테두리 제거 */
+    font-size: 0px;
+    /* 글자 크기 설정 */
+    cursor: pointer;
+    /* 커서 모양을 포인터로 변경 */
+    width: fixed;
+    height: fixed;
+}
+
+.searchButtonImage {
     width: 50px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+    border-radius: 15%;
 }
 
-/* 왼쪽 슬라이더 버튼의 위치 */
-.sliderButton.left {
-    left: 0;
-}
-
-/* 오른쪽 슬라이더 버튼의 위치 */
-.sliderButton.right {
-    right: 0;
-}
-
-nav {
-    position: relative;
-    overflow: hidden;
-    /* 내부 컨텐츠가 넘치지 않도록 설정 */
-}
-
-/* 오른쪽 화살표 버튼의 위치를 항상 nav의 오른쪽에 고정 */
-nav .sliderButton.right {
-    display: block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-size: 20px;
-    padding: 5px;
+.voiceSearchButton {
+    background-color: #212121;
     border: none;
     cursor: pointer;
-    z-index: 1;
 }
 
-/* mainTop 끝! */
+.voiceButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.menuButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.menuButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+
+.youtubeLogoButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.youtubeLogoButtonImage {
+    width: 120px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+
+}
+
+.header-right-button {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0;
+}
+
+.createButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+
+.createButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.appButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.appButtonImage {
+    width: 22px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.notificationButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.notificationButtonImage {
+    width: 22px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.profileButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.profileButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+    border-radius: 50%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* 세로 방향으로 요소들을 배치 */
+    min-height: 100vh;
+    /* 화면 전체 높이를 차지하도록 설정 */
+    margin: 0;
+    /* 기본 마진 제거 */
+}
+
+/* 메인 영역 스타일 */
+main {
+    display: flex;
+    flex: 6;
+    background-color: black;
+    /* 배경 색상 설정 (여기서는 연한 회색) */
+    justify-content: flex-start;
+    flex-direction: column;
+
+    /* 메인 화면이 오른쪽으로 오도록 설정 */
+    order: 3;
+
+}
+
+/* 사이드바 스타일 */
+aside {
+    /* 사이드바 너비 설정 */
+    background-color: #212121;
+    /* 배경 색상 설정 (여기서는 연한 회색) */
+    padding: 5px;
+    /* 주변 여백 설정 */
+    flex: 1;
+
+    flex-direction: column;
+    /* 버튼들을 세로로 배치 */
+    align-items: center;
+    /* 버튼들을 수직 가운데로 정렬 */
+}
+
+/* 버튼 그룹 스타일 */
+.button-group {
+    width: 100%;
+    /* 버튼 그룹의 넓이를 aside 요소의 넓이에 맞춤 */
+    display: flex;
+    /* 그룹 내부 요소들을 flexbox로 배치 */
+    flex-direction: column;
+    /* 버튼 그룹을 세로로 배치 */
+    align-items: center;
+    /* 버튼 그룹을 수직 가운데로 정렬 */
+    margin-bottom: 10px;
+    /* 버튼 그룹 사이에 간격 추가 */
+    border-bottom: 1px solid #ccc;
+    /* 선 스타일 설정 */
+    padding-bottom: 10px;
+    /* 선과 버튼 사이의 간격 설정 */
+    align-items: flex-start;
+    /* 버튼 그룹을 왼쪽으로 정렬 */
+}
+
+.button-group-title {
+    color: #AAAAAA;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* 버튼 스타일 */
+.button-group button {
+    /* 버튼 그룹의 넓이를 aside 요소의 넓이에 맞춤 */
+    width: 100%;
+
+    font-size: 14px;
+    color: #fff;
+    padding: 7px 10px;
+
+    /* 배경 색상 설정 (여기서는 연한 회색) */
+    background-color: #212121;
+
+    /* 버튼 테두리 제거 */
+    border: none;
+
+    /* 마우스 포인터를 버튼 위로 올렸을 때 커서 모양 변경 */
+    cursor: pointer;
+    /* 이미지와 텍스트를 가로로 나란히 배치 */
+    display: flex;
+    /* 이미지와 텍스트를 수직 가운데로 정렬 */
+    align-items: center;
+}
+
+/* 텍스트 스타일 */
+.button-group span {
+    margin-left: 10px;
+    /* 텍스트 왼쪽 여백 추가 */
+    color: #ffffff;
+}
+
+/* css1에서 가져온 내용이라 해당 부분 필요없다고 생각해 주석처리 했습니다다 */
+/* .flex-item-aside {
+flex: 1;
+padding: 20px;
+background-color: #f8f8f8;
+}
+
+.flex-item-main {
+flex: 4;
+padding: 20px;
+} */
+
+/* 사이드바 버튼 그룹 스타일 */
+/* .button-group {
+margin-bottom: 20px;
+}
+
+.button-group-title {
+display: block;
+font-weight: bold;
+margin-bottom: 10px;
+} */
+
+/* .button-group button {
+display: block;
+border: none;
+background: transparent;
+cursor: pointer;
+margin-bottom: 5px;
+} */
+
+/* 채널 메인 페이지 스타일 */
+.channel-Cover {
+    /* width: 100%; */
+    width: 1200px;
+    height: 192px;
+    flex-shrink: 0;
+
+}
+
+.channel-Title {
+    display: flex;
+    padding: 16px 65px 4px 65px;
+    align-items: flex-start;
+    gap: 699px;
+    margin: 10px 0;
+}
+
+#profileImg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* 채널 프로필 이름 */
+#channel-Profile {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* 채널 프로필 구독 수 */
+#channel-Sub {
+    display: block;
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.channel-Text {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* 채널 프로필 구독 버튼 */
+.channel-Title button {
+    display: flex;
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    gap: 10px;
+    border-radius: 2px;
+    background-color: #c00;
+    color: #ffffff;
+}
+
+/* 채널 툴바 전체 적용 */
+.channel-Toolbar {
+    margin: 20px 0;
+    display: flex;
+    padding: 0px 65px;
+    align-items: flex-start;
+}
+
+/* 채널 툴바에 있는 버튼들 */
+.channel-Toolbar button {
+    display: inline-block;
+    background-color: #AAAAAA;
+    color: #ffffff;
+    margin-right: 10px;
+    padding: 8px 15px;
+    border-radius: 3px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+/* 채널 소형 영상 */
+.small-Video {
+    display: inline-flex;
+    padding: 24px 287px 24px 65px;
+    align-items: flex-start;
+}
+
+.channel-Video {
+    flex: 2;
+    margin-right: 20px;
+}
+
+/* Desc 전체 설정 */
+#channel-Desc {
+    display: flex;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* desc 제목 */
+#desc-Title {
+    /* 아래 비교해보려고 적어둔 것입니다.. */
+    /* display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px; */
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.14px;
+}
+
+/* 여기서부터 제대로 확인하지 못했습니다ㅠㅠ */
+/* desc  */
+#desc-Time {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+#desc-Desc {
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* 플레이 리스트 스타일 */
+.play-List {
+    margin-top: 20px;
+}
+
+.play-List-Title {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.play-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: #212121;
+    color: #fff;
+    cursor: pointer;
+}
