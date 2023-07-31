@@ -64,11 +64,41 @@
         </div>
     </header>
 
+    <!-- 메인 부분 -->
     <section>
+        <!-- 영상 부분-->
         <article id="video" style="display:flex; flex-direction: column;">
             <div id="playVideo"></div>
             <div id="displayVideoInfo"></div>
         </article>
+        <!-- 영상 정보 -->
+        <div class="channel-title" id="channel-title"></div>
+
+        <!-- 댓글 수, 정렬기준 버튼 -->
+        <div class="comments-section">
+            <div class="comment-count">
+                <p id="commentCount">댓글 수: 0</p>
+            </div>
+            <!-- 이미지는 일단 임시로 해놓은거라 바꾸시면 됩니다 -->
+            <button class="sort-btn" onclick="sortComments()"><img src="img/pngwing.png" class="comment-sort">정렬
+                기준</button>
+        </div>
+        <!-- 댓글 달기 -->
+        <div class="comment-form">
+            <!-- 댓글 입력칸 왼쪽 프로필 -->
+            <div class="profile-imagee"><img src="img/User-Avatar.png"></div>
+            <!-- 댓글 입력칸 -->
+            <input type="text" id="commentInput" placeholder="댓글 추가...">
+            <!-- 취소, 입력 버튼-->
+            <div class="comment-buttons">
+                <button class="cancel-btn" onclick="cancelComment()">취소</button>
+                <button class="commentEnter-btn" onclick="addComment()">댓글</button>
+            </div>
+        </div>
+        <!-- 여러 댓글이 달리는 곳 -->
+        <div class="comment-list" id="comment-list">
+            <!-- 댓글 목록이 여기에 동적으로 추가될 것입니다. -->
+        </div>
     </section>
 
     <aside>

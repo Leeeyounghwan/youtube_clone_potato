@@ -48,7 +48,7 @@
 
     <!-- sidebar 부분 -->
     <div class="flex-container">
-        <aside class="flex-item-aside">
+        <aside class="flex-item-aside" id="aside">
             <div class="button-group">
                 <button><img src="img/home_Icon.png"><span>Home</span></button>
                 <button><img src="img/explore_Icon.png"><span>Explore</span></button>
@@ -92,7 +92,7 @@
         <main class="flex-item-main">
             <!-- 메인 화면 위에 상단 부분 -->
             <section class="mainContainer">
-                <nav style="background-color: #212121;">
+                <nav style="background-color: #212121;" id="nav">
                     <span style="color:#ffffff">
                         <div class="mainTop">
                             <div class="filterButtons">
@@ -130,6 +130,21 @@
 <script src="../js/js_1.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', loadVideo());
+    let flag = 1;
+    function hideMenu() {
+        aside = document.getElementById("aside");
+        nav = document.getElementById("nav")
+        if (flag == 1) {
+            flag = 0;
+            aside.style.display = "none";
+            nav.style.marginLeft = 0;
+        }
+        else {
+            flag = 1;
+            aside.style.display = "block";
+            nav.style.marginLeft = "170px";
+        }
+    }
 </script>
 
 </html>
