@@ -86,9 +86,8 @@ async function displayVideoInfo(video_id) {
             <div
                 <div style="display: flex; flex-direction: column;">
                     <div style=" width: 50vw;">
-                        <p><h1>${videoInfo.video_title}</h1></p>
-                        <p style="color: #AAA; font-family: Roboto; font-size: 12px; font-style: normal; font-weight: 400;">${videoInfo.video_channel}</p>
-                        <p style="color: #AAA; font-family: Roboto; font-size: 12px; font-style: normal; font-weight: 400;">${views}K Views, ${videoInfo.upload_date}</p>
+                        <p class="video-title">${videoInfo.video_title}</p>
+                        <p class="video-detail">${views}K Views, ${videoInfo.upload_date}</p>
                     </div>
 
                     <div style="display: flex;">
@@ -105,6 +104,71 @@ async function displayVideoInfo(video_id) {
     infoContainer.innerHTML += innerHtml;
 }
 
+/* test.html에서 원하는 영상 클릭시 video_id로 해당 영상 정보 가져와서 video.html에 정보출력 */
+async function displayVideoInfo(video_id) {
+    let videoInfo = await getVideoInfo(video_id);
+    let infoContainer = document.getElementById('displayVideoInfo');
+    let views = Math.floor(videoInfo.views / 1000);
+
+    let innerHtml = `
+            <div
+                <div style="display: flex; flex-direction: column;">
+                    <div style=" width: 50vw;">
+                        <p class="video-title">${videoInfo.video_title}</p>
+                        <p class="video-detail">${views}K Views, ${videoInfo.upload_date}</p>
+                    </div>
+
+                    <div style="display: flex;">
+                        <img src="oreumi.jpg" style="border-radius: 50%; width: 4vw; height: 6vh;">
+                        <div>
+                            <p id="${videoInfo.video_channel}">${videoInfo.video_channel}</p>
+                            <p>${videoInfo.video_detail}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+    infoContainer.innerHTML += innerHtml;
+}
+
+/* video.html 우측 영상 리스트 출력하는 함수 */
+async function displayVideoList() {
+    // getVideoList 함수 호출해서 영상 리스트 가져오기
+    let videoList = await getVideoList();
+
+    // 가져온 정보를 저장할 videoContainer 생성
+    let videoContainer = document.getElementById('displayVideoList');
+
+    // 비디오 정보와 채널 정보를 병렬로 가져오기
+    const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
+    const videoInfoList = await Promise.all(videoInfoPromises);
+
+
+    // videoList의 값만큼 데이터 불러오기
+    for (let i = 0; i < videoList.length; i++) {
+        let videoId = videoList[i].video_id;
+
+        // getVideoInfo에 입력받은 videoId로 정보 가져오기
+        let videoInfo = videoInfoList[i];
+
+        let views = Math.floor(videoInfo.views / 1000);
+
+        let innerHtml = `
+            <div class="aside-video">
+                <img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}"' class="aside-thumbnail">
+                <div class="aside-text-content">
+                    <p class="aside-title"><a class="thumbnail-text-link" href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}">${videoInfo.video_title}</a></p>
+                    <p class="aside-text"><a class="thumbnail-text-link" href="./channel.html?channel_name=${videoInfo.video_channel}&id=${videoId}">${videoInfo.video_channel}</p>
+                    <p class="aside-text">${views}K Views, ${videoInfo.upload_date}</p>
+                </div>
+            </div>
+        `;
+
+        // 데이터를 div에 삽입
+        videoContainer.innerHTML += innerHtml;
+    }
+}
 
 async function loadChannel(name, id) {
     let videoInfo = await getVideoInfo(id);
@@ -116,9 +180,10 @@ async function loadChannel(name, id) {
 
     let innerHtml = `
         <div style="display: flex;">
-        <img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
+        <img class="channel-profile" src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
             <div>
-                <p id="${channelInfo.channel_name}">${channelInfo.channel_name}</p>
+                <p class="channel-profile" id="${channelInfo.channel_name}">${channelInfo.channel_name}</p>
+                <p id="${channelInfo.subscribers}">${channelInfo.subscribers}</p>
                 <p>${videoInfo.video_detail}</p>
             </div>
         </div>
