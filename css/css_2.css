@@ -7,6 +7,13 @@
 
 body {
     font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* 세로 방향으로 요소들을 배치 */
+    min-height: 100vh;
+    /* 화면 전체 높이를 차지하도록 설정 */
+    margin: 0;
+    /* 기본 마진 제거 */
 }
 
 /* 세로방향 스크롤바 숨기기 */
@@ -282,6 +289,7 @@ body {
     /* 화면 전체 높이를 차지하도록 설정 */
     margin: 0;
     /* 기본 마진 제거 */
+    background-color: black;
 }
 
 /* 메인 영역 스타일 */
@@ -295,6 +303,13 @@ main {
 
     /* 메인 화면이 오른쪽으로 오도록 설정 */
     order: 3;
+    margin-left: 160px;
+    /* 사이드바랑 겹치지 않도록 */
+    /* 페이지에 맞게 조정 */
+    margin-top: 15px;
+    /* <header>와 겹치지 않도록 여백 설정 */
+    position: relative;
+    /* 하위 요소의 위치를 상대적으로 설정 */
 
 }
 
@@ -311,6 +326,14 @@ aside {
     /* 버튼들을 세로로 배치 */
     align-items: center;
     /* 버튼들을 수직 가운데로 정렬 */
+    position: fixed;
+    /* 사이드바 고정 */
+    left: 0;
+    /* 사이드바를 왼쪽에 고정 */
+
+    margin: 0;
+    margin-top: 0;
+    /* margin 없애려고 값을 줬는데도 왜 그대로일까요ㅜ */
 }
 
 /* 버튼 그룹 스타일 */
@@ -372,44 +395,86 @@ aside {
     color: #ffffff;
 }
 
-/* css1에서 가져온 내용이라 해당 부분 필요없다고 생각해 주석처리 했습니다다 */
-/* .flex-item-aside {
-flex: 1;
-padding: 20px;
-background-color: #f8f8f8;
+/* flexbox 컨테이너 설정 */
+.flex-container {
+    display: flex;
+    height: 100%;
+}
+
+/* 순서 조정 */
+.flex-container .flex-item-header {
+    order: 1;
+}
+
+/* 사이드 메뉴 고정, 고정 후 여백 조정 */
+.flex-item-aside {
+    margin-top: 45px;
+    position: fixed;
+}
+
+.flex-container .flex-item-aside {
+    order: 2;
+    flex-basis: 170px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.flex-container .flex-item-main {
+    order: 3;
+}
+
+.flex-item-aside {
+    /* flex: 1;
+    padding: 20px; */
+    margin-top: 45px;
+    position: fixed;
 }
 
 .flex-item-main {
-flex: 4;
-padding: 20px;
-} */
+    flex: 4;
+    padding: 20px;
+}
 
 /* 사이드바 버튼 그룹 스타일 */
-/* .button-group {
-margin-bottom: 20px;
+.button-group {
+    margin-bottom: 20px;
 }
 
 .button-group-title {
-display: block;
-font-weight: bold;
-margin-bottom: 10px;
-} */
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-/* .button-group button {
-display: block;
-border: none;
-background: transparent;
-cursor: pointer;
-margin-bottom: 5px;
-} */
+.button-group button {
+    display: block;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
 
-/* 채널 메인 페이지 스타일 */
+/* 채널 메인 페이지 */
+/* 채널 커버 클래스 스타일 */
 .channel-Cover {
-    /* width: 100%; */
-    width: 1200px;
-    height: 192px;
-    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    /* 이미지를 <main> 요소와 동일한 크기로 설정 */
+    position: absolute;
+    /* 이미지를 <main> 요소의 상대적 위치로 설정 */
+    top: 0;
+    left: 0;
+    /* 이미지를 <main> 요소의 왼쪽 상단에 위치시킴 */
+}
 
+/* 이미지 스타일 (설정한 이미지 크기에 따라 필요한 경우 조정) */
+.channel-cover img {
+    display: block;
+    width: 100%;
+    /* 이미지 오른쪽 여백 제거 */
+    height: 100%;
+    object-fit: cover;
+    /* 이미지를 비율을 유지하면서 <main> 영역에 꽉 채우도록 설정 */
 }
 
 .channel-Title {
@@ -417,23 +482,47 @@ margin-bottom: 5px;
     padding: 16px 65px 4px 65px;
     align-items: flex-start;
     gap: 699px;
-    margin: 10px 0;
 }
 
-#profileImg {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
 
+/* 채널 프로필 안의 프로필과 채널명의 클래스를 임의로 지정하였습니다. */
+/* 채널 프로필 class="channel-profile" */
+/* 채널명 class="channel-name" */
+/* 나중에 통일시켜주세요 */
 /* 채널 프로필 이름 */
-#channel-Profile {
+.channel-profile {
     color: #FFFFFF;
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+/* 프로필과 채널명 스타일 */
+.channel-profile,
+.channel-name {
+    display: inline-block;
+    /* inline 요소로 배치하여 나란히 표시 */
+    vertical-align: middle;
+    /* 수직 가운데 정렬 */
+    margin-left: 65px;
+    /* 왼쪽 여백 설정 */
+    margin-right: 24px;
+    /* 우측 여백 설정 */
+}
+
+/* 프로필 이미지 스타일 (크기 및 기타 스타일은 필요에 따라 조정) */
+.channel-profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* 구독 버튼 스타일 */
+.subscribe-button {
+    display: inline-block;
+    /* inline 요소로 배치하여 나란히 표시 */
+    vertical-align: middle;
 }
 
 /* 채널 프로필 구독 수 */
@@ -451,7 +540,7 @@ margin-bottom: 5px;
 }
 
 /* 채널 프로필 구독 버튼 */
-.channel-Title button {
+/* .channel-Title button {
     display: flex;
     padding: 10px 16px;
     flex-direction: column;
@@ -461,27 +550,91 @@ margin-bottom: 5px;
     border-radius: 2px;
     background-color: #c00;
     color: #ffffff;
-}
+} */
 
-/* 채널 툴바 전체 적용 */
+/* 채널 툴바 전체 스타일 */
 .channel-Toolbar {
-    margin: 20px 0;
     display: flex;
-    padding: 0px 65px;
-    align-items: flex-start;
+    /* 요소들을 가로로 정렬 */
+    justify-content: space-between;
+    /* 요소들을 양쪽 끝으로 정렬 */
+    align-items: center;
+    /* 요소들을 수직 가운데로 정렬 */
+    padding: 12px 65px;
+    /* 주변 여백 설정 */
+    background-color: #AAAAAA;
+    /* 배경 색상 설정 */
+    position: sticky;
+    /* 스크롤에 따라 고정되도록 설정 */
+    top: 192px;
+    /* .channel-Title의 위치와 동일하게 설정 */
+    z-index: 999;
+    /* 다른 요소들보다 앞에 나오도록 설정 */
+    width: 1070px;
+    height: 48px;
 }
 
-/* 채널 툴바에 있는 버튼들 */
-.channel-Toolbar button {
-    display: inline-block;
-    background-color: #AAAAAA;
-    color: #ffffff;
-    margin-right: 10px;
-    padding: 8px 15px;
-    border-radius: 3px;
-    background-color: transparent;
+/* 채널 툴바 내부 버튼 스타일 */
+.channel-toolbar button {
+    align-items: center;
+    /* 내부 요소들을 수직 가운데로 정렬 */
+    text-align: center;
+    /* 버튼 텍스트를 가운데 정렬 */
+    background: transparent;
+    /* 배경 색상 투명으로 설정 */
+    border: none;
+    /* 테두리 제거 */
+    color: #fff;
+    /* 글자 색상 흰색으로 설정 */
+    font-size: 14px;
+    /* 글자 크기 설정 */
     cursor: pointer;
+    /* 커서 모양을 포인터로 변경 */
+    width: 104px;
+    height: 48px;
+    /* 버튼 크기 설정 */
 }
+
+/* .channel-Search와 .channel-left 이미지 스타일 */
+#channel-Search {
+    /* width: 25px;
+    height: 27px; */
+    margin-left: 24px;
+    margin-right: 202px;
+    background: transparent;
+    /* 배경 색상 투명으로 설정 */
+}
+
+#channel-left {
+    width: 44px;
+    /* 이미지 너비 설정 */
+    height: 40px;
+    /* 이미지 높이 설정 */
+    margin-right: 10px;
+    /* 이미지 오른쪽 여백 설정 */
+}
+
+/* 채널 상단 이미지의 가운데 맞춰서 정렬 */
+.channel-title,
+.channel-toolbar,
+.small-video,
+.play-list {
+    width: 100%;
+    max-width: 1200px;
+    /* 최대 너비 설정 */
+    margin: 0 auto;
+    /* 가운데 정렬 */
+}
+
+/* channel-cover 이미지와 맞추기 위해 margin-top 설정 */
+.channel-title,
+.channel-toolbar,
+.small-video,
+.play-list {
+    margin-top: 192px;
+    /* channel-cover 이미지의 높이인 192px 만큼 여백 추가 */
+}
+
 
 /* 채널 소형 영상 */
 .small-Video {
@@ -552,3 +705,10 @@ margin-bottom: 5px;
     color: #fff;
     cursor: pointer;
 }
+
+
+/* 07.31 */
+/* js랑 클래스 통일은 했는데 확인을 못해봤기 때문에 스타일 적용이 잘 됐는지 확인이 필요합니다. */
+/* aside 부분에 margin: 0을 줬는데도 aside부분이 깔끔해보이지 않네요ㅠ */
+/* toolbar 부분 가로 정렬과 img 부분 크기 통일 */
+/* 밑에 소형 영상과 플레이 리스트 부분도 js와 통일시키고 적용해봐야 합니다. */
