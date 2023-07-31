@@ -1,0 +1,338 @@
+/* 세로방향 스크롤바 숨기기 */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    background-color: #181818;
+}
+
+section {
+    order: 2;
+    margin-left: 20vw;
+    margin-top: 44px;
+}
+
+/* 사이드바 스타일 */
+aside {
+    padding: 10px 5px;
+    margin-left: 20px;
+    /* 주변 여백 설정 */
+    flex: 1;
+    order: 3;
+    margin-top: 43px;
+    flex-direction: column;
+    /* 버튼들을 세로로 배치 */
+}
+
+header {
+    background-color: #212121;
+    /* 배경 색상 설정  */
+    padding: 5px 5px 5px 5px;
+    /* 헤더 주변 여백 설정 */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*가로정렬*/
+    align-items: center;
+    /*세로정렬*/
+    top: 0;
+    left: 0;
+    right: 0;
+    /* 밑에 수정한 내용 */
+    position: fixed;
+    z-index: 1000;
+    /* 다른 요소들보다 우선하여 가장 위에 표시되도록 설정 */
+    min-width: 890px;
+    order: 1;
+}
+
+/* 헤더 스타일 시작 */
+/* 로고 스타일 */
+.logo {
+    color: #FFFFFF;
+    /* 글자 색상 설정 (여기서는 흰색) */
+    font-size: 24px;
+    /* 글자 크기 설정 */
+    font-weight: bold;
+    /* 글자 굵기 설정 */
+}
+
+/* 검색창 스타일 */
+.searchBox {
+    margin-top: 0px;
+    /* 검색창 위쪽 여백 설정 */
+    display: flex;
+    /* 내부 요소를 가로로 정렬 */
+
+
+    justify-content: center;
+    /* 요소들을 가운데로 정렬 */
+    align-items: center;
+    /* 요소들을 수직 가운데로 정렬 */
+
+
+}
+
+.searchInput {
+    flex: 1;
+    /* 남은 공간을 꽉 채우도록 설정 */
+    padding: 5px;
+    /* 검색창 주변 여백 설정 */
+    font-size: 16px;
+    /* 글자 크기 설정 */
+    background-color: #121212;
+    width: 400px;
+    height: 20px;
+    border-radius: 25px;
+    outline: none;
+    border: none;
+
+}
+
+.searchButton {
+
+    padding: none;
+    /* 버튼 내부 여백 설정 */
+    background-color: #212121;
+    /* 배경 색상 설정 (여기서는 흰색) */
+    border: none;
+    /* 테두리 제거 */
+    font-size: 0px;
+    /* 글자 크기 설정 */
+    cursor: pointer;
+    /* 커서 모양을 포인터로 변경 */
+    width: fixed;
+    height: fixed;
+}
+
+.searchButtonImage {
+    width: 50px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+    border-radius: 15%;
+}
+
+.voiceSearchButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.voiceButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.menuButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.menuButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+
+.youtubeLogoButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.youtubeLogoButtonImage {
+    width: 120px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+
+}
+
+.header-right-button {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    margin: 0;
+}
+
+.createButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+
+.createButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.appButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.appButtonImage {
+    width: 22px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.notificationButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.notificationButtonImage {
+    width: 22px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+}
+
+.profileButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+}
+
+.profileButtonImage {
+    width: 30px;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+    border-radius: 50%;
+}
+
+/* 헤더 스타일 종료 */
+
+/* 사이드바 스타일 시작 */
+.aside-video {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 5px 10px 5px;
+}
+
+.aside-thumbnail {
+    width: 210px;
+    height: 118px;
+    cursor: pointer;
+}
+
+.aside-text-content {
+    width: 204px;
+    flex-direction: column;
+    margin-left: 7px;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+}
+
+.aside-title {
+    color: white;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 7px;
+}
+
+.aside-text {
+    margin: 3px 0px;
+    color: #AAA;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 썸네일 텍스트 */
+.thumbnail-text-link {
+    text-decoration: none;
+    color: white;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 7px;
+}
+
+.thumbnail-text-link:link {
+    color: white;
+    text-decoration: none;
+}
+
+.thumbnail-text-link:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.thumbnail-text-linka:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.thumbnail-text-link:active {
+    color: white;
+    text-decoration: none;
+}
+
+/* section부분 css */
+.video-content {
+    margin: 20px 0px;
+}
+
+.video-title {
+    color: #fff;
+    font-family: Roboto;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.18px;
+}
+
+.video-detail {
+    color: #AAA;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 10px;
+}
