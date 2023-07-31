@@ -67,8 +67,8 @@ async function loadVideo() {
                     <div style="display: flex;">
                         <img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
                         <div>
-                            <p class="thumbnail-text"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
-                            <p class="thumbnail-text">${views}K Views, ${videoInfo.upload_date}</p>
+                            <p class="thumbnail-channel"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
+                            <p class="thumbnail-channel">${views}K Views, ${videoInfo.upload_date}</p>
                         </div>
                     </div>
                 </div>
@@ -125,37 +125,89 @@ async function displayVideoInfo(video_id) {
 
 /* video.html 우측 영상 리스트 출력하는 함수 */
 async function displayVideoList() {
-    // getVideoList 함수 호출해서 영상 리스트 가져오기
-    let videoList = await getVideoList();
+    try {
+        // getVideoList 함수를 호출하여 영상 리스트를 가져옵니다.
+        let videoList = await getVideoList();
 
-    // 가져온 정보를 저장할 videoContainer 생성
-    let videoContainer = document.getElementById('displayVideoList');
+        // 가져온 정보를 저장할 videoContainer를 생성합니다.
+        let videoContainer = document.getElementById('displayVideoList');
 
+        // videoList의 값만큼 데이터를 불러옵니다.
+        for (let i = 0; i < videoList.length; i++) {
+            let videoId = videoList[i].video_id;
 
-    // videoList의 값만큼 데이터 불러오기
-    for (let i = 0; i < videoList.length; i++) {
-        let videoId = videoList[i].video_id;
+            // getVideoInfo에 입력받은 videoId로 정보를 가져옵니다.
+            let videoInfo = await getVideoInfo(videoId);
 
-        // getVideoInfo에 입력받은 videoId로 정보 가져오기
-        let videoInfo = await getVideoInfo(videoId);
+            let views = Math.floor(videoInfo.views / 1000);
 
-        let views = Math.floor(videoInfo.views / 1000);
-
-
-        let innerHtml = `
+            let innerHtml = `
             <div>
-                <div style="display: flex; flex-direction: row;">
-                    <img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}"' style="width: 190px; height: 90px;" >
+                <div class="aside-video">
+                <img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}"' class="aside-thumbnail">
                     <div style=" width: 204px; flex-direction: column;">
-                        <p>${videoInfo.video_title}</p>
-                        <p style="color: #AAA; font-family: Roboto; font-size: 12px; font-style: normal; font-weight: 400;">${videoInfo.video_channel}</p>
-                        <p style="color: #AAA; font-family: Roboto; font-size: 12px; font-style: normal; font-weight: 400;">${views}K Views, ${videoInfo.upload_date}</p>
+                        <p class="aside-title">${videoInfo.video_title}</p>
+                        <p class="aside-text">${videoInfo.video_channel}</p>
+                        <p class="aside-text">${views}K 조회수, ${videoInfo.upload_date}</p>
                     </div>
                 </div>
             </div>
-        `;
+            `;
 
-        // 데이터를 div에 삽입
-        videoContainer.innerHTML += innerHtml;
+            // 데이터를 div에 삽입합니다.
+            videoContainer.innerHTML += innerHtml;
+        }
+    } catch (error) {
+        // 비동기 작업 중 발생한 오류를 처리합니다.
+        console.error("비디오 목록을 표시하는 동안 오류가 발생했습니다:", error);
     }
 }
+
+// // 검색
+// function searchVideo(searchKeyword) {
+//     // FEED를 초기화해서 기존 영상들을 모두 지우기
+//     let feed = document.getElementById("feed");
+//     feed.innerHTML = "";
+  
+//     // id = 0부터 아이템 불러오기<img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}"' class="aside-thumbnail">
+//     createVideoItem(0, searchKeyword.toLowerCase());
+// }
+  
+// // 버튼 클릭 시 searchVideo 함수 호출
+// let searchButton = document.getElementById("searchButton");
+// let searchBox = document.getElementById("searchBox");
+  
+// searchButton.addEventListener("click", function () {
+//     let searchKeyword = searchBox.value;
+//     searchVideo(searchKeyword);
+// });
+  
+// // 엔터 키를 눌렀을 때 searchVideo 함수 호출
+// searchBox.addEventListener("keypress", function (event) {
+//     // 엔터 키의 키 코드는 13입니다.
+//     if (event.keyCode === 13) {
+//         let searchKeyword = searchBox.value;
+//         searchVideo(searchKeyword);
+//     }
+// });
+
+// 사이드바 스크롤
+window.addEventListener('scroll', function() {
+    // 현재 스크롤 위치를 계산
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+
+    // 스크롤 위치를 표시할 요소 가져오기
+    const scrollIndicator = document.getElementById('scrollIndicator');
+
+    // 표시할 텍스트를 업데이트
+    scrollIndicator.textContent = `스크롤 위치: ${scrollPercentage.toFixed(2)}%`;
+
+    // 표시 여부를 결정
+    if (scrollTop > 10) {
+      scrollIndicator.style.display = 'block';
+    } else {
+      scrollIndicator.style.display = 'none';
+    }
+  });
