@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youtube Clone Video page</title>
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/css_1.css">
-    <link rel="stylesheet" type="text/css" href="../css/css_2.css">
+    <link rel="stylesheet" type="text/css" href="../css/css_3.css">
     <style>
         * {
             margin: 0;
@@ -33,7 +32,7 @@
             <button class="menuButton">
                 <img src="img/pngwing.png" class="menuButtonImage">
             </button>
-            <button class="youtubeLogoButton">
+            <button class="youtubeLogoButton" onclick='location.href="./home.html"'>
                 <img src="img/yt_logo_rgb_dark.png" class="youtubeLogoButtonImage">
             </button>
         </div>
@@ -67,32 +66,79 @@
     <!-- 메인 부분 -->
     <section>
         <!-- 영상 부분-->
-        <article id="video" style="display:flex; flex-direction: column;">
+        <article id="video" style="display:flex; flex-direction: column; justify-content: space-between;">
             <div id="playVideo"></div>
-            <div id="displayVideoInfo"></div>
+            <div id="displayVideoTitle"></div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div id="infoText" class="info-text"></div>
+                <div class="video-expression">
+                    <button class="expression-btn"><img src="img/Liked.svg">
+                        <p class="expression-btn-text">1.7K</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/DisLiked.svg">
+                        <p class="expression-btn-text">632</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/Share.svg">
+                        <p class="expression-btn-text">SHARE</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/Save.svg">
+                        <p class="expression-btn-text">SAVE</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/More.svg"></button>
+                </div>
+
+            </div>
         </article>
         <!-- 영상 정보 -->
         <div class="channel-title" id="channel-title"></div>
 
-        <!-- 댓글 수, 정렬기준 버튼 -->
-        <div class="comments-section">
-            <div class="comment-count">
-                <p id="commentCount">댓글 수: 0</p>
+        <!-- 채널 정보 및 구독버튼 -->
+        <div class="channel-info">
+
+            <div class="channel-info-top" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="display: flex; flex-direction: row;" id="displayVideoInfo"></div>
+
+                <input type="button" class="channel-subscribes" id="channel-subscribes" value="SUBSCRIBES"
+                    onclick="subscribeChannel()">
             </div>
-            <!-- 이미지는 일단 임시로 해놓은거라 바꾸시면 됩니다 -->
-            <button class="sort-btn" onclick="sortComments()"><img src="img/pngwing.png" class="comment-sort">정렬
-                기준</button>
+
+            <div class="channel-info-detail">
+                Chris Fisher, also known as the Blind Woodturner, learned his craft by listening to hundreds of hours of
+                YouTube videos and experimenting in his workshop. Now he’s a YouTube creator himself, sells his products
+                worldwide, and does demonstrations all around the country.
+            </div>
+
         </div>
-        <!-- 댓글 달기 -->
-        <div class="comment-form">
-            <!-- 댓글 입력칸 왼쪽 프로필 -->
-            <div class="profile-imagee"><img src="img/User-Avatar.png"></div>
-            <!-- 댓글 입력칸 -->
-            <input type="text" id="commentInput" placeholder="댓글 추가...">
-            <!-- 취소, 입력 버튼-->
-            <div class="comment-buttons">
-                <button class="cancel-btn" onclick="cancelComment()">취소</button>
-                <button class="commentEnter-btn" onclick="addComment()">댓글</button>
+
+        <!-- 댓글 수, 정렬기준 버튼 -->
+        <div class="comments-section" style="display: flex; flex-direction: column;">
+
+            <div class="comment-header" style="display: flex; flex-direction: row;">
+                <div class="comment-count">
+                    <p id="commentCount">댓글 수: 0</p>
+                </div>
+                <div class="comment-sort-box">
+                    <!-- 이미지는 일단 임시로 해놓은거라 바꾸시면 됩니다 -->
+                    <button class="sort-btn" onclick="sortComments()">
+                        <img src="img/Group.svg" class="comment-sort">
+                    </button>
+                    <label for="sort-btn">SORT BY</label>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- 댓글 달기 -->
+            <div class="comment-form" style="display: flex; flex-direction: row;">
+                <!-- 댓글 입력칸 왼쪽 프로필 -->
+                <div class="profile-imagee"><img src="img/User-Avatar.png"></div>
+                <!-- 댓글 입력칸 -->
+                <input type="text" id="commentInput" placeholder="댓글 추가..." class="commentInput">
+                <!-- 취소, 입력 버튼-->
+                <div class="comment-buttons" id="comment-buttons">
+                    <button class="comment-enter-btn" onclick="addComment()">작성</button>
+                    <button class="comment-cancel-btn"
+                        onclick="document.getElementById('commentInput').value = ''">취소</button>
+                </div>
             </div>
         </div>
         <!-- 여러 댓글이 달리는 곳 -->
@@ -108,6 +154,7 @@
 </body>
 <!-- js 파일 가져오기 -->
 <script src="../js/js_1.js"></script>
+<script src="../js/js_2.js"></script>
 <script>
     /* 페이지가 로드 될때 영상 리스트 출력 */
     window.addEventListener('DOMContentLoaded', () => {
@@ -116,6 +163,7 @@
         console.log(id);
 
         viewVideo(id);
+        displayVideoTitle(id);
         displayVideoInfo(id);
         displayVideoList();
     });

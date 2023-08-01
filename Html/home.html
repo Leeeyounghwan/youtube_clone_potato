@@ -12,10 +12,10 @@
     <header>
         <!-- header 상단 왼쪽 부분: 메뉴버튼, 유튜브 로고 -->
         <div class="headerLeft">
-            <button class="menuButton">
+            <button class="menuButton" onclick="hideMenu()">
                 <img src="img/pngwing.png" class="menuButtonImage">
             </button>
-            <button class="youtubeLogoButton">
+            <button class="youtubeLogoButton" onclick='location.href="./home.html"'>
                 <img src="img/yt_logo_rgb_dark.png" class="youtubeLogoButtonImage">
             </button>
         </div>
@@ -30,7 +30,7 @@
             </button>
         </div>
         <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
-        <div>
+        <div class="headerRight">
             <button class="createButton">
                 <img src="img/navigations_create.png" class="createButtonImage">
             </button>
@@ -130,6 +130,7 @@
 <script src="../js/js_1.js"></script>
 <script>
     window.addEventListener('DOMContentLoaded', loadVideo());
+
     let flag = 1;
     function hideMenu() {
         aside = document.getElementById("aside");
