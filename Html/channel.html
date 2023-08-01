@@ -14,10 +14,10 @@
     <header class="flex-item-header">
         <!-- header 상단 왼쪽 부분: 메뉴버튼, 유튜브 로고 -->
         <div class="headerLeft">
-            <button class="menuButton">
+            <button class="menuButton" onclick="hideMenu()">
                 <img src="img/pngwing.png" class="menuButtonImage">
             </button>
-            <button class="youtubeLogoButton">
+            <button class="youtubeLogoButton" onclick='location.href="./home.html"'>
                 <img src="img/yt_logo_rgb_dark.png" class="youtubeLogoButtonImage">
             </button>
         </div>
@@ -32,7 +32,7 @@
             </button>
         </div>
         <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
-        <div>
+        <div class="headerRight">
             <button class="createButton">
                 <img src="img/navigations_create.png" class="createButtonImage">
             </button>
@@ -50,7 +50,7 @@
 
     <!-- Sidebar 부분 -->
     <div class="flex-container">
-        <aside class="flex-item-aside">
+        <aside class="flex-item-aside" id="aside">
             <div class="button-group">
                 <button><img src="img/home_Icon.png"><span>Home</span></button>
                 <button><img src="img/explore_Icon.png"><span>Explore</span></button>
@@ -92,7 +92,7 @@
 
         <!-- channel 메인 페이지 -->
         <section class="flex-item-main">
-            <main>
+            <main id="main">
                 <!-- 채널 상단 이미지 -->
                 <div class="channel-cover">
                     <img id="cover" src="img/image 2.png" alt="채널 배경 이미지">
@@ -100,9 +100,11 @@
                 <!-- 채널 프로필 -->
                 <div class="channel-title" id="channel-title">
                     <!-- 구독 버튼 -->
-                    <img src="img/subscribe.png" alt="" class="subscribe-button">
+                    <img src="img/subscribe.png" alt="" class="subscribe-button"
+                        onclick="toggleSubscription('${channel_name}')">
                     <!-- 구독 취소 버튼 -->
-                    <img style="display: none;" src="img/subscribed.png" alt="">
+                    <img style="display: none;" src="img/subscribed.png" alt="" class="unsubscribe-button"
+                        onclick="toggleSubscription('${channel_name}')">
                 </div>
                 <!-- 채널 툴바 -->
                 <div class="channel-toolbar">
@@ -149,7 +151,7 @@
                         </button>
 
                         <!-- 첫번째 플레이 리스트 재생 목록 -->
-                        <div class="small-video-list">
+                        <div class="small-video-list-1">
                             <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
 
                         </div>
@@ -161,7 +163,7 @@
                         </button>
 
                         <!-- 두번째 플레이 리스트 재생 목록 -->
-                        <div class="small-video-list">
+                        <div class="small-video-list-2">
                             <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
 
                         </div>
@@ -187,6 +189,23 @@
         loadChannel(channel, id);
 
     });
+
+    let flag = 1;
+    function hideMenu() {
+        aside = document.getElementById("aside");
+        main = document.getElementById("main");
+        if (flag == 1) {
+            flag = 0;
+            aside.style.display = "none";
+            main.style.marginLeft = "0";
+        }
+        else {
+            flag = 1;
+            aside.style.display = "block";
+            main.style.marginLeft = "160px";
+        }
+    }
+
 </script>
 
 </html>
