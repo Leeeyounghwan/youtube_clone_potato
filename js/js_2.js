@@ -22,9 +22,9 @@ async function getVideoInfo(video_id) {
 }
 
 /* 입력받는 채널의 정보 가져오기 */
-async function getChannelInfo(channer_name) {
+async function getChannelInfo(channel_name) {
     try {
-        let URL = `http://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channer_name}`;
+        let URL = `http://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channel_name}`;
         let response = await fetch(URL, { method: "POST" });
         const data = await response.json();
         return data;
@@ -55,15 +55,17 @@ async function loadVideo() {
 
         let views = Math.floor(videoInfo.views / 1000);
 
-
         innerHtml += `
             <div class="load-video-info">
-                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}"' >
+                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
                 <div>
-                    <p class="thumbnail-title">${videoInfo.video_title}</p>
-                    <div style=" width: 204px; ">
-                        <p class="thumbnail-text" id="${videoInfo.video_channel}">${videoInfo.video_channel}</p>
-                        <p class="thumbnail-text">${views}K Views, ${videoInfo.upload_date}</p>
+                    <p class="thumbnail-title"><a class="thumbnail-text-link" href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
+                    <div style="display: flex;">
+                        <a href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
+                        <div>
+                            <p class="thumbnail-channel"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
+                            <p class="thumbnail-channel">${views}K Views, ${videoInfo.upload_date}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,62 +77,64 @@ async function loadVideo() {
 }
 
 
-
-/* test.html에서 원하는 영상 클릭시 video_id로 해당 영상 정보 가져와서 video.html에 정보출력 */
-async function displayVideoInfo(video_id) {
+async function displayVideoTitle(video_id) {
     let videoInfo = await getVideoInfo(video_id);
-    let infoContainer = document.getElementById('displayVideoInfo');
+    let infoContainer = document.getElementById('displayVideoTitle');
+    let infoContainer2 = document.getElementById('infoText');
     let views = Math.floor(videoInfo.views / 1000);
 
     let innerHtml = `
-            <div
-                <div style="display: flex; flex-direction: column;">
-                    <div style=" width: 50vw;">
-                        <p class="video-title">${videoInfo.video_title}</p>
-                        <p class="video-detail">${views}K Views, ${videoInfo.upload_date}</p>
-                    </div>
+        <div>
+            <p class="video-title">${videoInfo.video_title}</p>
+        </div>
+        `;
 
-                    <div style="display: flex;">
-                        <img src="oreumi.jpg" style="border-radius: 50%; width: 4vw; height: 6vh;">
-                        <div>
-                            <p id="${videoInfo.video_channel}">${videoInfo.video_channel}</p>
-                            <p>${videoInfo.video_detail}</p>
-                        </div>
+    let innerHtml2 = `
+        <div>
+            <p class="video-detail">${views}K Views, ${videoInfo.upload_date}</p>
+        </div>
+    `;
+
+    infoContainer.innerHTML += innerHtml;
+    infoContainer2.innerHTML = innerHtml2;
+}
+
+/* home.html에서 원하는 영상 클릭시 video_id로 해당 영상 정보 가져와서 video.html에 정보출력 */
+async function displayVideoInfo(video_id) {
+    let videoInfo = await getVideoInfo(video_id);
+    let infoContainer = document.getElementById('displayVideoInfo');
+    let channelInfo = await getChannelInfo(videoInfo.video_channel);
+
+    // 구독자수 계산
+    subscribers = parseInt(channelInfo.subscribers);
+    sub = ""
+    if (subscribers < 1000) {
+        sub = subscribers + "";
+    }
+    else if (subscribers < 1000000) {
+        sub = Math.round(subscribers / 1000) + "K";
+    }
+    else if (subscribers < 100000000000) {
+        sub = Math.round(subscribers / 1000000) + "M";
+    }
+    else {
+        sub = Math.round(subscribers / 1000000000) + "B";
+    }
+
+
+    let innerHtml = `
+            <div class="channel-info-box" style="display: flex; flex-direction: row;">
+                <a href="./channel.html?channel_name=${channelInfo.channel_name}&id=${video_id}"><img src="${channelInfo.channel_profile}" class="channel-img"></a>
+                    <div class="channel-info-text">
+                        <p id="${videoInfo.video_channel}"><a class="channel-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${video_id}">${videoInfo.video_channel}</a></p>
+                        <p>${sub} Subscribers</p>
                     </div>
-                </div>
             </div>
         `;
 
     infoContainer.innerHTML += innerHtml;
 }
 
-/* test.html에서 원하는 영상 클릭시 video_id로 해당 영상 정보 가져와서 video.html에 정보출력 */
-async function displayVideoInfo(video_id) {
-    let videoInfo = await getVideoInfo(video_id);
-    let infoContainer = document.getElementById('displayVideoInfo');
-    let views = Math.floor(videoInfo.views / 1000);
-
-    let innerHtml = `
-            <div
-                <div style="display: flex; flex-direction: column;">
-                    <div style=" width: 50vw;">
-                        <p class="video-title">${videoInfo.video_title}</p>
-                        <p class="video-detail">${views}K Views, ${videoInfo.upload_date}</p>
-                    </div>
-
-                    <div style="display: flex;">
-                        <img src="oreumi.jpg" style="border-radius: 50%; width: 4vw; height: 6vh;">
-                        <div>
-                            <p id="${videoInfo.video_channel}">${videoInfo.video_channel}</p>
-                            <p>${videoInfo.video_detail}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-    infoContainer.innerHTML += innerHtml;
-}
 
 /* video.html 우측 영상 리스트 출력하는 함수 */
 async function displayVideoList() {
@@ -158,8 +162,8 @@ async function displayVideoList() {
             <div class="aside-video">
                 <img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}"' class="aside-thumbnail">
                 <div class="aside-text-content">
-                    <p class="aside-title"><a class="thumbnail-text-link" href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}">${videoInfo.video_title}</a></p>
-                    <p class="aside-text"><a class="thumbnail-text-link" href="./channel.html?channel_name=${videoInfo.video_channel}&id=${videoId}">${videoInfo.video_channel}</p>
+                    <p class="aside-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}">${videoInfo.video_title}</a></p>
+                    <p class="aside-text"><a class="thumbnail-channel-link" href="./channel.html?channel_name=${videoInfo.video_channel}&id=${videoId}">${videoInfo.video_channel}</p>
                     <p class="aside-text">${views}K Views, ${videoInfo.upload_date}</p>
                 </div>
             </div>
@@ -167,6 +171,35 @@ async function displayVideoList() {
 
         // 데이터를 div에 삽입
         videoContainer.innerHTML += innerHtml;
+    }
+}
+
+/* 댓글창 작성, 취소버튼 노출 이벤트 */
+let input = document.querySelector("#commentInput");
+let buttons = document.getElementById("comment-buttons");
+
+input.onfocus = function (e) {
+    buttons.style.display = "flex";
+}
+input.onblur = function (e) {
+    buttons.style.display = "none";
+    input.value = "";
+}
+
+/* 구독 버튼 이벤트 */
+let flag1 = 1;
+function subscribeChannel() {
+    subscribes = document.getElementById("channel-subscribes");
+    if (flag1 == 1) {
+        flag1 = 0;
+        subscribes.style.backgroundColor = "#dbdbdb";
+        subscribes.value = "SUBSCRIBING";
+        subscribes.style.color = "black";
+    }
+    else {
+        flag1 = 1;
+        subscribes.style.backgroundColor = "#C00";
+        subscribes.value = "SUBSCRIBES";
     }
 }
 
@@ -193,3 +226,119 @@ async function loadChannel(name, id) {
     infoContainer.innerHTML += innerHtml;
 
 }
+
+// channel.html에서 채널 정보 출력하는 함수
+async function loadChannel(channel_name) {
+    let channelInfo = await getChannelInfo(channel_name);
+    let infoContainer = document.getElementById('channel-title');
+
+    let innerHtml = `
+        <div style="display: flex;">
+            <img class="channel-profile" src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
+            <div>
+                <p class="channel-profile" id="${channelInfo.channel_name}">${channelInfo.channel_name}</p>
+                <p id="${channelInfo.subscribers}">${channelInfo.subscribers}</p>
+                <p>${channelInfo.channel_description}</p>
+            </div>
+            <!-- 구독 버튼 -->
+            <img src="img/subscribe.png" alt="" class="subscribe-button" onclick="toggleSubscription('${channel_name}')">
+            <!-- 구독 취소 버튼 -->
+            <img style="display: none;" src="img/subscribed.png" alt="" class="unsubscribe-button" onclick="toggleSubscription('${channel_name}')">
+        </div>
+    `;
+
+    infoContainer.innerHTML = innerHtml;
+
+    // 채널 비디오 로드
+    loadPlaylistVideos(channel_name);
+}
+
+/* 플레이리스트 비디오 로드 */
+async function loadPlaylistVideos(channel_name) {
+    let videoList = await getVideoList();
+
+    // 해당 채널의 비디오만 필터링
+    videoList = videoList.filter((video) => video.video_channel === channel_name);
+
+    // 플레이리스트를 절반씩 나누기 위한 변수
+    const half = Math.ceil(videoList.length / 2);
+
+    let videoListContainer1 = document.querySelector('.small-video-list-1'); // 첫 번째 플레이리스트 컨테이너
+    let videoListContainer2 = document.querySelector('.small-video-list-2'); // 두 번째 플레이리스트 컨테이너
+
+    let videoListHTML1 = ''; // 첫 번째 플레이리스트의 비디오 목록 HTML
+    let videoListHTML2 = ''; // 두 번째 플레이리스트의 비디오 목록 HTML
+
+    // 첫 번째 플레이리스트에 영상 추가
+    for (let i = 0; i < half; i++) {
+        let videoId = videoList[i].video_id;
+        let videoInfo = await getVideoInfo(videoId);
+        let views = Math.floor(videoInfo.views / 1000);
+
+        videoListHTML1 += `
+            <div class="small-video-item" onclick="playVideo('${videoId}')">
+                <img src="${videoInfo.image_link}" class="small-video-thumbnail" onclick="goToVideoPage('${videoId}', '${channel_name}')">
+                <div class="small-video-info">
+                    <p class="small-video-title" onclick="goToVideoPage('${videoId}', '${channel_name}')">${videoInfo.video_title}</p>
+                    <p class="small-video-channel">${views}K 조회수, ${videoInfo.upload_date}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    // 두 번째 플레이리스트에 영상 추가
+    for (let i = half; i < videoList.length; i++) {
+        let videoId = videoList[i].video_id;
+        let videoInfo = await getVideoInfo(videoId);
+        let views = Math.floor(videoInfo.views / 1000);
+
+        videoListHTML2 += `
+            <div class="small-video-item" onclick="playVideo('${videoId}')">
+                <img src="${videoInfo.image_link}" class="small-video-thumbnail" onclick="goToVideoPage('${videoId}', '${channel_name}')">
+                <div class="small-video-info">
+                    <p class="small-video-title" onclick="goToVideoPage('${videoId}', '${channel_name}')">${videoInfo.video_title}</p>
+                    <p class="small-video-channel">${views}K 조회수, ${videoInfo.upload_date}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    // 각각의 플레이리스트 div에 비디오 목록 HTML을 삽입
+    videoListContainer1.innerHTML = videoListHTML1;
+    videoListContainer2.innerHTML = videoListHTML2;
+}
+
+// 영상 페이지로 이동하는 함수
+function goToVideoPage(videoId, channelName) {
+    window.location.href = `./video.html?id=${videoId}&channel_name=${channelName}`;
+}
+
+// 구독 상태를 토글하는 함수
+function toggleSubscription(channel_name) {
+    const subscribeButton = document.querySelector('.subscribe-button');
+    const unsubscribeButton = document.querySelector('.unsubscribe-button');
+
+    if (subscribeButton.style.display === 'none') {
+        // 구독 상태인 경우
+        // 구독 취소 처리 로직 추가
+        // ...
+
+        subscribeButton.style.display = 'inline';
+        unsubscribeButton.style.display = 'none';
+    } else {
+        // 구독하지 않은 상태인 경우
+        // 구독 처리 로직 추가
+        // ...
+
+        subscribeButton.style.display = 'none';
+        unsubscribeButton.style.display = 'inline';
+    }
+}
+
+// 페이지 로드 시 채널 정보 로드
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URL(location.href).searchParams;
+    const channel_name = urlParams.get('channel_name');
+    loadChannel(channel_name);
+});
+
