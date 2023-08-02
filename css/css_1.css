@@ -576,30 +576,3 @@ nav .sliderButton.right {
     (사이드바만 따로 스크롤 기능 구현필요)
     nav 버튼 수정
 */
-
-
-/* 썸네일 타이틀 */
-.thumbnail-title-link {
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.thumbnail-title-link:link {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.thumbnail-title-link:visited {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.thumbnail-title-link:hover {
-    color: #ffffff;
-    text-decoration: underline;
-}
-
-.thumbnail-title-link:active {
-    color: #ffffff;
-    text-decoration: none;
-}

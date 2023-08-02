@@ -41,6 +41,13 @@ input {
     color: #ffffff;
 }
 
+.video-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 5px;
+    align-items: center;
+}
 
 .channel-img-div {
     display: flex;
@@ -269,7 +276,7 @@ input {
 /* 메인 영역 스타일 */
 main {
     display: flex;
-    flex: 5;
+    flex: 6;
     background-color: black;
     /* 배경 색상 설정 (여기서는 연한 회색) */
     justify-content: flex-start;
@@ -381,31 +388,29 @@ aside {
 
 /* 사이드 메뉴 고정, 고정 후 여백 조정 */
 .flex-item-aside {
-    width: 200px;
     margin-top: 45px;
     position: fixed;
-    left: 0;
 }
 
 
 .flex-container .flex-item-aside {
     order: 2;
-
+    flex-basis: 170px;
     flex-shrink: 0;
     flex-grow: 0;
 }
 
 .flex-container .flex-item-main {
     order: 3;
-    flex: 1;
-    padding: none;
-    margin-top: 70px;
-    margin-left: 55px;
-    margin-right: none;
-
 }
 
 
+.flex-item-main {
+    flex: 4;
+    padding: 20px;
+    padding-right: 0px;
+    margin-top: 25px;
+}
 
 /* 채널 메인 페이지 */
 /* 채널 커버 클래스 스타일 */
@@ -413,7 +418,7 @@ aside {
     width: 100%;
     height: 100%;
     /* 이미지를 <main> 요소와 동일한 크기로 설정 */
-    position: absolute;
+    position: flex;
     /* 이미지를 <main> 요소의 상대적 위치로 설정 */
     top: 0;
     left: 0;
@@ -422,7 +427,7 @@ aside {
 
 /* 이미지 스타일 (설정한 이미지 크기에 따라 필요한 경우 조정) */
 .channel-cover img {
-    display: block;
+    display: flex;
     width: 100%;
     /* 이미지 오른쪽 여백 제거 */
     height: 100%;
@@ -430,44 +435,13 @@ aside {
     /* 이미지를 비율을 유지하면서 <main> 영역에 꽉 채우도록 설정 */
 }
 
-.channel-title {
-
+.channel-Title {
     padding-top: 10px;
     display: flex;
     padding: 16px 65px 4px 65px;
     align-items: flex-start;
     gap: 699px;
 }
-
-.channel-title-set {
-    padding-left: 272px;
-    display: flex;
-    align-items: center;
-    /* 세로 중앙 정렬 */
-    background-color: #171717;
-    justify-content: space-between;
-}
-
-.channel-subscribes {
-    height: 40px;
-    border-radius: 30px;
-    margin-right: 330px;
-    cursor: pointer;
-    background-color: #cc0000;
-}
-
-/* 바깥쪽 컨테이너 */
-.channel-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    /* 세로 방향으로 정렬하려면 column을 사용합니다. */
-    padding-top: 30px;
-}
-
-
-
 
 
 /* 채널 프로필 안의 프로필과 채널명의 클래스를 임의로 지정하였습니다. */
@@ -483,7 +457,6 @@ aside {
     line-height: normal;
     align-items: center;
     margin-bottom: 5px;
-
 }
 
 /* 프로필과 채널명 스타일 */
@@ -506,6 +479,7 @@ aside {
 }
 
 
+
 /* 채널 프로필 구독 수 */
 #channel-Sub {
     display: block;
@@ -521,7 +495,7 @@ aside {
 }
 
 /* 채널 프로필 구독 버튼 */
-.channel-Title button {
+/* .channel-Title button {
     display: flex;
     padding: 10px 16px;
     flex-direction: column;
@@ -531,7 +505,7 @@ aside {
     border-radius: 2px;
     background-color: #c00;
     color: #ffffff;
-}
+} */
 
 /* 구독 버튼 스타일 */
 .subscribe-button {
@@ -551,13 +525,27 @@ aside {
     margin-top: 15px;
 }
 
-
-
 .channel-title {
     background-color: #171717;
     padding-top: 15px;
     padding-bottom: 15px;
     color: white;
+}
+
+/* 채널 툴바 전체 스타일 */
+.channel-Toolbar {
+    display: flex;
+    /* 요소들을 가로로 정렬 */
+    width: 100%;
+    align-items: center;
+    /* 주변 여백 설정 */
+    position: sticky;
+    /* 스크롤에 따라 고정되도록 설정 */
+    z-index: 999;
+    /* 다른 요소들보다 앞에 나오도록 설정 */
+    height: 48px;
+    padding: 0px 65px;
+    /* 양끝 내부 여백 */
 }
 
 /* 채널 툴바 내부 버튼 스타일 */
@@ -582,15 +570,6 @@ aside {
     margin: 5px 20px;
 }
 
-
-.channelToolbarButtons {
-    padding-left: 310px;
-    background-color: #171717;
-    display: flex;
-    align-items: center;
-
-}
-
 /* .channel-Search와 .channel-left 이미지 스타일 */
 #channel-Search {
     background: transparent;
@@ -602,7 +581,7 @@ aside {
     /* 이미지 너비 설정 */
     height: auto;
     /* 이미지 높이 설정 */
-    margin-left: 400px
+    margin-right: 20px
         /* 이미지 오른쪽 여백 설정 */
 }
 
@@ -661,36 +640,19 @@ aside {
     margin-top: 20px;
 }
 
-.play-list-title {
+.play-List-Title {
     display: block;
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    color: #ffffff;
 }
 
 .play-btn {
     padding: 5px 10px;
     border: none;
-    background-color: black;
+    background-color: #212121;
     color: #fff;
     cursor: pointer;
-    display: flex;
-    /* 그룹 내부 요소들을 flexbox로 배치 */
-
-    align-items: center;
-    /* 버튼 그룹을 수직 가운데로 정렬 */
-}
-
-.play-btn img {
-    margin-right: 5px;
-}
-
-.play-top {
-    display: flex;
-    /* 그룹 내부 요소들을 flexbox로 배치 */
-    align-items: center;
-    /* 버튼 그룹을 수직 가운데로 정렬 */
 }
 
 
@@ -701,101 +663,3 @@ aside {
 - 전체적으로 정렬을 바꾸기는 했는데 js에서 불러오는 부분이 
   들어와야 수정이 가능할것 같습니다.
 */
-
-.small-video-item {
-    padding: 0;
-    margin: 0;
-    width: 276px;
-    height: 223px;
-    display: flex;
-    flex-direction: column;
-}
-
-.small-video-info {
-    padding: 0;
-    margin: 3px;
-    color: #AAA;
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-}
-
-.small-video-thumbnail {
-    cursor: pointer;
-    width: 276px;
-    height: 155px;
-    padding-bottom: 10px;
-    padding: 5px;
-}
-
-
-.small-video-title {
-    padding: 0;
-    margin-left: 10px;
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 900;
-}
-
-.small-video-channel {
-    margin-left: 10px;
-    margin-top: 3px;
-    font-family: Roboto;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    color: #AAA
-}
-
-.small-video-list-1 {
-    gap: 1em;
-}
-
-.small-video-list-2 {
-    gap: 1em;
-}
-
-/* 23.08.02 이영환 추가 css */
-.most-view-info {
-    margin: 0;
-    padding: 0;
-    color: white;
-    width: 30vw;
-
-}
-
-.most-view-video {
-    margin-left: 30px;
-}
-
-.most-view-title {
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-family: Roboto;
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.14px;
-}
-
-.most-view-upload {
-    color: #AAA;
-    margin-bottom: 20px;
-}
-
-.most-view-detail {
-    color: var(--white-color, #FFF);
-    font-variant-numeric: stacked-fractions;
-    font-feature-settings: 'hlig' on, 'dlig' on;
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.14px;
-}
-
-/* 23.08.02 이영환 추가 css 종료 */
