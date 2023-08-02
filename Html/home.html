@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Youtube Clone Home page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube Clone Video page</title>
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/css_1.css">
+    <link rel="stylesheet" type="text/css" href="../css/css_3.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: row;
+        }
+
+        aside {
+            float: right;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,7 +29,7 @@
     <header>
         <!-- header 상단 왼쪽 부분: 메뉴버튼, 유튜브 로고 -->
         <div class="headerLeft">
-            <button class="menuButton" onclick="hideMenu()">
+            <button class="menuButton">
                 <img src="img/pngwing.png" class="menuButtonImage">
             </button>
             <button class="youtubeLogoButton" onclick='location.href="./home.html"'>
@@ -30,7 +47,7 @@
             </button>
         </div>
         <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
-        <div class="headerRight">
+        <div>
             <button class="createButton">
                 <img src="img/navigations_create.png" class="createButtonImage">
             </button>
@@ -46,106 +63,165 @@
         </div>
     </header>
 
-    <!-- sidebar 부분 -->
-    <div class="flex-container">
-        <aside class="flex-item-aside" id="aside">
-            <div class="button-group">
-                <button><img src="img/home_Icon.png"><span>Home</span></button>
-                <button><img src="img/explore_Icon.png"><span>Explore</span></button>
-                <button><img src="img/subscriptions_Icon.png"><span>Subscriptions</span></button>
-            </div>
-            <div class="button-group">
-                <button><img src="img/library_Icon.png"><span>Library</span></button>
-                <button><img src="img/history_Icon.png"><span>History</span></button>
-                <button><img src="img/yourVideos_Icon.png"><span>Your Videos</span></button>
-                <button><img src="img/watchLater_Icon.png"><span>Watch Later</span></button>
-                <button><img src="img/likedVideos_Icon.png"><span>Liked Videos</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
-            </div>
-            <div class="button-group">
-                <span class="button-group-title">SUBSCRIPTIONS</span>
-                <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
-                <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
-                <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
-                <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
-                <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
-                <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
-                <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
-            </div>
-            <div class="button-group">
-                <span class="button-group-title">MORE FROM YOUTUBE</span>
-                <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
-                <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
-                <button><img src="img/live_Icon.png"><span>Live</span></button>
-                <button><img src="img/sports_Icon.png"><span>Sports</span></button>
-            </div>
-            <div class="button-group">
-                <button><img src="img/setting_Icon.png"><span>Settings</span></button>
-                <button><img src="img/reportHistory_Icon.png"><span>Report history</span></button>
-                <button><img src="img/help_Icon.png"><span>Help</span></button>
-                <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
-            </div>
-        </aside>
-
-        <!-- 메인 부분 -->
-        <main class="flex-item-main">
-            <!-- 메인 화면 위에 상단 부분 -->
-            <section class="mainContainer">
-                <nav style="background-color: #212121;" id="nav">
-                    <span style="color:#ffffff">
-                        <div class="mainTop">
-                            <div class="filterButtons">
-                                <button class="active" onclick="">전체</button>
-                                <button onclick="">음악</button>
-                                <button onclick="">게임</button>
-                                <button onclick="">믹스</button>
-                                <button onclick="">실시간</button>
-                                <button onclick="">뉴스</button>
-                                <button onclick="">요리 프로그램</button>
-                                <button onclick="">뷰티 팁</button>
-                                <button onclick="">액션</button>
-                                <button onclick="">어드벤처</button>
-                                <button onclick="">요리</button>
-                                <button onclick="">만화 영화</button>
-                                <button onclick="">반려 동물</button>
-                                <button onclick="">최근에 업로드 된 동영상</button>
-                                <button onclick="">새로운 맞춤 동영상</button>
-                            </div>
-                            <button class="sliderButton right"><img src="img/rightArrow_Icon.png"></button>
-                        </div>
-                    </span>
-                </nav>
-            </section>
-            <!-- 메인 화면 아래 영상 리스트 -->
-            <section style="padding: 10px 1px 10px 20px;">
-                <div id="videoList" class="video-list">
+    <!-- 메인 부분 -->
+    <section>
+        <!-- 영상 부분-->
+        <article id="video" style="display:flex; flex-direction: column; justify-content: space-between;">
+            <div id="playVideo"></div>
+            <div id="displayVideoTitle"></div>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div id="infoText" class="info-text"></div>
+                <div class="video-expression">
+                    <button class="expression-btn"><img src="img/Liked.svg">
+                        <p class="expression-btn-text">1.7K</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/DisLiked.svg">
+                        <p class="expression-btn-text">632</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/Share.svg">
+                        <p class="expression-btn-text">SHARE</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/Save.svg">
+                        <p class="expression-btn-text">SAVE</p>
+                    </button>
+                    <button class="expression-btn"><img src="img/More.svg"></button>
                 </div>
-            </section>
-        </main>
-    </div>
+
+            </div>
+        </article>
+
+        <!-- 채널 정보 및 구독버튼 -->
+        <div class="channel-info">
+
+            <div class="channel-info-top" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="display: flex; flex-direction: row;" id="displayVideoInfo"></div>
+
+                <input type="button" class="channel-subscribes" id="channel-subscribes" value="SUBSCRIBES"
+                    onclick="subscribeChannel()">
+            </div>
+
+            <div class="channel-info-detail">
+                Chris Fisher, also known as the Blind Woodturner, learned his craft by listening to hundreds of hours of
+                YouTube videos and experimenting in his workshop. Now he’s a YouTube creator himself, sells his products
+                worldwide, and does demonstrations all around the country.
+            </div>
+
+        </div>
+
+        <!-- 댓글 수, 정렬기준 버튼 -->
+        <div class="comments-section" style="display: flex; flex-direction: column;">
+
+            <div class="comment-header" style="display: flex; flex-direction: row;">
+                <div class="comment-count">
+                    <p id="commentCount">댓글 수: 0</p>
+                </div>
+                <div class="comment-sort-box">
+                    <!-- 이미지는 일단 임시로 해놓은거라 바꾸시면 됩니다 -->
+                    <button class="sort-btn" onclick="sortComments()">
+                        <img src="img/Group.svg" class="comment-sort">
+                    </button>
+                    <label for="sort-btn">SORT BY</label>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- 댓글 달기 -->
+            <div class="comment-form" style="display: flex; flex-direction: row;">
+                <!-- 댓글 입력칸 왼쪽 프로필 -->
+                <div class="profile-imagee"><img src="img/User-Avatar.png"></div>
+                <!-- 댓글 입력칸 -->
+                <input type="text" id="commentInput" placeholder="댓글 추가..." class="commentInput">
+                <!-- 취소, 입력 버튼-->
+                <div class="comment-buttons" id="comment-buttons">
+                    <button class="comment-enter-btn" onclick="addComment()">작성</button>
+                    <button class="comment-cancel-btn"
+                        onclick="document.getElementById('commentInput').value = ''">취소</button>
+                </div>
+            </div>
+        </div>
+        <!-- 여러 댓글이 달리는 곳 -->
+        <div class="comment-list" id="comment-list">
+            <!-- 댓글 목록이 여기에 동적으로 추가될 것입니다. -->
+        </div>
+        <div>
+            <style>
+                /* 스타일을 적용할 클래스들 */
+                .user-comment-box {
+                  display: flex; /* Flexbox를 사용하여 이미지와 텍스트를 나란히 배치합니다. */
+                  align-items: center; /* 수직 가운데 정렬 */
+                }
+                .video-user {
+                  /* 이미지의 크기만 설정하고, 기존 여백은 유지합니다. */
+                  width: 50px;
+                  height: 50px;
+                }
+                .video-like,
+                .video-like-text,
+                .video-comment-reply {
+                  /* 툴바 내부 아이템들도 적절한 스타일을 적용합니다. */
+                  margin-right: 10px; /* 아이템 사이의 오른쪽 여백 */
+                }
+              </style>
+              <br><br>
+              <div id="video-comments">
+                <div class="user-comment-box">
+                  <img class="video-user" src="img/JamesGouse.png">
+                  <div>
+                    <span class="video-user-name">James Gouse</span>
+                    <span class="video-comment-time">8 hours ago</span>
+                    <p class="video-comment-text">Wow, world is full of different skills</p>
+                    <div class="video-comment-toolbar">
+                      <img class="video-like" src="img/like.png">
+                      <span class="video-like-text">30</span>
+                      <img class="video-like" src="img/dislike.png">
+                      <span class="video-like-text">90</span>
+                      <button class="video-comment-reply">REPLY</button>
+                    </div>
+                  </div>
+                </div><br><br>
+                <div class="user-comment-box">
+                  <img class="video-user" src="img/AlanCooper.png">
+                  <div>
+                    <span class="video-user-name">Alan Cooper</span>
+                    <span class="video-comment-time">4 days ago</span>
+                    <p class="video-comment-text">Can you provide?</p>
+                    <div class="video-comment-toolbar">
+                      <img class="video-like" src="img/like.png">
+                      <span class="video-like-text">30</span>
+                      <img class="video-like" src="img/dislike.png">
+                      <span class="video-like-text">90</span>
+                      <button class="video-comment-reply">REPLY</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <aside>
+        <div id="displayVideoList"></div>
+    </aside>
+
 </body>
-
-<!-- js에서 videoList 가져오기  -->
+<!-- js 파일 가져오기 -->
 <script src="../js/js_1.js"></script>
+<script src="../js/js_2.js"></script>
 <script>
-    window.addEventListener('DOMContentLoaded', loadVideo());
+    /* 페이지가 로드 될때 영상 리스트 출력 */
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URL(location.href).searchParams;
+        const id = urlParams.get('id');
+        console.log(id);
 
-    let flag = 1;
-    function hideMenu() {
-        aside = document.getElementById("aside");
-        nav = document.getElementById("nav")
-        if (flag == 1) {
-            flag = 0;
-            aside.style.display = "none";
-            nav.style.marginLeft = 0;
-        }
-        else {
-            flag = 1;
-            aside.style.display = "block";
-            nav.style.marginLeft = "170px";
-        }
-    }
+        viewVideo(id);
+        displayVideoTitle(id);
+        displayVideoInfo(id);
+        displayVideoList();
+    });
 </script>
+
+</html>
+
+</body>
 
 </html>
