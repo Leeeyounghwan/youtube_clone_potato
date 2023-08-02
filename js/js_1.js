@@ -61,52 +61,41 @@ async function loadVideo() {
         let videoInfo = videoInfoList[i];
 
         let views = Math.floor(videoInfo.views / 1000);
+        let dayBefore = asOfToday(videoInfo.upload_date);
 
         let channelInfo = channelInfoList[i];
 
-        // 영환님이 요청해주신 수정본
         innerHtml += `
             <div class="load-video-info">
                 <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
                 <div>
-                    <p class="thumbnail-title"><a class="thumbnail-text-link" href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
                     <div style="display: flex;">
                         <a href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
                         <div>
-                            <p class="thumbnail-channel"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
-                            <p class="thumbnail-channel">${views}K Views, ${videoInfo.upload_date}</p>
+                        <p class="thumbnail-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
+                            <div>
+                                <p class="thumbnail-channel"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
+                                <p class="thumbnail-channel">${views}K Views, ${dayBefore}일전</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
-
-        // 성진님이 요청해주신 수정본본
-        // innerHtml += `
-        //     <div class="load-video-info">
-        //         <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
-        //         <div>
-        //             <div style="display: flex;">
-        //                 <img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
-        //                 <div>
-        //                     <p class="thumbnail-title">${videoInfo.video_title}</p>
-        //                     <div class="thumbnail-channel">
-        //                         <p ><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
-        //                         <p >${views}K Views, ${videoInfo.upload_date}</p>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-
-        // `;
-
         // console.log(innerHtml);
         // 데이터를 div에 삽입
         videoContainer.innerHTML = innerHtml;
     }
 }
 
+function asOfToday(upload_date) {
+    let uploadDate = new Date(upload_date);
+    let currentDate = new Date();
+
+    let minusdate = currentDate - uploadDate
+    let dayBefore = minusdate / (1000 * 60 * 60 * 24);
+    return Math.floor(dayBefore);
+}
 
 /* test.html에서 원하는 영상 클릭시 video_id로 해당 영상 가져와서 video.html에서 재생 */
 async function viewVideo(video_id) {
@@ -126,6 +115,7 @@ async function displayVideoInfo(video_id) {
     let videoInfo = await getVideoInfo(video_id);
     let infoContainer = document.getElementById('displayVideoInfo');
     let views = Math.floor(videoInfo.views / 1000);
+
 
     let innerHtml = `
             <div
@@ -190,24 +180,21 @@ async function displayVideoList() {
     }
 }
 
-// 검색 구현 부분
-// 인데 성공하지 못했습니다....죄송합니다..
-
+// 검색 구현 부분 (이부분 아래걸로 계속 해보시면 될거 같은데 아직 해결을 못했습니다 ㅜㅜ)
 
 let searchButton = document.getElementsByClassName("searchButton")[0];
 let searchInput = document.getElementsByClassName("searchInput")[0];
 
-// 이 부분은 강사님 git을 보고 했는데 안 됐어요..
-// 검백 버튼 클릭 시 실행
-// searchButton.addEventListener("click", function () {
-//     let searchKeyword = searchInput.value;
-//     getVideoList().then((videoList) => {
-//         let searchResults = videoList.filter((video) =>
-//             video.video_title.toLowerCase().includes(searchKeyword.toLowerCase())
-//         );
-//         loadVideo(searchResults);
-//     });
-// });
+// 
+searchButton.addEventListener("click", function () {
+    let searchKeyword = searchInput.value;
+    getVideoList().then((videoList) => {
+        let searchResults = videoList.filter((video) =>
+            video.video_title.toLowerCase().includes(searchKeyword.toLowerCase())
+        );
+        loadVideo(searchResults);
+    });
+});
 
 // searchInput.addEventListener("keypress", function (event) {
 //     if (event.keyCode === 13) {
@@ -222,32 +209,32 @@ let searchInput = document.getElementsByClassName("searchInput")[0];
 // });
 
 // 이 부분은 강사님 코드를 응용해봤는데 안 됐어요..2
-searchButton.addEventListener("click", function () {
-    let searchKeyword = searchInput.value;
-    filterVideoList(searchKeyword);
-});
+// searchButton.addEventListener("click", function () {
+//     let searchKeyword = searchInput.value;
+//     filterVideoList(searchKeyword);
+// });
 
-searchInput.addEventListener("keypress", function (event) {
-    if (event.keyCode === 13) {
-        let searchKeyword = searchInput.value;
-        filterVideoList(searchKeyword);
-    }
-});
+// searchInput.addEventListener("keypress", function (event) {
+//     if (event.keyCode === 13) {
+//         let searchKeyword = searchInput.value;
+//         filterVideoList(searchKeyword);
+//     }
+// });
 
 // 검색 필터링 시켜줄 함수
-async function filterVideoList() {
-    try {
-        let videoList = await getVideoList();
-        let filterVideoList = videoList.filter((video) => {
-            const videoTitle = video.video_title.toLowerCase();
-            const channelName = video.video_channel.toLowerCase();
-            return videoTitle.includes(searchKeyword.toLowerCase()) || channelName.includes(searchKeyword.toLowerCase());
-        });
-        loadVideo(filterVideoList);
-    } catch (error) {
-        console.error("검색 중 오류가 발생했습니다.", error);
-    }
-}
+// async function filterVideoList() {
+//     try {
+//         let videoList = await getVideoList();
+//         let filterVideoList = videoList.filter((video) => {
+//             const videoTitle = video.video_title.toLowerCase();
+//             const channelName = video.video_channel.toLowerCase();
+//             return videoTitle.includes(searchKeyword.toLowerCase()) || channelName.includes(searchKeyword.toLowerCase());
+//         });
+//         loadVideo(filterVideoList);
+//     } catch (error) {
+//         console.error("검색 중 오류가 발생했습니다.", error);
+//     }
+// }
 
 // 검색 결과를 화면에 표시하는 함수
 // async function searchResults() {
@@ -364,10 +351,6 @@ async function filterVideoList() {
 //         videoListDiv.appendChild(videoElement);
 //     });
 // }
-
-
-// 여기까지 8월 1일자 작업한 부분입니다
-// 검색 구현 못 해서 죄송해요ㅠㅠ...
 
 
 // // 검색
