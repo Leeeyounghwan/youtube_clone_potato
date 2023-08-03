@@ -41,15 +41,31 @@ async function loadChannel(name, id) {
 
     let channel_name = name;
     let channelInfo = await getChannelInfo(channel_name);
-    // console.log(videoInfo.video_detail)
+    console.log(channelInfo.subscribers)
+
+    // 구독자수 계산
+    subscribers = parseInt(channelInfo.subscribers);
+    console.log(subscribers);
+    sub = ""
+    if (subscribers < 1000) {
+        sub = subscribers + "";
+    }
+    else if (subscribers < 1000000) {
+        sub = Math.round(subscribers / 1000) + "K";
+    }
+    else if (subscribers < 100000000000) {
+        sub = Math.round(subscribers / 1000000) + "M";
+    }
+    else {
+        sub = Math.round(subscribers / 1000000000) + "B";
+    }
 
     let innerHtml = `
-        <div style="display: flex;">
-        <img class="channel-profile" src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
-            <div>
+        <div class="load-profile" id="loadProfile">
+            <img class="channel-profile-img" src="${channelInfo.channel_profile}">
+            <div class="channel-profile-info">
                 <p class="channel-profile" id="${channelInfo.channel_name}">${channelInfo.channel_name}</p>
-                <p id="${channelInfo.subscribers}">${channelInfo.subscribers}</p>
-                <p>${channelInfo.channel_name}</p>
+                <p id="${channelInfo.subscribers}">${sub} Subscribers</p>
             </div>
         </div>
     `;
@@ -61,8 +77,6 @@ async function loadChannel(name, id) {
     loadChannelBanner(channel_name);
     loadPlaylistVideos(channel_name);
     loadChannelMainVideo(channel_name);
-
-
 }
 
 /* 현재 날짜가 영상 업로드일로 부터 몇일이 지났는지 계산 */
@@ -205,5 +219,19 @@ function toggleSubscription(channel_name) {
         unsubscribeButton.style.display = 'inline';
     }
 }
-
-
+/* 구독 버튼 이벤트 */
+let flag1 = 1;
+function subscribeChannel() {
+    subscribes = document.getElementById("channel-subscribes");
+    if (flag1 == 1) {
+        flag1 = 0;
+        subscribes.style.backgroundColor = "#dbdbdb";
+        subscribes.value = "SUBSCRIBING";
+        subscribes.style.color = "black";
+    }
+    else {
+        flag1 = 1;
+        subscribes.style.backgroundColor = "#C00";
+        subscribes.value = "SUBSCRIBES";
+    }
+}

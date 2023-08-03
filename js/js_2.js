@@ -342,3 +342,33 @@ window.addEventListener('DOMContentLoaded', () => {
     loadChannel(channel_name);
 });
 
+/* 현재 날짜가 영상 업로드일로 부터 몇일이 지났는지 계산 */
+function asOfToday(upload_date) {
+    let uploadDate = new Date(upload_date);
+    let currentDate = new Date();
+
+    let minusdate = currentDate - uploadDate
+    let dayBefore = minusdate / (1000 * 60 * 60 * 24);
+    return Math.floor(dayBefore);
+}
+
+const sideMenu = document.querySelector('.side-menu');
+
+// 스크롤 바를 커스터마이징하기 위한 스타일 추가
+const scrollbarStyle = `
+::-webkit-scrollbar {
+    width: 6px; /* 스크롤 바 너비 조절 */
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* 스크롤 바 색상 조절 */
+    border-radius: 3px; /* 스크롤 바 모서리 둥글게 처리 */
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* 스크롤 바에 호버 효과 적용 */
+}
+`;
+
+// 스크롤 바 스타일 추가
+sideMenu.style.cssText += scrollbarStyle;
