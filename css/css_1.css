@@ -318,10 +318,10 @@ nav {
     /* 네비게이션 너비 설정 */
     background-color: #ddd;
     /* 배경 색상 설정 (여기서는 연한 회색) */
-    padding: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 0px;
     /* 주변 여백 설정 */
     margin-top: 30px;
-    margin-left: 170px;
+    margin-left: 180px;
     position: relative;
     overflow: hidden;
     /* 내부 컨텐츠가 넘치지 않도록 설정 */
@@ -601,11 +601,16 @@ nav .sliderButton.right {
 .side-menu {
     width: 170px;
     /* 사이드 메뉴 너비 조절 */
-    height: 830px;
+    height: 100vh;
     /* 사이드 메뉴 높이 조절 */
     overflow-y: scroll;
     /* 스크롤 바 추가 */
 }
+
+.side-menu::-webkit-scrollbar {
+    display: none;
+}
+
 
 ul {
     list-style: none;
