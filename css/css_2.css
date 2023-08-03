@@ -284,7 +284,7 @@ main {
 
     /* 메인 화면이 오른쪽으로 오도록 설정 */
     order: 3;
-    margin-left: 155px;
+    margin-left: 101px;
     /* 사이드바랑 겹치지 않도록 */
     /* 페이지에 맞게 조정 */
     position: relative;
@@ -592,19 +592,80 @@ aside {
 }
 
 /* 채널 소형 영상 */
-.small-Video {
+.small-video {
     display: inline-flex;
-    padding: 24px 287px 24px 65px;
     align-items: flex-start;
 }
 
-.channel-Video {
+.channel-video {
+    display: flex;
+    flex-direction: row;
     flex: 2;
-    margin-right: 20px;
 }
 
+/* 23.08.02 이영환 추가 css */
+.most-view-info {
+    margin: 0px 0px 0px 10px;
+    padding: 0;
+    color: white;
+    width: 30vw;
+}
+
+.most-view-video {
+    margin-left: 30px;
+}
+
+.most-view-title {
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-family: Roboto;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.14px;
+}
+
+.most-view-upload {
+    color: #AAA;
+    margin-bottom: 20px;
+}
+
+.most-view-detail {
+    color: var(--white-color, #FFF);
+    font-variant-numeric: stacked-fractions;
+    font-feature-settings: 'hlig' on, 'dlig' on;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.14px;
+}
+
+.small-video-list-1 {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    padding: 5px;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.small-video-list-2 {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1em;
+    padding: 5px;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 23.08.02 이영환 추가 css 종료 */
+
 /* Desc 전체 설정 */
-#channel-Desc {
+#channel-desc {
     display: flex;
     padding-bottom: 0px;
     flex-direction: column;
@@ -612,7 +673,7 @@ aside {
 }
 
 /* desc 제목 */
-#desc-Title {
+#desc-title {
     /* 아래 비교해보려고 적어둔 것입니다.. */
     /* display: block;
     font-size: 20px;
@@ -628,7 +689,7 @@ aside {
 
 /* 여기서부터 제대로 확인하지 못했습니다ㅠㅠ */
 /* desc  */
-#desc-Time {
+#desc-time {
     display: block;
     font-size: 14px;
     color: #777;

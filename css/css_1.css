@@ -570,6 +570,33 @@ nav .sliderButton.right {
     text-decoration: none;
 }
 
+
+/* 썸네일 타이틀 */
+.thumbnail-title-link {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.thumbnail-title-link:link {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.thumbnail-title-link:visited {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.thumbnail-title-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.thumbnail-title-link:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 /* 
     2023.07.28 
     사이드바 고정
