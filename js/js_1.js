@@ -37,6 +37,46 @@ async function getChannelInfo(channer_name) {
     }
 }
 
+//------------ 0803 ----------------------//
+// 검색 버튼 클릭 이벤트 처리
+const searchButton = document.getElementById("searchButton");
+const searchInput = document.getElementById("searchInput");
+
+searchButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const searchKeyword = searchInput.value;
+    if (searchKeyword.trim() !== '') {
+        filterVideoList(searchKeyword); // 검색 결과 가져오기
+    }
+});
+
+// 엔터 키 감지 이벤트 처리
+searchInput.addEventListener("keypress", (event) => {
+    if (event.keyCode === 13) {
+        const searchKeyword = searchInput.value;
+        if (searchKeyword.trim() !== '') {
+            filterVideoList(searchKeyword); // 검색 결과 가져오기
+        }
+        event.preventDefault(); // 기본 엔터키 동작 방지
+    }
+});
+
+// 검색 필터링 함수 수정
+async function filterVideoList(searchKeyword) {
+    try {
+        let videoList = await getVideoList();
+        let filteredVideoList = videoList.filter((video) => {
+            const videoTitle = video.video_title.toLowerCase();
+            const channelName = video.video_channel.toLowerCase();
+            return videoTitle.includes(searchKeyword.toLowerCase()) || channelName.includes(searchKeyword.toLowerCase());
+        });
+        loadVideo(filteredVideoList); // 검색 결과를 화면에 표시
+    } catch (error) {
+        console.error("검색 중 오류가 발생했습니다.", error);
+    }
+}
+//-------------------------------------//
+
 /* home.html에 비디오 리스트 띄우기 */
 async function loadVideo() {
     // getVideoList 함수 호출해서 영상 리스트 가져오기
@@ -180,21 +220,22 @@ async function displayVideoList() {
     }
 }
 
-// 검색 구현 부분 (이부분 아래걸로 계속 해보시면 될거 같은데 아직 해결을 못했습니다 ㅜㅜ)
 
-let searchButton = document.getElementsByClassName("searchButton")[0];
-let searchInput = document.getElementsByClassName("searchInput")[0];
+// // 검색 구현 부분 (이부분 아래걸로 계속 해보시면 될거 같은데 아직 해결을 못했습니다 ㅜㅜ)
 
-// 
-searchButton.addEventListener("click", function () {
-    let searchKeyword = searchInput.value;
-    getVideoList().then((videoList) => {
-        let searchResults = videoList.filter((video) =>
-            video.video_title.toLowerCase().includes(searchKeyword.toLowerCase())
-        );
-        loadVideo(searchResults);
-    });
-});
+// let searchButton = document.getElementsById("searchButton")[0];
+// let searchInput = document.getElementsById("searchInput")[0];
+
+// // 
+// searchButton.addEventListener("click", function () {
+//     let searchKeyword = searchInput.value;
+//     getVideoList().then((videoList) => {
+//         let searchResults = videoList.filter((video) =>
+//             video.video_title.toLowerCase().includes(searchKeyword.toLowerCase())
+//         );
+//         loadVideo(searchResults);
+//     });
+// });
 
 // searchInput.addEventListener("keypress", function (event) {
 //     if (event.keyCode === 13) {
