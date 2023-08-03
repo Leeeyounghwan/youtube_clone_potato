@@ -7,7 +7,7 @@ html::-webkit-scrollbar {
 header {
     background-color: #212121;
     /* 배경 색상 설정  */
-    padding: 5px 5px 5px 5px;
+    padding: 0px 5px;
     /* 헤더 주변 여백 설정 */
     display: flex;
     flex-direction: row;
@@ -22,6 +22,7 @@ header {
     position: fixed;
     z-index: 1000;
     /* 다른 요소들보다 우선하여 가장 위에 표시되도록 설정 */
+    /* height: 5vh; */
 }
 
 input {
@@ -34,7 +35,7 @@ input {
     gap: 1em;
     padding: 5px;
     align-items: center;
-    margin-top: 77px;
+    margin-top: 87px;
     margin-left: 170px;
 }
 
@@ -158,7 +159,7 @@ input {
 }
 
 .searchButtonImage {
-    width: 50px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
@@ -187,7 +188,7 @@ input {
 }
 
 .menuButtonImage {
-    width: 30px;
+    width: 25px;
     height: auto;
     padding: none;
     border: none;
@@ -202,7 +203,7 @@ input {
 }
 
 .youtubeLogoButtonImage {
-    width: 120px;
+    width: 100px;
     height: auto;
     padding: none;
     border: none;
@@ -597,9 +598,28 @@ nav .sliderButton.right {
     text-decoration: none;
 }
 
-/* 
-    2023.07.28 
-    사이드바 고정
-    (사이드바만 따로 스크롤 기능 구현필요)
-    nav 버튼 수정
-*/
+.side-menu {
+    width: 170px;
+    /* 사이드 메뉴 너비 조절 */
+    height: 830px;
+    /* 사이드 메뉴 높이 조절 */
+    overflow-y: scroll;
+    /* 스크롤 바 추가 */
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    /* 메뉴 항목 사이 구분선 추가 */
+}
+
+li:last-child {
+    border-bottom: none;
+    /* 마지막 항목의 구분선 제거 */
+}

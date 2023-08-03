@@ -16,7 +16,7 @@ body {
 
 section {
     order: 2;
-    margin-left: 20vw;
+    margin-left: 12vw;
     margin-top: 44px;
     width: 50vw;
 }
@@ -38,7 +38,7 @@ aside {
 header {
     background-color: #212121;
     /* 배경 색상 설정  */
-    padding: 5px 5px 5px 5px;
+    padding: 0px 5px;
     /* 헤더 주변 여백 설정 */
     display: flex;
     flex-direction: row;
@@ -117,7 +117,7 @@ header {
 }
 
 .searchButtonImage {
-    width: 50px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
@@ -146,7 +146,7 @@ header {
 }
 
 .menuButtonImage {
-    width: 30px;
+    width: 25px;
     height: auto;
     padding: none;
     border: none;
@@ -161,7 +161,7 @@ header {
 }
 
 .youtubeLogoButtonImage {
-    width: 120px;
+    width: 100px;
     height: auto;
     padding: none;
     border: none;
@@ -169,11 +169,9 @@ header {
 
 }
 
-.header-right-button {
+.headerRight {
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    padding: 10px;
-    margin: 0;
 }
 
 .createButton {
@@ -184,7 +182,7 @@ header {
 
 
 .createButtonImage {
-    width: 30px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
@@ -198,7 +196,7 @@ header {
 }
 
 .appButtonImage {
-    width: 22px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
@@ -212,12 +210,24 @@ header {
 }
 
 .notificationButtonImage {
-    width: 22px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
     margin: none;
 }
+
+.youtubeLogoButton,
+.menuButton,
+.createButton,
+.searchButton,
+.voiceButton,
+.appButton,
+.notificationButton,
+.profileButton {
+    padding: 1px 6px;
+}
+
 
 .profileButton {
     background-color: #212121;
@@ -226,7 +236,7 @@ header {
 }
 
 .profileButtonImage {
-    width: 30px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
@@ -240,7 +250,7 @@ header {
 .aside-video {
     display: flex;
     flex-direction: row;
-    margin: 5px 5px 10px 5px;
+    margin: 10px 5px 10px 5px;
 }
 
 .aside-thumbnail {
@@ -255,7 +265,7 @@ header {
     margin-left: 7px;
     vertical-align: middle;
     display: flex;
-    justify-content: center;
+    margin-top: 10px;
 }
 
 .aside-title {
@@ -438,6 +448,7 @@ header {
 
 .channel-info {
     margin-bottom: 30px;
+    margin-top: 15px;
 }
 
 .channel-info-top {
@@ -460,6 +471,7 @@ header {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 .channel-info-text {
@@ -526,7 +538,7 @@ header {
 
 /* 댓글창 css 시작 */
 .comment-header {
-    margin: 10px 0px;
+    margin: 25px 0px 10px 0px;
     height: 20px;
 }
 
@@ -548,6 +560,8 @@ label {
     height: 100%;
 }
 
+
+
 .sort-btn {
     border: 0;
     background-color: #181818;
@@ -563,8 +577,14 @@ label {
 }
 
 /* 댓글 작성칸 유저 프로필 */
-.profile-imagee img {
-    border-radius: 40px;
+.profile-image img {
+    border-radius: 25px;
+    margin-top: 20px;
+}
+
+.profile-image {
+    display: flex;
+    margin-bottom: 25px;
 }
 
 .commentInput {
@@ -644,23 +664,65 @@ label {
 
 .video-user-name,
 .video-comment-text {
-    padding: 2px 0px;
+    margin: 10px 0px;
+    color: #FFF;
+    font-size: 14px;
+}
+
+.video-user-name {
+    font-weight: 900;
 }
 
 .video-comment-toolbar {
-    display: flex;
     padding: 12px 0px;
 }
 
-.video-comment-toolbar img {
-    margin: 0px 8px;
-}
+
 
 .video-comment-time,
 .video-comment-toolbar {
     color: #aaaaaa;
     font-size: 12px;
 }
+
+.video-comment-toolbar img {
+    width: 13px;
+    height: 12.3px;
+    padding: 0px 15px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.video-comment-reply {
+    color: #aaaaaa;
+    background: transparent;
+    font-size: 12px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.profile-image img,
+.video-user img {
+    width: 38px;
+    height: 38px;
+}
+
+.video-user img {
+    margin-top: 10px;
+}
+
+.user-comment-box {
+    display: flex;
+}
+
+hr.one {
+    width: 150px;
+    color: #C00;
+    border: thin solid red;
+}
+
+
 
 /* 8월 2일 css_3 박수진 작성 */
 /* 밑에 주석 처리된 내용은 진혁님께서 작성하셨던 코드입니다. */
@@ -782,3 +844,11 @@ label {
     flex-shrink: 0;
     background: #181818;
 } */
+
+.video {
+    margin-top: 30px;
+}
+
+#displayVideoList {
+    padding-top: 10px;
+}
