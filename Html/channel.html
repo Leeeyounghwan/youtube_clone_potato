@@ -99,13 +99,15 @@
                 </div>
                 <!-- 채널 프로필 -->
                 <div class="channel-title" id="channel-title">
-                    <!-- 구독 버튼 -->
-                    <img src="img/subscribe.png" alt="" class="subscribe-button"
-                        onclick="toggleSubscription('${channel_name}')">
-                    <!-- 구독 취소 버튼 -->
-                    <img style="display: none;" src="img/subscribed.png" alt="" class="unsubscribe-button"
-                        onclick="toggleSubscription('${channel_name}')">
-                </div>
+                    <div id="channel-profile-container">
+                        <img id="channel-profile" src="img/Marcus_Icon.png">
+                        <div id="channel-name-subscribers">
+                            <h4 id="channel-name">Marcus Levin</h4>
+                            <p id="channel-subscribers">1.2M subscribers</p>
+                        <button class="subscribe-button" onclick="toggleSubscription()">Subscriptions</button>
+                        <button class="unsubscribe-button" style="display: none;" onclick="toggleSubscription()">구독</button>
+                        </div>
+                    </div>
                 <!-- 채널 툴바 -->
                 <div class="channel-toolbar">
                     <button>HOME</button>
@@ -176,8 +178,7 @@
 
 </body>
 <!-- channel 페이지 비디오 가져오기 -->
-<script src="../js/js_1.js"></script>
-<script src="../js/js_2.js"></script>
+<script src="../js/js_3.js"></script>
 <script>
     /* 페이지가 로드 될때 영상 리스트 출력 */
     window.addEventListener('DOMContentLoaded', () => {

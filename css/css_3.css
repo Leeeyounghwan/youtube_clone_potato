@@ -18,6 +18,8 @@ section {
     order: 2;
     margin-left: 20vw;
     margin-top: 44px;
+    width: 50vw;
+    margin-left: 162px;
 }
 
 /* 사이드바 스타일 */
@@ -30,6 +32,8 @@ aside {
     margin-top: 43px;
     flex-direction: column;
     /* 버튼들을 세로로 배치 */
+    margin-right: 164px;
+    /* 사이드바와 오른쪽 사이의 간격 */
 }
 
 header {
@@ -313,6 +317,74 @@ header {
     text-decoration: none;
 }
 
+/* 썸네일 제목 링크 */
+.thumbnail-title-link {
+    text-decoration: none;
+    color: white;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.thumbnail-title-link:link {
+    color: white;
+    text-decoration: none;
+}
+
+.thumbnail-title-link:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.thumbnail-title-linka:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.thumbnail-title-link:active {
+    color: white;
+    text-decoration: none;
+}
+
+/* 썸네일 채널 링크 */
+.thumbnail-channel-link {
+    text-decoration: none;
+    color: #AAA;
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.thumbnail-channel-link:link {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.thumbnail-channel-link:visited {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.thumbnail-channel-linka:hover {
+    color: #AAA;
+    text-decoration: underline;
+}
+
+.thumbnail-channel-link:active {
+    color: #AAA;
+    text-decoration: none;
+}
+
 /* section부분 css */
 .video-content {
     margin: 20px 0px;
@@ -328,6 +400,10 @@ header {
     letter-spacing: 0.18px;
 }
 
+.info-text {
+    width: 25%;
+}
+
 .video-detail {
     color: #AAA;
     font-family: Roboto;
@@ -335,13 +411,284 @@ header {
     font-style: normal;
     font-weight: 400;
     margin-top: 10px;
+    margin-bottom: 15px;
 }
 
+.video-expression {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.expression-btn {
+    margin: 0px 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: #181818;
+}
+
+.expression-btn-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0px 8px;
+}
+
+.channel-info {
+    margin-bottom: 30px;
+}
+
+.channel-info-top {
+    display: flex;
+    justify-content: center;
+
+    /* justify-content: space-between; */
+
+    align-items: center;
+}
+
+.channel-info-box {
+    margin-bottom: 10px;
+}
+
+.channel-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.channel-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.channel-link {
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--white-color, #FFF);
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.channel-info-text p {
+    color: var(--gray-color, #AAA);
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.channel-info-detail {
+    margin-left: 58px;
+    padding: 0px 140px 0px 0px;
+    color: var(--white-color, #FFF);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* 구독 버튼 css */
+.channel-subscribes {
+    display: flex;
+    align-items: flex-start;
+    width: 116px;
+    height: 36px;
+    border-radius: 5px;
+    background: #C00;
+    border: none;
+    color: var(--white-color, #FFF);
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+}
+
+/* 댓글창 css 시작 */
+.comment-header {
+    margin: 10px 0px;
+    height: 20px;
+}
+
+.comment-header p,
+label {
+    font-size: 15px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.comment-count {
+    margin-right: 32px;
+}
+
+.comment-sort-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.sort-btn {
+    border: 0;
+    background-color: #181818;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+}
+
+/* 댓글 작성칸 유저 프로필 */
+.profile-imagee img {
+    border-radius: 40px;
+}
+
+.commentInput {
+    font-size: 15px;
+    color: #fff;
+    width: 80%;
+    border: none;
+    border-bottom: solid #aaaaaa 1px;
+    padding-bottom: px;
+    margin-left: 10px;
+    margin-right: 20px;
+    position: relative;
+    background: none;
+    z-index: 5;
+}
+
+.commentInput:focus {
+    outline: none;
+    color: #fff;
+    /* commentInput에 마우스를 클릭했을 때 하얗게 변하도록 설정 */
+    border-bottom: solid #fff 1px;
+}
+
+.comment-buttons {
+    display: none;
+}
+
+.comment-enter-btn {
+    height: 25px;
+    color: #909090;
+    background: #181818;
+    border-radius: 24px;
+    width: 3vw;
+    border: 0;
+    outline: 0;
+}
+
+.comment-cancel-btn {
+    height: 25px;
+    color: #909090;
+    background: #181818;
+    border-radius: 24px;
+    width: 3vw;
+    border: 0;
+    outline: 0;
+}
+
+.comment-cancel-btn:hover {
+    color: #000;
+    background: #dbdbdb;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+.comment-enter-btn:hover {
+    color: #000;
+    background: #dbdbdb;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+/* 댓글 목록 css 시작  */
+.comment-list {
+    display: flex;
+    padding-bottom: 16px;
+    color: #FFFFFF;
+}
+
+.video-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+
+.video-user-name,
+.video-comment-text {
+    padding: 2px 0px;
+}
+
+.video-comment-toolbar {
+    display: flex;
+    padding: 12px 0px;
+}
+
+.video-comment-toolbar img {
+    margin: 0px 8px;
+}
+
+.video-comment-time,
+.video-comment-toolbar {
+    color: #aaaaaa;
+    font-size: 12px;
+}
+
+/* 8월 2일 css_3 박수진 작성 */
+/* 밑에 주석 처리된 내용은 진혁님께서 작성하셨던 코드입니다. */
+
+
+/* 스타일을 적용할 클래스들  */
+/* .user-comment-box {
+    display: flex;
+    /* Flexbox를 사용하여 이미지와 텍스트를 나란히 배치합니다. */
+/* align-items: center; */
+/* 수직 가운데 정렬 */
+
+/* 
+.video-like,
+.video-like-text,
+.video-comment-reply {
+    /* 툴바 내부 아이템들도 적절한 스타일을 적용합니다. */
+/* margin-right: 10px; */
+/* 아이템 사이의 오른쪽 여백  */
+
+
+
 /* video comments */
-.comments-sortby {
+/* .comments-sortby {
     width: 226px;
     height: 24px;
-    display:flex;
+    display: flex;
     align-items: center;
 }
 
@@ -422,7 +769,7 @@ header {
     font-size: 12px;
     padding-left: 15px;
     color: white;
-}
+} */
 
 
 /* video list */
