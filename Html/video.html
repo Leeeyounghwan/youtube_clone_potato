@@ -47,7 +47,7 @@
             </button>
         </div>
         <!-- header 상단 오른쪽 부분: 만들기, 앱, 알림, 프로필 버튼 -->
-        <div>
+        <div class="headerRight">
             <button class="createButton">
                 <img src="img/navigations_create.png" class="createButtonImage">
             </button>
@@ -66,7 +66,8 @@
     <!-- 메인 부분 -->
     <section>
         <!-- 영상 부분-->
-        <article id="video" style="display:flex; flex-direction: column; justify-content: space-between;">
+        <article id="video"
+            style="display:flex; flex-direction: column; justify-content: space-between; border-bottom: 1px solid #303030;">
             <div id="playVideo"></div>
             <div id="displayVideoTitle"></div>
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -108,91 +109,156 @@
 
         </div>
 
-        <!-- 댓글 수, 정렬기준 버튼 -->
-        <div class="comments-section" style="display: flex; flex-direction: column;">
+        <!-- 댓글 작성, 댓글 목록 부분분 -->
+        <div class="comments-list" style="border-top: 1px solid #303030;">
+            <!-- 댓글 수, 정렬기준 버튼 -->
+            <div class="comments-section" style="display: flex; flex-direction: column;">
 
-            <div class="comment-header" style="display: flex; flex-direction: row;">
-                <div class="comment-count">
-                    <p id="commentCount">댓글 수: 0</p>
+                <div class="comment-header" style="display: flex; flex-direction: row;">
+                    <div class="comment-count">
+                        <p id="commentCount">댓글 13개 </p>
+                    </div>
+                    <div class="comment-sort-box">
+                        <!-- 이미지는 일단 임시로 해놓은거라 바꾸시면 됩니다 -->
+                        <button class="sort-btn" onclick="sortComments()">
+                            <img src="img/Group.svg" class="comment-sort">
+                        </button>
+                        <label for="sort-btn">SORT BY</label>
+                        <span></span>
+                    </div>
                 </div>
-                <div class="comment-sort-box">
-                    <!-- 이미지는 일단 임시로 해놓은거라 바꾸시면 됩니다 -->
-                    <button class="sort-btn" onclick="sortComments()">
-                        <img src="img/Group.svg" class="comment-sort">
-                    </button>
-                    <label for="sort-btn">SORT BY</label>
-                    <span></span>
+
+                <!-- 댓글 달기 -->
+                <div class="comment-form" style="display: flex; flex-direction: row;">
+                    <!-- 댓글 입력칸 왼쪽 프로필 -->
+                    <div class="profile-image"><img src="img/User-Avatar.png"></div>
+                    <!-- 댓글 입력칸 -->
+                    <input type="text" id="commentInput" placeholder="댓글 추가..." class="commentInput">
+                    <!-- 취소, 입력 버튼-->
+                    <div class="comment-buttons" id="comment-buttons">
+                        <button class="comment-enter-btn" onclick="addComment()">작성</button>
+                        <button class="comment-cancel-btn"
+                            onclick="document.getElementById('commentInput').value = ''">취소</button>
+                    </div>
                 </div>
             </div>
 
-            <!-- 댓글 달기 -->
-            <div class="comment-form" style="display: flex; flex-direction: row;">
-                <!-- 댓글 입력칸 왼쪽 프로필 -->
-                <div class="profile-imagee"><img src="img/User-Avatar.png"></div>
-                <!-- 댓글 입력칸 -->
-                <input type="text" id="commentInput" placeholder="댓글 추가..." class="commentInput">
-                <!-- 취소, 입력 버튼-->
-                <div class="comment-buttons" id="comment-buttons">
-                    <button class="comment-enter-btn" onclick="addComment()">작성</button>
-                    <button class="comment-cancel-btn"
-                        onclick="document.getElementById('commentInput').value = ''">취소</button>
+            <div id="video-comments">
+                <div class="user-comment-box">
+                    <div class="video-user"> <img src="img/James_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name">Insu Park
+                            <span class="video-comment-time"> a month ago </span>
+                        </div>
+                        <div class="video-comment-text">오르미 여러분, 밥은 드셨나요?
+                            먹고살자고 하는 건데 밥은 드셔야죠. 잘 챙겨 먹으세요.</div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 3.6k
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 0
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- 여러 댓글이 달리는 곳 -->
-        <div class="comment-list" id="comment-list">
-            <!-- 댓글 목록이 여기에 동적으로 추가될 것입니다. -->
-        </div>
-        <div>
-            <style>
-                /* 스타일을 적용할 클래스들 */
-                .user-comment-box {
-                  display: flex; /* Flexbox를 사용하여 이미지와 텍스트를 나란히 배치합니다. */
-                  align-items: center; /* 수직 가운데 정렬 */
-                }
-                .video-user {
-                  /* 이미지의 크기만 설정하고, 기존 여백은 유지합니다. */
-                  width: 50px;
-                  height: 50px;
-                }
-                .video-like,
-                .video-like-text,
-                .video-comment-reply {
-                  /* 툴바 내부 아이템들도 적절한 스타일을 적용합니다. */
-                  margin-right: 10px; /* 아이템 사이의 오른쪽 여백 */
-                }
-              </style>
-              <br><br>
-              <div id="video-comments">
                 <div class="user-comment-box">
-                  <img class="video-user" src="img/JamesGouse.png">
-                  <div>
-                    <span class="video-user-name">James Gouse</span>
-                    <span class="video-comment-time">8 hours ago</span>
-                    <p class="video-comment-text">Wow, world is full of different skills</p>
-                    <div class="video-comment-toolbar">
-                      <img class="video-like" src="img/like.png">
-                      <span class="video-like-text">30</span>
-                      <img class="video-like" src="img/dislike.png">
-                      <span class="video-like-text">90</span>
-                      <button class="video-comment-reply">REPLY</button>
+                    <div class="video-user"> <img src="img/ALan_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name"> YoungJae Koo <span class="video-comment-time"> 3 weeks ago </span>
+                        </div>
+                        <div class="video-comment-text">내가 바로 css의 영재, 구영재죠.</div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 40
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 8
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
                     </div>
-                  </div>
-                </div><br><br>
+                </div>
                 <div class="user-comment-box">
-                  <img class="video-user" src="img/AlanCooper.png">
-                  <div>
-                    <span class="video-user-name">Alan Cooper</span>
-                    <span class="video-comment-time">4 days ago</span>
-                    <p class="video-comment-text">Can you provide?</p>
-                    <div class="video-comment-toolbar">
-                      <img class="video-like" src="img/like.png">
-                      <span class="video-like-text">30</span>
-                      <img class="video-like" src="img/dislike.png">
-                      <span class="video-like-text">90</span>
-                      <button class="video-comment-reply">REPLY</button>
+                    <div class="video-user"> <img src="img/Marcus_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name"> Sujan Park <span class="video-comment-time"> 3 weeks ago </span>
+                        </div>
+                        <div class="video-comment-text"> 기분이 jazz ~ </div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 33
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 10
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
                     </div>
-                  </div>
+                </div>
+                <div class="user-comment-box">
+                    <div class="video-user"> <img src="img/Alexis_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name"> Younghwan Lee <span class="video-comment-time"> 2 weeks ago
+                            </span> </div>
+                        <div class="video-comment-text"> 제 키캡 너무 예쁘죠? </div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 90
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 8
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-comment-box">
+                    <div class="video-user"> <img src="img/Jesica_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name"> LeeJinHyeok <span class="video-comment-time"> A week ago </span>
+                        </div>
+                        <div class="video-comment-text"> 데이트하기 싫어서 열심히 했습니다. </div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 40
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 20
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-comment-box">
+                    <div class="video-user"> <img src="img/Anna_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name"> Seongjin Choi <span class="video-comment-time"> 7 hours ago
+                            </span> </div>
+                        <div class="video-comment-text"> 부산 국밥? 영진 국밥에서 안 먹어보고는 맛을 논하지 마세요.
+                            그리고 영진 국밥 수육 백반을 꼭 먹어야 합니다. 아시겠어요? </div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 40
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 8
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-comment-box">
+                    <div class="video-user"> <img src="img/Skylar_Icon.png" alt=""> </div>
+                    <div>
+                        <div class="video-user-name"> Potato Jojo <span class="video-comment-time"> 1 hours ago </span>
+                        </div>
+                        <div class="video-comment-text"> We are taking potatoes!!!!!! 근데 이제 조조를 곁들인... </div>
+                        <div class="video-comment-toolbar">
+                            <img src="img/like.png"> 99
+                            <!-- <span class="video-like-text">30</span> -->
+                            <img src="img/dislike.png"> 1
+                            <!-- <span class="video-like-text">90</span> -->
+                            <button class="video-comment-reply" onclick="showReplyForm()">REPLY</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 답글 입력칸 -->
+                <div class="reply-form" style="display: none;">
+                    <div class="profile-image"><img src="img/User-Avatar.png"></div>
+                    <input type="text" class="reply-input" placeholder="답글 추가...">
+                    <button class="reply-enter-btn" onclick="addReply()">작성</button>
+                    <button class="reply-cancel-btn" onclick="cancelReply()">취소</button>
                 </div>
             </div>
         </div>

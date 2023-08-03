@@ -21,8 +21,8 @@
         </div>
         <!-- header 상단 가운데 부분: 검색창, 음성인식버튼 -->
         <div class="searchBox">
-            <input type="text" class="searchInput" placeholder="search">
-            <button class="searchButton">
+            <input type="text" class="searchInput" id="searchInput" placeholder="search">
+            <button class="searchButton" id="searchButton">
                 <img src="img/SearchBox-Button.png" class="searchButtonImage">
             </button>
             <button class="voiceSearchButton">
@@ -49,42 +49,46 @@
     <!-- sidebar 부분 -->
     <div class="flex-container">
         <aside class="flex-item-aside" id="aside">
-            <div class="button-group">
-                <button><img src="img/home_Icon.png"><span>Home</span></button>
-                <button><img src="img/explore_Icon.png"><span>Explore</span></button>
-                <button><img src="img/subscriptions_Icon.png"><span>Subscriptions</span></button>
-            </div>
-            <div class="button-group">
-                <button><img src="img/library_Icon.png"><span>Library</span></button>
-                <button><img src="img/history_Icon.png"><span>History</span></button>
-                <button><img src="img/yourVideos_Icon.png"><span>Your Videos</span></button>
-                <button><img src="img/watchLater_Icon.png"><span>Watch Later</span></button>
-                <button><img src="img/likedVideos_Icon.png"><span>Liked Videos</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
-            </div>
-            <div class="button-group">
-                <span class="button-group-title">SUBSCRIPTIONS</span>
-                <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
-                <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
-                <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
-                <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
-                <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
-                <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
-                <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
-            </div>
-            <div class="button-group">
-                <span class="button-group-title">MORE FROM YOUTUBE</span>
-                <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
-                <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
-                <button><img src="img/live_Icon.png"><span>Live</span></button>
-                <button><img src="img/sports_Icon.png"><span>Sports</span></button>
-            </div>
-            <div class="button-group">
-                <button><img src="img/setting_Icon.png"><span>Settings</span></button>
-                <button><img src="img/reportHistory_Icon.png"><span>Report history</span></button>
-                <button><img src="img/help_Icon.png"><span>Help</span></button>
-                <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
+            <div class="side-menu">
+                <ul>
+                    <div class="button-group">
+                        <button><img src="img/home_Icon.png"><span>Home</span></button>
+                        <button><img src="img/explore_Icon.png"><span>Explore</span></button>
+                        <button><img src="img/subscriptions_Icon.png"><span>Subscriptions</span></button>
+                    </div>
+                    <div class="button-group">
+                        <button><img src="img/library_Icon.png"><span>Library</span></button>
+                        <button><img src="img/history_Icon.png"><span>History</span></button>
+                        <button><img src="img/yourVideos_Icon.png"><span>Your Videos</span></button>
+                        <button><img src="img/watchLater_Icon.png"><span>Watch Later</span></button>
+                        <button><img src="img/likedVideos_Icon.png"><span>Liked Videos</span></button>
+                        <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
+                    </div>
+                    <div class="button-group">
+                        <span class="button-group-title">SUBSCRIPTIONS</span>
+                        <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
+                        <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
+                        <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
+                        <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
+                        <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
+                        <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
+                        <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
+                        <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
+                    </div>
+                    <div class="button-group">
+                        <span class="button-group-title">MORE FROM YOUTUBE</span>
+                        <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
+                        <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
+                        <button><img src="img/live_Icon.png"><span>Live</span></button>
+                        <button><img src="img/sports_Icon.png"><span>Sports</span></button>
+                    </div>
+                    <div class="button-group">
+                        <button><img src="img/setting_Icon.png"><span>Settings</span></button>
+                        <button><img src="img/reportHistory_Icon.png"><span>Report history</span></button>
+                        <button><img src="img/help_Icon.png"><span>Help</span></button>
+                        <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
+                    </div>
+                </ul>
             </div>
         </aside>
 
@@ -146,6 +150,19 @@
             nav.style.marginLeft = "170px";
         }
     }
+</script>
+<!-- 보여지는 url 설정 -->
+<!-- 을 구현하고 싶었는데 안 되네요.. -->
+<script>
+    // 페이지 로드 시 주소 표시줄 변경
+    window.addEventListener('DOMContentLoaded', () => {
+        // 로고와 텍스트 설정
+        const logo = "<img src='img/yt_logo_rgb_dark.png'>";
+        const text = "Youtube";
+
+        // 브라우저 주소 표시줄에 로고와 텍스트를 설정
+        document.title = `${logo} - ${text}`;
+    });
 </script>
 
 </html>
