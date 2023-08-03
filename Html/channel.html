@@ -51,99 +51,133 @@
     <!-- Sidebar 부분 -->
     <div class="flex-container">
         <aside class="flex-item-aside" id="aside">
-            <div class="button-group">
-                <button><img src="img/home_Icon.png"><span>Home</span></button>
-                <button><img src="img/explore_Icon.png"><span>Explore</span></button>
-                <button><img src="img/subscriptions_Icon.png"><span>Subscriptions</span></button>
-            </div>
-            <div class="button-group">
-                <button><img src="img/library_Icon.png"><span>Library</span></button>
-                <button><img src="img/history_Icon.png"><span>History</span></button>
-                <button><img src="img/yourVideos_Icon.png"><span>Your Videos</span></button>
-                <button><img src="img/watchLater_Icon.png"><span>Watch Later</span></button>
-                <button><img src="img/likedVideos_Icon.png"><span>Liked Videos</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
-            </div>
-            <div class="button-group">
-                <span class="button-group-title">SUBSCRIPTIONS</span>
-                <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
-                <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
-                <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
-                <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
-                <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
-                <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
-                <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
-                <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
-            </div>
-            <div class="button-group">
-                <span class="button-group-title">MORE FROM YOUTUBE</span>
-                <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
-                <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
-                <button><img src="img/live_Icon.png"><span>Live</span></button>
-                <button><img src="img/sports_Icon.png"><span>Sports</span></button>
-            </div>
-            <div class="button-group">
-                <button><img src="img/setting_Icon.png"><span>Settings</span></button>
-                <button><img src="img/reportHistory_Icon.png"><span>Report history</span></button>
-                <button><img src="img/help_Icon.png"><span>Help</span></button>
-                <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
+            <div class="side-menu">
+                <ul>
+                    <div class="button-group">
+                        <button><img src="img/home_Icon.png"><span>Home</span></button>
+                        <button><img src="img/explore_Icon.png"><span>Explore</span></button>
+                        <button><img src="img/subscriptions_Icon.png"><span>Subscriptions</span></button>
+                    </div>
+                    <div class="button-group">
+                        <button><img src="img/library_Icon.png"><span>Library</span></button>
+                        <button><img src="img/history_Icon.png"><span>History</span></button>
+                        <button><img src="img/yourVideos_Icon.png"><span>Your Videos</span></button>
+                        <button><img src="img/watchLater_Icon.png"><span>Watch Later</span></button>
+                        <button><img src="img/likedVideos_Icon.png"><span>Liked Videos</span></button>
+                        <button><img src="img/showMore_Icon.png"><span>Show More</span></button>
+                    </div>
+                    <div class="button-group">
+                        <span class="button-group-title">SUBSCRIPTIONS</span>
+                        <button><img src="img/James_Icon.png"><span>Insu Park</span></button>
+                        <button><img src="img/ALan_Icon.png"><span>YoungJae Koo</span></button>
+                        <button><img src="img/Marcus_Icon.png"><span>Sujan Park</span></button>
+                        <button><img src="img/Alexis_Icon.png"><span>Younghwan Lee</span></button>
+                        <button><img src="img/Jesica_Icon.png"><span>LeeJinHyeok</span></button>
+                        <button><img src="img/Anna_Icon.png"><span>Seongjin Choi</span></button>
+                        <button><img src="img/Skylar_Icon.png"><span>Potato Jojo</span></button>
+                        <button><img src="img/showMore_Icon.png"><span>Show 14 more</span></button>
+                    </div>
+                    <div class="button-group">
+                        <span class="button-group-title">MORE FROM YOUTUBE</span>
+                        <button><img src="img/youtubePremium_Icon.png"><span>Youtube Premium</span></button>
+                        <button><img src="img/Gaming_Icon.png"><span>Gaming</span></button>
+                        <button><img src="img/live_Icon.png"><span>Live</span></button>
+                        <button><img src="img/sports_Icon.png"><span>Sports</span></button>
+                    </div>
+                    <div class="button-group">
+                        <button><img src="img/setting_Icon.png"><span>Settings</span></button>
+                        <button><img src="img/reportHistory_Icon.png"><span>Report history</span></button>
+                        <button><img src="img/help_Icon.png"><span>Help</span></button>
+                        <button><img src="img/sendFeedback_Icon.png"><span>Send feedback</span></button>
+                    </div>
+                </ul>
             </div>
         </aside>
 
         <!-- channel 메인 페이지 -->
-        <section class="flex-item-main">
+        <section class="flex-item-main" id="flex-item-main">
             <main id="main">
                 <!-- 채널 상단 이미지 -->
-                <div class="channel-cover" id="channel-cover">
-
+                <div class="channel-cover" id="channel-cover"> <!-- 신규 추가 -->
                 </div>
-                <!-- 채널 프로필 -->
-                <div class="channel-title" id="channel-title">
+                <div class="channel-title-set">
+                    <!-- 채널 프로필 -->
+                    <div class="channel-title" id="channel-title"></div>
+                    <!-- 구독버튼 -->
+                    <input type="button" class="channel-subscribes" id="channel-subscribes" value="SUBSCRIBES"
+                        onclick="subscribeChannel()">
                 </div>
                 <!-- 채널 툴바 -->
                 <div class="channel-toolbar">
-                    <button>HOME</button>
-                    <button>VIDEOS</button>
-                    <button>PLAYLIST</button>
-                    <button>COMMUNITY</button>
-                    <button>CHANNELS</button>
-                    <button>ABOUT</button>
-                    <img id="channel-Search" src="img/SearchBox-Button.png">
-                    <img id="channel-left" src="img/left_Icon.png">
-                </div>
-                <!-- 채널 소형 영상 -->
-                <div class="small-video">
-                    <div class="channel-video" id="channel-video">
+                    <div class="channelToolbarButtons">
+                        <button>HOME</button>
+                        <button>VIDEOS</button>
+                        <button>PLAYLIST</button>
+                        <button>COMMUNITY</button>
+                        <button>CHANNELS</button>
+                        <button>ABOUT</button>
+                        <button><img id="channel-Search" src="img/SearchBox-Button.png"></button>
+                        <button><img id="channel-left" src="img/left_Icon.png"></button>
                     </div>
                 </div>
+                <div class="channel-content">
+                    <div class="inner-content">
+                        <!-- 채널 소형 영상 -->
+                        <div class="small-video">
+                            <div class="channel-video" id="channel-video">
+                                <!-- 구성 확인하기 위해 임의로 넣어둔 것입니다. -->
+                                <!-- <video controls width="424" height="238">
+                                    <source src="video/sample-video.mp4" type="video/mp4">
+                                </video> -->
+                            </div>
 
-                <!-- 메인 하단 플레이 리스트 -->
-                <div class="play-list">
-                    <div>
-                        <!-- 첫번째 플레이 리스트 상단 -->
-                        <span class="play-list-title">Potato</span>
-                        <button class="play-btn" onclick="">
-                            <img src="img/play_Icon.png"> PLAY ALL
-                        </button>
+                            <div id="channel-desc">
+                                <span id="desc-title">
 
-                        <!-- 첫번째 플레이 리스트 재생 목록 -->
-                        <div class="small-video-list-1">
-                            <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+                                </span>
 
+                                <span id="desc-time"> </span>
+
+                                <span id="desc-desc">
+                                </span>
+                            </div>
                         </div>
 
-                        <!-- 두번째 플레이 리스트 상단 -->
-                        <span class="play-list-title">gamza</span>
-                        <button class="play-btn" onclick="">
-                            <img src="img/play_Icon.png"> PLAY ALL
-                        </button>
+                        <!-- 메인 하단 플레이 리스트 -->
+                        <div class="play-list">
+                            <div>
+                                <!-- 첫번째 플레이 리스트 상단 -->
+                                <div class="play-top" style="border-top: 1px solid #303030;">
+                                    <span class="play-list-title">Potato</span>
+                                    <button class="play-btn" onclick="">
+                                        <img src="img/play_Icon.png"> PLAY ALL
+                                    </button>
+                                </div>
 
-                        <!-- 두번째 플레이 리스트 재생 목록 -->
-                        <div class="small-video-list-2">
-                            <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+                                <!-- 첫번째 플레이 리스트 재생 목록 -->
+                                <div class="small-video-list-1"
+                                    style="display:flex; flex-direction: row; border-bottom: 1px solid #303030;">
+                                    <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
 
+                                </div>
+
+                                <!-- 두번째 플레이 리스트 상단 -->
+                                <div class="play-top">
+                                    <span class="play-list-title">gamza</span>
+                                    <button class="play-btn" onclick="">
+                                        <img src="img/play_Icon.png"> PLAY ALL
+                                    </button>
+                                </div>
+
+                                <!-- 두번째 플레이 리스트 재생 목록 -->
+                                <div class="small-video-list-2"
+                                    style="display:flex; flex-direction: row; border-bottom: 1px solid #303030;">
+                                    <!-- js 사용해서 리스트를 추가 해야 합니다..! -->
+
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </main>
@@ -152,6 +186,7 @@
 
 </body>
 <!-- channel 페이지 비디오 가져오기 -->
+
 <script src="../js/js_3.js"></script>
 <script>
     /* 페이지가 로드 될때 영상 리스트 출력 */
@@ -180,6 +215,8 @@
             main.style.marginLeft = "160px";
         }
     }
+
+
 
 </script>
 
