@@ -41,13 +41,6 @@ input {
     color: #ffffff;
 }
 
-.video-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 5px;
-    align-items: center;
-}
 
 .channel-img-div {
     display: flex;
@@ -158,7 +151,7 @@ input {
 }
 
 .searchButtonImage {
-    width: 50px;
+    width: auto;
     height: auto;
     padding: none;
     border: none;
@@ -276,7 +269,7 @@ input {
 /* 메인 영역 스타일 */
 main {
     display: flex;
-    flex: 6;
+    flex: 5;
     background-color: black;
     /* 배경 색상 설정 (여기서는 연한 회색) */
     justify-content: flex-start;
@@ -284,7 +277,8 @@ main {
 
     /* 메인 화면이 오른쪽으로 오도록 설정 */
     order: 3;
-    margin-left: 101px;
+    margin-top: 15px;
+    margin-left: 155px;
     /* 사이드바랑 겹치지 않도록 */
     /* 페이지에 맞게 조정 */
     position: relative;
@@ -388,14 +382,16 @@ aside {
 
 /* 사이드 메뉴 고정, 고정 후 여백 조정 */
 .flex-item-aside {
+    width: 200px;
     margin-top: 45px;
     position: fixed;
+    left: 0;
 }
 
 
 .flex-container .flex-item-aside {
     order: 2;
-    flex-basis: 170px;
+
     flex-shrink: 0;
     flex-grow: 0;
 }
@@ -403,6 +399,7 @@ aside {
 .flex-container .flex-item-main {
     order: 3;
     flex: 1;
+    position: relative;
     padding: none;
     margin-top: 45px;
     margin-left: 55px;
@@ -410,149 +407,109 @@ aside {
 
 }
 
-
-.flex-item-main {
-    flex: 4;
-    padding: 20px;
-    padding-right: 0px;
-    margin-top: 25px;
-}
-
 /* 채널 메인 페이지 */
 /* 채널 커버 클래스 스타일 */
-.channel-Cover {
-    width: 100%;
+.channel-cover {
+    width: 100vw;
     height: 100%;
-    /* 이미지를 <main> 요소와 동일한 크기로 설정 */
     position: flex;
-    /* 이미지를 <main> 요소의 상대적 위치로 설정 */
     top: 0;
     left: 0;
     /* 이미지를 <main> 요소의 왼쪽 상단에 위치시킴 */
 }
 
-/* 이미지 스타일 (설정한 이미지 크기에 따라 필요한 경우 조정) */
 .channel-cover img {
     display: flex;
     width: 100%;
-    /* 이미지 오른쪽 여백 제거 */
     height: 100%;
     object-fit: cover;
-    /* 이미지를 비율을 유지하면서 <main> 영역에 꽉 채우도록 설정 */
 }
 
-.channel-Title {
-    padding-top: 10px;
-    display: flex;
-    padding: 16px 65px 4px 65px;
-    align-items: flex-start;
-    gap: 699px;
-}
-
-
-/* 채널 프로필 안의 프로필과 채널명의 클래스를 임의로 지정하였습니다. */
-/* 채널 프로필 class="channel-profile" */
-/* 채널명 class="channel-name" */
-/* 나중에 통일시켜주세요 */
-/* 채널 프로필 이름 */
-.channel-profile {
-    color: #FFFFFF;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 550;
-    line-height: normal;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-/* 프로필과 채널명 스타일 */
-.channel-profile,
-.channel-name {
-    display: inline-block;
-    /* inline 요소로 배치하여 나란히 표시 */
-    vertical-align: middle;
-    /* 수직 가운데 정렬 */
-    margin-right: 24px;
-    /* 우측 여백 설정 */
+.channel-profile-info {
+    margin-left: 10px;
 }
 
 /* 프로필 이미지 스타일 (크기 및 기타 스타일은 필요에 따라 조정) */
-.channel-profile img {
+.channel-profile-img {
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin: 5px;
 }
 
-
-
-/* 채널 프로필 구독 수 */
-#channel-Sub {
-    display: block;
-    font-size: 14px;
-    color: #aaa;
-    margin-bottom: 5px;
-}
-
-.channel-Text {
-    font-size: 14px;
-    color: #ffffff;
-    margin-bottom: 10px;
-}
-
 /* 채널 프로필 구독 버튼 */
-/* .channel-Title button {
-    display: flex;
-    padding: 10px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: center;
-    gap: 10px;
-    border-radius: 2px;
-    background-color: #c00;
-    color: #ffffff;
-} */
-
-/* 구독 버튼 스타일 */
-.subscribe-button {
-    float: right;
-    /* 오른쪽 유지 */
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 16px;
-    background-color: red;
-    color: white;
-    cursor: pointer;
-    right: 0;
-    margin-right: 15px;
-    margin-top: 15px;
-}
-
 .channel-title {
+    display: flex;
+    padding: 0;
+    align-items: flex-start;
+    gap: 699px;
     background-color: #171717;
-    padding-top: 15px;
-    padding-bottom: 15px;
     color: white;
 }
 
-/* 채널 툴바 전체 스타일 */
-.channel-Toolbar {
+.channel-title-set {
+    padding-left: 272px;
+    padding-right: 100%;
+    padding-top: 20px;
     display: flex;
-    /* 요소들을 가로로 정렬 */
-    width: 100%;
     align-items: center;
-    /* 주변 여백 설정 */
-    position: sticky;
-    /* 스크롤에 따라 고정되도록 설정 */
-    z-index: 999;
-    /* 다른 요소들보다 앞에 나오도록 설정 */
-    height: 48px;
-    padding: 0px 65px;
-    /* 양끝 내부 여백 */
+    /* 세로 중앙 정렬 */
+    background-color: #171717;
+    justify-content: space-between;
+    width: 55vw;
 }
+
+.channel-subscribes {
+    width: 130px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: Roboto;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #c00;
+    color: #fff;
+}
+
+/* 바깥쪽 컨테이너 */
+.channel-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* 세로 방향으로 정렬하려면 column을 사용합니다. */
+    padding-top: 30px;
+}
+
+.load-profile {
+    display: flex;
+    flex-direction: row;
+
+}
+
+/* 프로필과 채널명 스타일 */
+.channel-profile {
+    display: inline-block;
+    /* inline 요소로 배치하여 나란히 표시 */
+    vertical-align: middle;
+    /* 수직 가운데 정렬 */
+    font-size: 25px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-family: Roboto;
+}
+
+
 
 /* 채널 툴바 내부 버튼 스타일 */
 .channel-toolbar button {
@@ -576,6 +533,15 @@ aside {
     margin: 5px 20px;
 }
 
+
+.channelToolbarButtons {
+    padding-left: 310px;
+    background-color: #171717;
+    display: flex;
+    align-items: center;
+
+}
+
 /* .channel-Search와 .channel-left 이미지 스타일 */
 #channel-Search {
     background: transparent;
@@ -587,28 +553,168 @@ aside {
     /* 이미지 너비 설정 */
     height: auto;
     /* 이미지 높이 설정 */
-    margin-right: 20px
+    margin-left: 400px
         /* 이미지 오른쪽 여백 설정 */
 }
 
 /* 채널 소형 영상 */
 .small-video {
-    display: inline-flex;
-    align-items: flex-start;
+    display: flex;
+    padding: 24px 287px 24px 65px;
 }
 
 .channel-video {
+    flex: 2;
+    margin-right: 20px;
     display: flex;
     flex-direction: row;
-    flex: 2;
 }
 
-/* 23.08.02 이영환 추가 css */
+/* Desc 전체 설정 */
+#channel-Desc {
+    display: flex;
+    padding-bottom: 0px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* desc 제목 */
+#desc-Title {
+    /* 아래 비교해보려고 적어둔 것입니다.. */
+    /* display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px; */
+
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.14px;
+}
+
+/* 여기서부터 제대로 확인하지 못했습니다ㅠㅠ */
+/* desc  */
+#desc-Time {
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+#desc-Desc {
+    display: block;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+/* 플레이 리스트 스타일 */
+.play-List {
+    margin-top: 20px;
+}
+
+.play-list-title {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.play-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    /* 그룹 내부 요소들을 flexbox로 배치 */
+
+    align-items: center;
+    /* 버튼 그룹을 수직 가운데로 정렬 */
+}
+
+.play-btn img {
+    margin-right: 5px;
+}
+
+.play-top {
+    display: flex;
+    /* 그룹 내부 요소들을 flexbox로 배치 */
+    align-items: center;
+    /* 버튼 그룹을 수직 가운데로 정렬 */
+}
+
+
+/* 08.01 */
+/* 
+- 어사이드 정렬
+- 우측 상단 버튼들 조절
+- 전체적으로 정렬을 바꾸기는 했는데 js에서 불러오는 부분이 
+  들어와야 수정이 가능할것 같습니다.
+*/
+
+.small-video-item {
+    padding: 0;
+    margin: 0;
+    width: 276px;
+    height: 223px;
+    display: flex;
+    flex-direction: column;
+}
+
+.small-video-info {
+    padding: 0;
+    margin: 3px;
+    color: #AAA;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.small-video-thumbnail {
+    cursor: pointer;
+    width: 276px;
+    height: 155px;
+    padding-bottom: 10px;
+    padding: 5px;
+}
+
+
+.small-video-title {
+    padding: 0;
+    margin-left: 10px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.small-video-channel {
+    margin-left: 10px;
+    margin-top: 3px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    color: #AAA
+}
+
+.small-video-list-1 {
+    gap: 1em;
+}
+
+.small-video-list-2 {
+    gap: 1em;
+}
+
 .most-view-info {
-    margin: 0px 0px 0px 10px;
+    margin: 0;
     padding: 0;
     color: white;
     width: 30vw;
+
 }
 
 .most-view-video {
@@ -643,90 +749,28 @@ aside {
     letter-spacing: 0.14px;
 }
 
-.small-video-list-1 {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1em;
-    padding: 5px;
-    align-items: center;
-    overflow: hidden;
+.side-menu {
+    width: 170px;
+    /* 사이드 메뉴 너비 조절 */
+    height: 830px;
+    /* 사이드 메뉴 높이 조절 */
+    overflow-y: scroll;
+    /* 스크롤 바 추가 */
 }
 
-
-.small-video-list-2 {
-    display: flex;
-    flex-flow: row wrap;
-    gap: 1em;
-    padding: 5px;
-    align-items: center;
-    overflow: hidden;
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* 23.08.02 이영환 추가 css 종료 */
-
-/* Desc 전체 설정 */
-#channel-desc {
-    display: flex;
-    padding-bottom: 0px;
-    flex-direction: column;
-    align-items: flex-start;
+li {
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+    /* 메뉴 항목 사이 구분선 추가 */
 }
 
-/* desc 제목 */
-#desc-title {
-    /* 아래 비교해보려고 적어둔 것입니다.. */
-    /* display: block;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px; */
-
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.14px;
+li:last-child {
+    border-bottom: none;
+    /* 마지막 항목의 구분선 제거 */
 }
-
-/* 여기서부터 제대로 확인하지 못했습니다ㅠㅠ */
-/* desc  */
-#desc-time {
-    display: block;
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 5px;
-}
-
-#desc-Desc {
-    display: block;
-    font-size: 14px;
-    color: #ffffff;
-}
-
-/* 플레이 리스트 스타일 */
-.play-List {
-    margin-top: 20px;
-}
-
-.play-List-Title {
-    display: block;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.play-btn {
-    padding: 5px 10px;
-    border: none;
-    background-color: #212121;
-    color: #fff;
-    cursor: pointer;
-}
-
-
-/* 08.01 */
-/* 
-- 어사이드 정렬
-- 우측 상단 버튼들 조절
-- 전체적으로 정렬을 바꾸기는 했는데 js에서 불러오는 부분이 
-  들어와야 수정이 가능할것 같습니다.
-*/
