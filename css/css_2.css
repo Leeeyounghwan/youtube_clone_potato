@@ -402,6 +402,12 @@ aside {
 
 .flex-container .flex-item-main {
     order: 3;
+    flex: 1;
+    padding: none;
+    margin-top: 45px;
+    margin-left: 55px;
+    margin-right: none;
+
 }
 
 
