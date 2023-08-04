@@ -278,7 +278,7 @@ main {
     /* 메인 화면이 오른쪽으로 오도록 설정 */
     order: 3;
     margin-top: 15px;
-    margin-left: 155px;
+    margin-left: 0px;
     /* 사이드바랑 겹치지 않도록 */
     /* 페이지에 맞게 조정 */
     position: relative;
@@ -382,16 +382,14 @@ aside {
 
 /* 사이드 메뉴 고정, 고정 후 여백 조정 */
 .flex-item-aside {
-    width: 200px;
     margin-top: 45px;
     position: fixed;
-    left: 0;
 }
 
 
 .flex-container .flex-item-aside {
     order: 2;
-
+    flex-basis: 170px;
     flex-shrink: 0;
     flex-grow: 0;
 }
@@ -402,7 +400,7 @@ aside {
     position: relative;
     padding: none;
     margin-top: 45px;
-    margin-left: 55px;
+    margin-left: 179px;
     margin-right: none;
 
 }
@@ -752,7 +750,7 @@ aside {
 .side-menu {
     width: 170px;
     /* 사이드 메뉴 너비 조절 */
-    height: 830px;
+    height: 100vh;
     /* 사이드 메뉴 높이 조절 */
     overflow-y: scroll;
     /* 스크롤 바 추가 */
