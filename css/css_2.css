@@ -772,3 +772,7 @@ li:last-child {
     border-bottom: none;
     /* 마지막 항목의 구분선 제거 */
 }
+
+.side-menu::-webkit-scrollbar {
+    display: none;
+}

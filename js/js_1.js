@@ -106,14 +106,14 @@ async function loadFilteredVideo(filteredVideoList) {
 
         innerHtml += `
             <div class="load-video-info">
-                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
+                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="Html/video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
                 <div>
                     <div style="display: flex;">
-                        <a href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
+                        <a href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
                         <div>
-                        <p class="thumbnail-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
+                        <p class="thumbnail-title"><a class="thumbnail-title-link" href="Html/video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
                             <div>
-                                <p class="thumbnail-channel"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
+                                <p class="thumbnail-channel"><a class="thumbnail-text-link" href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
                                 <p class="thumbnail-channel">${views}K Views, ${dayBefore}일전</p>
                             </div>
                         </div>
@@ -157,10 +157,10 @@ async function loadVideo() {
 
         innerHtml += `
             <div class="load-video-info">
-                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
+                <img src="${videoInfo.image_link}" class="thumbnail-img" onclick='location.href="Html/video.html?id=${videoId}&channel_name=${channelInfo.channel_name}"' >
                 <div>
                     <div style="display: flex;">
-                        <a href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
+                        <a href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
                         <div>
                         <p class="thumbnail-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
                             <div>
