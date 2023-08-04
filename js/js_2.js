@@ -154,13 +154,14 @@ async function displayVideoList() {
     const videoInfoList = await Promise.all(videoInfoPromises);
 
 
+
     // videoList의 값만큼 데이터 불러오기
     for (let i = 0; i < videoList.length; i++) {
         let videoId = videoList[i].video_id;
 
         // getVideoInfo에 입력받은 videoId로 정보 가져오기
         let videoInfo = videoInfoList[i];
-
+        let dayBefore = asOfToday(videoInfo.upload_date);
         let views = Math.floor(videoInfo.views / 1000);
 
         let innerHtml = `
@@ -169,7 +170,7 @@ async function displayVideoList() {
                 <div class="aside-text-content">
                     <p class="aside-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}">${videoInfo.video_title}</a></p>
                     <p class="aside-text"><a class="thumbnail-channel-link" href="./channel.html?channel_name=${videoInfo.video_channel}&id=${videoId}">${videoInfo.video_channel}</p>
-                    <p class="aside-text">${views}K Views, ${videoInfo.upload_date}</p>
+                    <p class="aside-text">${views}K Views, ${dayBefore}일 전</p>
                 </div>
             </div>
         `;
