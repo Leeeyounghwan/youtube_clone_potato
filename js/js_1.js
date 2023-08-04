@@ -162,9 +162,9 @@ async function loadVideo() {
                     <div style="display: flex;">
                         <a href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}"><img src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;"></a>
                         <div>
-                        <p class="thumbnail-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
+                        <p class="thumbnail-title"><a class="thumbnail-title-link" href="Html/video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
                             <div>
-                                <p class="thumbnail-channel"><a class="thumbnail-text-link" href="./channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
+                                <p class="thumbnail-channel"><a class="thumbnail-text-link" href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
                                 <p class="thumbnail-channel">${views}K Views, ${dayBefore}일전</p>
                             </div>
                         </div>
@@ -198,36 +198,6 @@ async function viewVideo(video_id) {
     `;
 
     videoContainer.innerHTML += innerHtml;
-}
-
-/* test.html에서 원하는 영상 클릭시 video_id로 해당 영상 정보 가져와서 video.html에 정보출력 */
-async function displayVideoInfo(video_id) {
-    let videoInfo = await getVideoInfo(video_id);
-    let infoContainer = document.getElementById('displayVideoInfo');
-    let views = Math.floor(videoInfo.views / 1000);
-
-
-    let innerHtml = `
-            <div
-                <div style="display: flex; flex-direction: column;">
-                    <div style=" width: 50vw;">
-                        <p><h1>${videoInfo.video_title}</h1></p>
-                        <p style="color: #AAA; font-family: Roboto; font-size: 12px; font-style: normal; font-weight: 400;">${videoInfo.video_channel}</p>
-                        <p style="color: #AAA; font-family: Roboto; font-size: 12px; font-style: normal; font-weight: 400;">${views}K Views, ${videoInfo.upload_date}</p>
-                    </div>
-
-                    <div style="display: flex;">
-                        <img src="oreumi.jpg" style="border-radius: 50%; width: 4vw; height: 6vh;">
-                        <div>
-                            <p>${videoInfo.video_channel}</p>
-                            <p>${videoInfo.video_detail}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-    infoContainer.innerHTML += innerHtml;
 }
 
 /* video.html 우측 영상 리스트 출력하는 함수 */
