@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youtube Clone Channel page</title>
+    <title>Gamtube Channel page</title>
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" type="text/css" href="../css/css_2.css">
+    <link rel="icon" href="img/gamtube-favicon.png">
 </head>
 
 <body>
@@ -203,7 +204,7 @@
     let flag = 1;
     function hideMenu() {
         aside = document.getElementById("aside");
-        main = document.getElementById("main");
+        main = document.getElementById("flex-item-main");
         if (flag == 1) {
             flag = 0;
             aside.style.display = "none";
@@ -212,7 +213,7 @@
         else {
             flag = 1;
             aside.style.display = "block";
-            main.style.marginLeft = "160px";
+            main.style.marginLeft = "180px";
         }
     }
 
