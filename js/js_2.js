@@ -198,7 +198,7 @@ function subscribeChannel() {
     if (flag1 == 1) {
         flag1 = 0;
         subscribes.style.backgroundColor = "#dbdbdb";
-        subscribes.value = "SUBSCRIBING";
+        subscribes.value = "SUBSCRIBED";
         subscribes.style.color = "black";
     }
     else {
