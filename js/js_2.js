@@ -1,7 +1,7 @@
 /* 비디오 리스트 가져오기 */
 async function getVideoList() {
     try {
-        let response = await fetch('http://oreumi.appspot.com/video/getVideoList');
+        let response = await fetch('https://oreumi.appspot.com/video/getVideoList');
         const data = await response.json();
         return data;
     } catch (e) {
@@ -12,7 +12,7 @@ async function getVideoList() {
 /* 입력받은 video_id로 영상정보 가져오기 */
 async function getVideoInfo(video_id) {
     try {
-        let URL = `http://oreumi.appspot.com/video/getVideoInfo?video_id=${video_id}`;
+        let URL = `https://oreumi.appspot.com/video/getVideoInfo?video_id=${video_id}`;
         let response = await fetch(URL);
         const data = await response.json();
         return data;
@@ -24,7 +24,7 @@ async function getVideoInfo(video_id) {
 /* 입력받는 채널의 정보 가져오기 */
 async function getChannelInfo(channel_name) {
     try {
-        let URL = `http://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channel_name}`;
+        let URL = `https://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channel_name}`;
         let response = await fetch(URL, { method: "POST" });
         const data = await response.json();
         return data;
@@ -44,7 +44,7 @@ async function loadVideo() {
     // 비디오 정보와 채널 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
-    console.log(videoList.length);
+    // console.log(videoList.length);
 
     // videoList의 값만큼 데이터 불러오기
     for (let i = 0; i < videoList.length; i++) {
@@ -70,7 +70,7 @@ async function loadVideo() {
                 </div>
             </div>
         `;
-        console.log(innerHtml);
+        // console.log(innerHtml);
         // 데이터를 div에 삽입
         videoContainer.innerHTML = innerHtml;
     }
@@ -103,6 +103,7 @@ async function displayVideoTitle(video_id) {
 async function displayVideoInfo(video_id) {
     let videoInfo = await getVideoInfo(video_id);
     let infoContainer = document.getElementById('displayVideoInfo');
+    let detailContainer = document.getElementById('channel-info-detail');
     let channelInfo = await getChannelInfo(videoInfo.video_channel);
 
     // 구독자수 계산
@@ -132,7 +133,11 @@ async function displayVideoInfo(video_id) {
             </div>
         `;
 
+    let innerDetail = `
+        <p>${videoInfo.video_detail}</p>
+    `;
     infoContainer.innerHTML += innerHtml;
+    detailContainer.innerHTML += innerDetail;
 }
 
 
@@ -209,7 +214,7 @@ async function loadChannel(name, id) {
 
     let channel_name = name;
     let channelInfo = await getChannelInfo(channel_name);
-    console.log(videoInfo.video_detail)
+    // console.log(videoInfo.video_detail)
 
     let innerHtml = `
         <div style="display: flex;">
@@ -222,35 +227,9 @@ async function loadChannel(name, id) {
         </div>
     `;
 
-    console.log(innerHtml);
+    // console.log(innerHtml);
     infoContainer.innerHTML += innerHtml;
 
-}
-
-// channel.html에서 채널 정보 출력하는 함수
-async function loadChannel(channel_name) {
-    let channelInfo = await getChannelInfo(channel_name);
-    let infoContainer = document.getElementById('channel-title');
-
-    let innerHtml = `
-        <div style="display: flex;">
-            <img class="channel-profile" src="${channelInfo.channel_profile}" style="border-radius: 50%; width: 40px; height: 40px;">
-            <div>
-                <p class="channel-profile" id="${channelInfo.channel_name}">${channelInfo.channel_name}</p>
-                <p id="${channelInfo.subscribers}">${channelInfo.subscribers}</p>
-                <p>${channelInfo.channel_description}</p>
-            </div>
-            <!-- 구독 버튼 -->
-            <img src="img/subscribe.png" alt="" class="subscribe-button" onclick="toggleSubscription('${channel_name}')">
-            <!-- 구독 취소 버튼 -->
-            <img style="display: none;" src="img/subscribed.png" alt="" class="unsubscribe-button" onclick="toggleSubscription('${channel_name}')">
-        </div>
-    `;
-
-    infoContainer.innerHTML = innerHtml;
-
-    // 채널 비디오 로드
-    loadPlaylistVideos(channel_name);
 }
 
 /* 플레이리스트 비디오 로드 */
