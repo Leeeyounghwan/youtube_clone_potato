@@ -281,6 +281,7 @@ body {
     /* 화면 전체 높이를 차지하도록 설정 */
     margin: 0;
     /* 기본 마진 제거 */
+    background-color: black;
 }
 
 /* 메인 영역 스타일 */
