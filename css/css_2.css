@@ -132,10 +132,11 @@ input {
     outline: none;
     border: none;
 
+    text-indent: 10px;
+    /* 살짝 오른쪽으로 */
 }
 
 .searchButton {
-
     padding: none;
     /* 버튼 내부 여백 설정 */
     background-color: #212121;
@@ -148,6 +149,7 @@ input {
     /* 커서 모양을 포인터로 변경 */
     width: fixed;
     height: fixed;
+    border-radius: 50%;
 }
 
 .searchButtonImage {
@@ -163,6 +165,13 @@ input {
     background-color: #212121;
     border: none;
     cursor: pointer;
+    border-radius: 50%;
+    width: flex;
+    height: flex;
+}
+
+.voiceSearchButton:hover {
+    background-color: #404040;
 }
 
 .voiceButtonImage {
@@ -177,6 +186,10 @@ input {
     background-color: #212121;
     border: none;
     cursor: pointer;
+}
+
+.menuButton:hover {
+    background-color: #404040;
 }
 
 .menuButtonImage {
@@ -206,6 +219,68 @@ input {
 .headerRight {
     align-items: center;
     display: flex;
+}
+
+/* 0804 추가 헤더오른쪽 부분 */
+.createButton,
+.appButton,
+.notificationButton {
+    width: 40px;
+    /* 원하는 너비 값으로 조정 */
+    height: 35px;
+    /* 원하는 높이 값으로 조정 */
+    margin-right: 10px;
+    /* 버튼 사이의 간격을 조정 */
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    border-radius: 50%;
+}
+
+.createButton:hover {
+    background-color: #404040;
+}
+
+.appButton:hover {
+    background-color: #404040;
+}
+
+.notificationButton:hover {
+    background-color: #404040;
+}
+
+/* 버튼 이미지 스타일 */
+.headerRight button img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+/* 마지막 버튼 오른쪽 마진 제거 */
+.headerRight button:last-child {
+    margin-right: 0;
+}
+
+.profileButton {
+    background-color: #212121;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    height: 20%;
+}
+
+/* 0804 추가 부분 끝 */
+
+
+
+.profileButtonImage {
+    width: auto;
+    height: auto;
+    padding: none;
+    border: none;
+    margin: none;
+    border-radius: 50%;
 }
 
 .createButton {
@@ -251,20 +326,7 @@ input {
     margin: none;
 }
 
-.profileButton {
-    background-color: #212121;
-    border: none;
-    cursor: pointer;
-}
 
-.profileButtonImage {
-    width: auto;
-    height: auto;
-    padding: none;
-    border: none;
-    margin: none;
-    border-radius: 50%;
-}
 
 /* 메인 영역 스타일 */
 main {
@@ -363,6 +425,10 @@ aside {
     align-items: center;
 }
 
+.button-group button:hover {
+    background-color: #404040;
+}
+
 /* 텍스트 스타일 */
 .button-group span {
     margin-left: 10px;
@@ -449,7 +515,7 @@ aside {
 }
 
 .channel-title-set {
-    padding-left: 300px;
+    padding-left: 360px;
     padding-right: 100%;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -482,7 +548,10 @@ aside {
     border-radius: 5px;
     background-color: #c00;
     color: #fff;
+}
 
+.channel-subscribes:hover {
+    background-color: #990000;
 }
 
 /* 바깥쪽 컨테이너 */
@@ -535,11 +604,18 @@ aside {
     height: 48px;
     /* 버튼 크기 설정 */
     margin: 5px 20px;
+    transition: transform 0.1s;
+}
+
+/* 마우스를 올렸을 때 버튼 글자 살짝 커지는 효과 스타일 */
+.channelToolbarButtons button:not(#channel-left):hover {
+    font-size: 1.1em;
+    /* 원하는 글자 크기 조정 */
 }
 
 
 .channelToolbarButtons {
-    padding-left: 280px;
+    padding-left: 357px;
     background-color: #171717;
     display: flex;
     align-items: center;
@@ -557,8 +633,9 @@ aside {
     /* 이미지 너비 설정 */
     height: auto;
     /* 이미지 높이 설정 */
-    margin-left: 420px
-        /* 이미지 오른쪽 여백 설정 */
+    margin-left: 390px;
+    /* 이미지 오른쪽 여백 설정 */
+    padding: 13px 16px 13px 16px;
 }
 
 /* 채널 소형 영상 */
@@ -574,6 +651,7 @@ aside {
     margin-right: 20px;
     display: flex;
     flex-direction: row;
+    cursor: pointer;
 
 }
 
@@ -619,7 +697,7 @@ aside {
 .play-list {
 
     margin-top: 10px;
-    padding-left: 30px;
+    padding-left: 10px;
 }
 
 
@@ -627,11 +705,13 @@ aside {
     display: block;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: #ffffff;
+    cursor: pointer;
 }
 
 .play-btn {
+    margin-left: 10px;
     padding: 5px 10px;
     border: none;
     background-color: black;
@@ -642,6 +722,12 @@ aside {
 
     align-items: center;
     /* 버튼 그룹을 수직 가운데로 정렬 */
+
+    border-radius: 10px;
+}
+
+.play-btn:hover {
+    background-color: #404040;
 }
 
 .play-btn img {
@@ -649,10 +735,12 @@ aside {
 }
 
 .play-top {
+    padding-top: 10px;
     display: flex;
     /* 그룹 내부 요소들을 flexbox로 배치 */
     align-items: center;
     /* 버튼 그룹을 수직 가운데로 정렬 */
+    align-items: stretch;
 }
 
 
@@ -728,7 +816,10 @@ aside {
 }
 
 .most-view-video {
-    margin-left: 20px;
+    margin-left: 0px;
+    width: 29vw;
+    height: 25vh;
+
 }
 
 .most-view-title {

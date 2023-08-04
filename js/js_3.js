@@ -124,7 +124,7 @@ async function loadChannelMainVideo(channel_name) {
 
     let innerHtml = `
         <video class="most-view-video" src="${videoInfo.video_link}"
-        poster="${videoInfo.image_link}" controls autoplay style="width: 35vw; height: 25vh;"></video>
+        poster="${videoInfo.image_link}" controls autoplay"></video>
 
         <div class="most-view-info">
             <p class="most-view-title" onclick="goToVideoPage('${videoId}', '${channel_name}')">${videoInfo.video_title}</p>
@@ -226,7 +226,7 @@ function subscribeChannel() {
     if (flag1 == 1) {
         flag1 = 0;
         subscribes.style.backgroundColor = "#dbdbdb";
-        subscribes.value = "SUBSCRIBING";
+        subscribes.value = "SUBSCRIBED";
         subscribes.style.color = "black";
     }
     else {
