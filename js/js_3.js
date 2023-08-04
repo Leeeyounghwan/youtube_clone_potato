@@ -1,7 +1,7 @@
 /* 비디오 리스트 가져오기 */
 async function getVideoList() {
     try {
-        let response = await fetch('http://oreumi.appspot.com/video/getVideoList');
+        let response = await fetch('https://oreumi.appspot.com/video/getVideoList');
         const data = await response.json();
         return data;
     } catch (e) {
@@ -12,7 +12,7 @@ async function getVideoList() {
 /* 입력받은 video_id로 영상정보 가져오기 */
 async function getVideoInfo(video_id) {
     try {
-        let URL = `http://oreumi.appspot.com/video/getVideoInfo?video_id=${video_id}`;
+        let URL = `https://oreumi.appspot.com/video/getVideoInfo?video_id=${video_id}`;
         let response = await fetch(URL);
         const data = await response.json();
         return data;
@@ -24,7 +24,7 @@ async function getVideoInfo(video_id) {
 /* 입력받는 채널의 정보 가져오기 */
 async function getChannelInfo(channel_name) {
     try {
-        let URL = `http://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channel_name}`;
+        let URL = `https://oreumi.appspot.com/channel/getChannelInfo?video_channel=${channel_name}`;
         let response = await fetch(URL, { method: "POST" });
         const data = await response.json();
         return data;
