@@ -114,7 +114,7 @@ async function loadFilteredVideo(filteredVideoList) {
                         <p class="thumbnail-title"><a class="thumbnail-title-link" href="Html/video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
                             <div>
                                 <p class="thumbnail-channel"><a class="thumbnail-text-link" href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
-                                <p class="thumbnail-channel">${views}K Views, ${dayBefore}일전</p>
+                                <p class="thumbnail-channel">${views}K Views, ${dayBefore}개월 전</p>
                             </div>
                         </div>
                     </div>
@@ -165,7 +165,7 @@ async function loadVideo() {
                         <p class="thumbnail-title"><a class="thumbnail-title-link" href="Html/video.html?id=${videoId}&channel_name=${channelInfo.channel_name}">${videoInfo.video_title}</a></p>
                             <div>
                                 <p class="thumbnail-channel"><a class="thumbnail-text-link" href="Html/channel.html?channel_name=${channelInfo.channel_name}&id=${videoId}">${videoInfo.video_channel}</a></p>
-                                <p class="thumbnail-channel">${views}K Views, ${dayBefore}일전</p>
+                                <p class="thumbnail-channel">${views}K Views, ${dayBefore}개월 전</p>
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,10 @@ function asOfToday(upload_date) {
     let currentDate = new Date();
 
     let minusdate = currentDate - uploadDate
-    let dayBefore = minusdate / (1000 * 60 * 60 * 24);
+    let dayBefore = minusdate / (1000 * 60 * 60 * 24) / 30;
+    if (Math.floor(dayBefore) < 1) {
+        dayBefore = 1;
+    }
     return Math.floor(dayBefore);
 }
 

@@ -82,6 +82,7 @@ async function displayVideoTitle(video_id) {
     let infoContainer = document.getElementById('displayVideoTitle');
     let infoContainer2 = document.getElementById('infoText');
     let views = Math.floor(videoInfo.views / 1000);
+    let dayBefore = asOfToday(videoInfo.upload_date);
 
     let innerHtml = `
         <div>
@@ -91,7 +92,7 @@ async function displayVideoTitle(video_id) {
 
     let innerHtml2 = `
         <div>
-            <p class="video-detail">${views}K Views, ${videoInfo.upload_date}</p>
+            <p class="video-detail">${views}K Views, ${dayBefore}개월 전</p>
         </div>
     `;
 
@@ -170,7 +171,7 @@ async function displayVideoList() {
                 <div class="aside-text-content">
                     <p class="aside-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}">${videoInfo.video_title}</a></p>
                     <p class="aside-text"><a class="thumbnail-channel-link" href="./channel.html?channel_name=${videoInfo.video_channel}&id=${videoId}">${videoInfo.video_channel}</p>
-                    <p class="aside-text">${views}K Views, ${dayBefore}일 전</p>
+                    <p class="aside-text">${views}K Views, ${dayBefore}개월 전</p>
                 </div>
             </div>
         `;
@@ -328,7 +329,10 @@ function asOfToday(upload_date) {
     let currentDate = new Date();
 
     let minusdate = currentDate - uploadDate
-    let dayBefore = minusdate / (1000 * 60 * 60 * 24);
+    let dayBefore = minusdate / (1000 * 60 * 60 * 24) / 30;
+    if (Math.floor(dayBefore) < 1) {
+        dayBefore = 1;
+    }
     return Math.floor(dayBefore);
 }
 
