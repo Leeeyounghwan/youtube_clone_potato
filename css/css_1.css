@@ -140,6 +140,8 @@ input {
     outline: none;
     border: none;
 
+    text-indent: 10px;
+    /* 살짝 오른쪽으로 */
 }
 
 .searchButton {
@@ -156,6 +158,7 @@ input {
     /* 커서 모양을 포인터로 변경 */
     width: fixed;
     height: fixed;
+    border-radius: 50%;
 }
 
 .searchButtonImage {
@@ -171,6 +174,13 @@ input {
     background-color: #212121;
     border: none;
     cursor: pointer;
+    border-radius: 50%;
+    width: flex;
+    height: flex;
+}
+
+.voiceSearchButton:hover {
+    background-color: #404040;
 }
 
 .voiceButtonImage {
@@ -185,6 +195,10 @@ input {
     background-color: #212121;
     border: none;
     cursor: pointer;
+}
+
+.menuButton:hover {
+    background-color: #404040;
 }
 
 .menuButtonImage {
@@ -214,6 +228,46 @@ input {
 .headerRight {
     align-items: center;
     display: flex;
+}
+
+/* 버튼 이미지 스타일 */
+.headerRight button img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+/* 마지막 버튼 오른쪽 마진 제거 */
+.headerRight button:last-child {
+    margin-right: 0;
+}
+
+.createButton,
+.appButton,
+.notificationButton {
+    width: 40px;
+    /* 원하는 너비 값으로 조정 */
+    height: 35px;
+    /* 원하는 높이 값으로 조정 */
+    margin-right: 10px;
+    /* 버튼 사이의 간격을 조정 */
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    border-radius: 50%;
+}
+
+.createButton:hover {
+    background-color: #404040;
+}
+
+.appButton:hover {
+    background-color: #404040;
+}
+
+.notificationButton:hover {
+    background-color: #404040;
 }
 
 .createButton {
@@ -262,6 +316,8 @@ input {
     background-color: #212121;
     border: none;
     cursor: pointer;
+    width: 30%;
+    height: 20%;
 }
 
 .profileButtonImage {
@@ -311,6 +367,7 @@ aside {
     /* 버튼들을 세로로 배치 */
     align-items: center;
     /* 버튼들을 수직 가운데로 정렬 */
+
 }
 
 /* 네비게이션 스타일 */
@@ -439,6 +496,10 @@ section {
     align-items: center;
 }
 
+.button-group button:hover {
+    background-color: #404040;
+}
+
 /* 텍스트 스타일 */
 .button-group span {
     margin-left: 10px;
@@ -468,6 +529,14 @@ section {
     min-width: 100%;
     /* 컨테이너의 최소 너비를 100%로 설정 */
 
+}
+
+.filterButtons button:hover {
+    background-color: #404040;
+}
+
+.filterButtons .active:hover {
+    background-color: #ffffff;
 }
 
 /* 가로 방향 스크롤 바 숨기기 */
