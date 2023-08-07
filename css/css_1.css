@@ -22,7 +22,6 @@ header {
     position: fixed;
     z-index: 1000;
     /* 다른 요소들보다 우선하여 가장 위에 표시되도록 설정 */
-    /* height: 5vh; */
 }
 
 input {
@@ -379,7 +378,8 @@ nav {
     padding: 5px 5px 5px 0px;
     /* 주변 여백 설정 */
     margin-top: 30px;
-    margin-left: 180px;
+    margin-left: 0px;
+    padding-left: 10px;
     position: relative;
     overflow: hidden;
     /* 내부 컨텐츠가 넘치지 않도록 설정 */
@@ -410,6 +410,8 @@ section {
     /* 내용이 가로로 넘칠 때 줄 바꿈 방지 */
     padding: 15px 0px 5px 0px;
     width: 100vw;
+    margin-left: 180px;
+
 }
 
 
@@ -514,6 +516,7 @@ section {
     /* 슬라이더 버튼의 위치를 설정하기 위해 상대적 위치로 지정 */
     overflow: hidden;
     /* 컨테이너 영역을 넘어가는 부분을 숨기기 위해 오버플로우 속성 사용 */
+
 }
 
 /* 필터링 버튼들을 감싸는 div의 스타일 */
