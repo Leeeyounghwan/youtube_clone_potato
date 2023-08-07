@@ -142,26 +142,152 @@ async function displayVideoInfo(video_id) {
 }
 
 
-/* video.html 우측 영상 리스트 출력하는 함수 */
-async function displayVideoList() {
+// /* video.html 우측 영상 리스트 출력하는 함수 */
+// async function displayVideoList() {
+//     // getVideoList 함수 호출해서 영상 리스트 가져오기
+//     let videoList = await getVideoList();
+
+//     // 가져온 정보를 저장할 videoContainer 생성
+//     let videoContainer = document.getElementById('displayVideoList');
+
+//     // 비디오 정보와 채널 정보를 병렬로 가져오기
+//     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
+//     const videoInfoList = await Promise.all(videoInfoPromises);
+
+
+
+//     // videoList의 값만큼 데이터 불러오기
+//     for (let i = 0; i < videoList.length; i++) {
+//         let videoId = videoList[i].video_id;
+
+//         // getVideoInfo에 입력받은 videoId로 정보 가져오기
+//         let videoInfo = videoInfoList[i];
+//         let dayBefore = asOfToday(videoInfo.upload_date);
+//         let views = Math.floor(videoInfo.views / 1000);
+
+//         let innerHtml = `
+//             <div class="aside-video">
+//                 <img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}"' class="aside-thumbnail">
+//                 <div class="aside-text-content">
+//                     <p class="aside-title"><a class="thumbnail-title-link" href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}">${videoInfo.video_title}</a></p>
+//                     <p class="aside-text"><a class="thumbnail-channel-link" href="./channel.html?channel_name=${videoInfo.video_channel}&id=${videoId}">${videoInfo.video_channel}</p>
+//                     <p class="aside-text">${views}K Views, ${dayBefore}개월 전</p>
+//                 </div>
+//             </div>
+//         `;
+
+//         // 데이터를 div에 삽입
+//         videoContainer.innerHTML += innerHtml;
+//     }
+// }
+
+
+/* 유사도 측정 결과 가져오기 */
+async function getSimilarity(firstWord, secondWord) {
+    const openApiURL = "http://aiopen.etri.re.kr:8000/WiseWWN/WordRel";
+    const access_key = "b99be054-74a2-44a5-b360-eedbed461768";
+
+    let requestJson = {
+        argument: {
+            first_word: firstWord,
+            second_word: secondWord,
+        },
+    };
+
+    let response = await fetch(openApiURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: access_key,
+        },
+        body: JSON.stringify(requestJson),
+    });
+    let data = await response.json();
+    return data.return_object["WWN WordRelInfo"].WordRelInfo.Distance;
+}
+
+/* video.html 우측에 AI가 판별한 관련 영상 리스트 출력하는 함수 */
+async function displayVideoList(videoId) {
     // getVideoList 함수 호출해서 영상 리스트 가져오기
     let videoList = await getVideoList();
 
     // 가져온 정보를 저장할 videoContainer 생성
     let videoContainer = document.getElementById('displayVideoList');
 
-    // 비디오 정보와 채널 정보를 병렬로 가져오기
+    // // 비디오 정보와 채널 정보를 병렬로 가져오기
     const videoInfoPromises = videoList.map((video) => getVideoInfo(video.video_id));
     const videoInfoList = await Promise.all(videoInfoPromises);
 
 
+    // 현재 비디오 정보 가져오기
+    let currentVideoInfo = await getVideoInfo(videoId);
+    let tagList = currentVideoInfo.video_tag;
+    // console.log(tagList);
+    let channelName = currentVideoInfo.video_channel;
+    // console.log(channelName);
+    let targetTagList = currentVideoInfo.video_tag; //현재 비디오 태그
+    // console.log(targetTagList);
+    let targetVideoId = currentVideoInfo.video_id;
+    // console.log(targetVideoId);
+
+
+    let filteredVideoList = await calculateVideoSimilarities(
+        videoInfoList,
+        targetTagList
+    );
+
+    // 비슷한 유형의 비디오를 찾는 메서드
+    async function calculateVideoSimilarities(videoList, targetTagList) {
+        let filteredVideoList = [];
+
+        for (let video of videoList) {
+            let totalDistance = 0;
+            let promises = [];
+
+            for (let videoTag of video.video_tag) {
+                for (let targetTag of targetTagList) {
+                    if (videoTag == targetTag) {
+                        promises.push(0);
+                    } else {
+                        promises.push(getSimilarity(videoTag, targetTag));
+                    }
+                }
+            }
+
+            let distances = await Promise.all(promises);
+
+            for (let distance of distances) {
+
+                if (distance !== -1) {
+                    totalDistance += distance;
+                }
+            }
+
+            if (totalDistance !== 0) {
+                if (targetVideoId !== video.video_id) {
+                    filteredVideoList.push({ ...video, score: totalDistance });
+                }
+            }
+        }
+
+        filteredVideoList.sort((a, b) => a.score - b.score);
+
+        filteredVideoList = filteredVideoList.map((video) => ({
+            ...video,
+            score: 0,
+        }));
+        console.log("filteredVideoList : ", filteredVideoList);
+        return filteredVideoList;
+    }
+
 
     // videoList의 값만큼 데이터 불러오기
-    for (let i = 0; i < videoList.length; i++) {
-        let videoId = videoList[i].video_id;
+    for (let i = 0; i < 8; i++) {
+        let videoId = filteredVideoList[i].video_id;
 
         // getVideoInfo에 입력받은 videoId로 정보 가져오기
-        let videoInfo = videoInfoList[i];
+        let videoInfo = filteredVideoList[i];
+
         let dayBefore = asOfToday(videoInfo.upload_date);
         let views = Math.floor(videoInfo.views / 1000);
 
@@ -180,6 +306,10 @@ async function displayVideoList() {
         videoContainer.innerHTML += innerHtml;
     }
 }
+
+
+
+
 
 /* 댓글창 작성, 취소버튼 노출 이벤트 */
 let input = document.querySelector("#commentInput");
@@ -231,7 +361,6 @@ async function loadChannel(name, id) {
 
     // console.log(innerHtml);
     infoContainer.innerHTML += innerHtml;
-
 }
 
 /* 플레이리스트 비디오 로드 */

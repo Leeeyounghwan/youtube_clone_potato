@@ -5,17 +5,35 @@
 
  <br>
 
-# 브랜치 구성
- - html
-     - html 코드 전체
- - css_1
-     - 공통 css 구성(상단메뉴바, 사이드메뉴바, video.html페이지)
- - css_2
-     - 개별 css 구성(css_1을 제외한 부분)
- - js_1
- - js_2
+# 세션
+### Session 1
+- 상단 바(3페이지 공통) - html, css완성
+- 사이드 바(3페이지 공통) - html, css완성
 
-## team
+### Session 2
+- 메인페이지 카드ui - html, css완성
+- 메인페이지 버튼ui - html, css완성
+
+### Session 3
+- 채널페이지 기본 구조 - html, css 완성
+
+### Session 4
+- 비디오페이지 기본 구조 - html, css 완성
+
+### Session 5
+- 검색기능완성 - js
+- 사이드바(3페이지 공통) - js완성
+
+### Session 6
+- 구독기능 완성 - js
+- 비디오 플레이어 구현 - html, css, js
+
+### Session 7
+- 현재 재생영상 관련한 추천 재생목록 생성 AI
+
+<br>
+
+# 조원
  - 구영재
  - 박수진
  - 이영환
