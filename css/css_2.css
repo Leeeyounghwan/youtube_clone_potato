@@ -515,22 +515,21 @@ aside {
 }
 
 .channel-title-set {
-    padding-left: 360px;
-    padding-right: 100%;
+    padding-left: 50px;
     padding-top: 20px;
     padding-bottom: 10px;
     display: flex;
     align-items: center;
     /* 세로 중앙 정렬 */
     background-color: #171717;
-    justify-content: space-between;
-    width: 63vw;
-    max-width: 1450px;
+    justify-content: center;
+    width: 100%;
 }
 
 
 
 .channel-subscribes {
+    margin-left: 500px;
     width: 130px;
     height: 40px;
     display: flex;
@@ -615,10 +614,11 @@ aside {
 
 
 .channelToolbarButtons {
-    padding-left: 357px;
+    padding-right: 10%;
     background-color: #171717;
     display: flex;
     align-items: center;
+    justify-content: center;
 
 }
 
@@ -633,7 +633,7 @@ aside {
     /* 이미지 너비 설정 */
     height: auto;
     /* 이미지 높이 설정 */
-    margin-left: 390px;
+    margin-left: 200px;
     /* 이미지 오른쪽 여백 설정 */
     padding: 13px 16px 13px 16px;
 }
@@ -763,6 +763,7 @@ aside {
 
 .small-video-info {
     padding: 0;
+    padding-left: 3px;
     margin: 3px;
     color: #AAA;
     font-family: Roboto;
@@ -782,16 +783,15 @@ aside {
 
 .small-video-title {
     padding: 0;
-    margin-left: 10px;
     font-family: Roboto;
     font-size: 12px;
     font-style: normal;
     font-weight: 900;
+    color: #FFFFFF;
 }
 
 .small-video-channel {
-    margin-left: 10px;
-    margin-top: 3px;
+    margin-top: 5px;
     font-family: Roboto;
     font-size: 12px;
     font-style: normal;
