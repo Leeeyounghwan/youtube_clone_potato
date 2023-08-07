@@ -85,7 +85,10 @@ function asOfToday(upload_date) {
     let currentDate = new Date();
 
     let minusdate = currentDate - uploadDate
-    let dayBefore = minusdate / (1000 * 60 * 60 * 24);
+    let dayBefore = minusdate / (1000 * 60 * 60 * 24) / 30;
+    if (Math.floor(dayBefore) < 1) {
+        dayBefore = 1;
+    }
     return Math.floor(dayBefore);
 }
 
@@ -112,6 +115,7 @@ async function loadChannelMainVideo(channel_name) {
     videoList = videoList.filter((video) => video.video_channel === channel_name);
 
     for (let i = 0; i < videoList.length; i++) {
+
         if (mostView < videoList[i].views) {
             videoId = videoList[i].video_id;
             mostView = videoList[i].views;
@@ -128,7 +132,7 @@ async function loadChannelMainVideo(channel_name) {
 
         <div class="most-view-info">
             <p class="most-view-title" onclick="goToVideoPage('${videoId}', '${channel_name}')">${videoInfo.video_title}</p>
-            <p class="most-view-upload">${views}K views, ${dayBefore}일전</p>
+            <p class="most-view-upload">${views}K views, ${dayBefore}개월 전</p>
             <p class="most-view-detail">Chris Fisher, also known as the Blind Woodturner, learned his craft by listening to hundreds of hours of YouTube videos and experimenting in his workshop. Now he’s a YouTube creator himself, sells his products worldwide, and does demonstrations all around the country.</p>
         </div>
     `
@@ -164,7 +168,7 @@ async function loadPlaylistVideos(channel_name) {
                 <img src="${videoInfo.image_link}" class="small-video-thumbnail" onclick="goToVideoPage('${videoId}', '${channel_name}')">
                 <div class="small-video-info">
                     <p class="small-video-title" onclick="goToVideoPage('${videoId}', '${channel_name}')">${videoInfo.video_title}</p>
-                    <p class="small-video-channel">${views}K views, ${dayBefore}일전</p>
+                    <p class="small-video-channel">${views}K views, ${dayBefore}개월 전</p>
                 </div>
             </div>
         `;
@@ -182,7 +186,7 @@ async function loadPlaylistVideos(channel_name) {
                 <img src="${videoInfo.image_link}" class="small-video-thumbnail" onclick="goToVideoPage('${videoId}', '${channel_name}')">
                 <div class="small-video-info">
                     <p class="small-video-title" onclick="goToVideoPage('${videoId}', '${channel_name}')">${videoInfo.video_title}</p>
-                    <p class="small-video-channel">${views}K 조회수, ${dayBefore}일전</p>
+                    <p class="small-video-channel">${views}K 조회수, ${dayBefore}개월 전</p>
                 </div>
             </div>
         `;
