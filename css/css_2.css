@@ -492,14 +492,15 @@ aside {
 
 .channel-profile-info {
     margin-left: 10px;
+    padding-top: 25px;
 }
 
 /* 프로필 이미지 스타일 (크기 및 기타 스타일은 필요에 따라 조정) */
 .channel-profile-img {
     justify-content: center;
     align-items: center;
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     margin: 5px;
 }
@@ -515,26 +516,24 @@ aside {
 }
 
 .channel-title-set {
-    padding-left: 50px;
+    padding-left: 15vw;
     padding-top: 20px;
     padding-bottom: 10px;
     display: flex;
     align-items: center;
     /* 세로 중앙 정렬 */
     background-color: #171717;
-    justify-content: center;
-    width: 100%;
+    width: auto;
 }
 
 
 
 .channel-subscribes {
-    margin-left: 500px;
     width: 130px;
     height: 40px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 10px;
     font-family: Roboto;
     font-size: 17px;
@@ -547,6 +546,7 @@ aside {
     border-radius: 5px;
     background-color: #c00;
     color: #fff;
+    margin-left: 45vw;
 }
 
 .channel-subscribes:hover {
@@ -566,7 +566,6 @@ aside {
 .load-profile {
     display: flex;
     flex-direction: row;
-
 }
 
 /* 프로필과 채널명 스타일 */
@@ -762,7 +761,6 @@ aside {
 }
 
 .small-video-info {
-    padding: 0;
     padding-left: 3px;
     margin: 3px;
     color: #AAA;
