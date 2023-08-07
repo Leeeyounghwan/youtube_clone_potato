@@ -203,45 +203,7 @@ async function viewVideo(video_id) {
     videoContainer.innerHTML += innerHtml;
 }
 
-/* video.html 우측 영상 리스트 출력하는 함수 */
-async function displayVideoList() {
-    try {
-        // getVideoList 함수를 호출하여 영상 리스트를 가져옵니다.
-        let videoList = await getVideoList();
 
-        // 가져온 정보를 저장할 videoContainer를 생성합니다.
-        let videoContainer = document.getElementById('displayVideoList');
-
-        // videoList의 값만큼 데이터를 불러옵니다.
-        for (let i = 0; i < videoList.length; i++) {
-            let videoId = videoList[i].video_id;
-
-            // getVideoInfo에 입력받은 videoId로 정보를 가져옵니다.
-            let videoInfo = await getVideoInfo(videoId);
-
-            let views = Math.floor(videoInfo.views / 1000);
-
-            let innerHtml = `
-            <div>
-                <div class="aside-video">
-                <img src="${videoInfo.image_link}" onclick='location.href="./video.html?id=${videoId}&channel_name=${videoInfo.video_channel}"' class="aside-thumbnail">
-                    <div style=" width: 204px; flex-direction: column;">
-                        <p class="aside-title">${videoInfo.video_title}</p>
-                        <p class="aside-text">${videoInfo.video_channel}</p>
-                        <p class="aside-text">${views}K 조회수, ${videoInfo.upload_date}</p>
-                    </div>
-                </div>
-            </div>
-            `;
-
-            // 데이터를 div에 삽입합니다.
-            videoContainer.innerHTML += innerHtml;
-        }
-    } catch (error) {
-        // 비동기 작업 중 발생한 오류를 처리합니다.
-        console.error("비디오 목록을 표시하는 동안 오류가 발생했습니다:", error);
-    }
-}
 
 // 사이드바 스크롤
 window.addEventListener('scroll', function () {
