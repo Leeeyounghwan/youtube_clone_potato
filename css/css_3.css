@@ -98,6 +98,12 @@ header {
     outline: none;
     border: none;
 
+    text-indent: 10px;
+    /* 살짝 오른쪽으로 */
+}
+
+input {
+    color: #ffffff;
 }
 
 .searchButton {
@@ -129,6 +135,13 @@ header {
     background-color: #212121;
     border: none;
     cursor: pointer;
+    border-radius: 50%;
+    width: flex;
+    height: flex;
+}
+
+.voiceSearchButton:hover {
+    background-color: #404040;
 }
 
 .voiceButtonImage {
@@ -143,6 +156,10 @@ header {
     background-color: #212121;
     border: none;
     cursor: pointer;
+}
+
+.menuButton:hover {
+    background-color: #404040;
 }
 
 .menuButtonImage {
@@ -172,6 +189,18 @@ header {
 .headerRight {
     align-items: center;
     display: flex;
+}
+
+/* 버튼 이미지 스타일 */
+.headerRight button img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+/* 마지막 버튼 오른쪽 마진 제거 */
+.headerRight button:last-child {
+    margin-right: 0;
 }
 
 .createButton {
@@ -228,11 +257,41 @@ header {
     padding: 1px 6px;
 }
 
+.createButton,
+.appButton,
+.notificationButton {
+    width: 40px;
+    /* 원하는 너비 값으로 조정 */
+    height: 35px;
+    /* 원하는 높이 값으로 조정 */
+    margin-right: 10px;
+    /* 버튼 사이의 간격을 조정 */
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    border-radius: 50%;
+}
+
+.createButton:hover {
+    background-color: #404040;
+}
+
+.appButton:hover {
+    background-color: #404040;
+}
+
+.notificationButton:hover {
+    background-color: #404040;
+}
+
 
 .profileButton {
     background-color: #212121;
     border: none;
     cursor: pointer;
+    width: 30%;
+    height: 20%;
 }
 
 .profileButtonImage {
