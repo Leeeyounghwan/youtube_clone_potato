@@ -139,7 +139,7 @@
     let flag = 1;
     function hideMenu() {
         aside = document.getElementById("aside");
-        nav = document.getElementById("nav")
+        nav = document.getElementsByClassName("mainContainer")[0];
         if (flag == 1) {
             flag = 0;
             aside.style.display = "none";
